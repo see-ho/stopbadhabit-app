@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.15489130434782608" />
+        <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/bg_home.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/ic_add.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic_bg_home.xml" value="0.178" />
+        <entry key="app/src/main/res/drawable/ic_heart.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic_history.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/ic_shield.xml" value="0.2585" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.12310030395136778" />
+        <entry key="app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.37455478244357643" />
+        <entry key="app/src/main/res/layout/fragment_habit_add.xml" value="0.2164855072463768" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.11626139817629179" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20444444444444446" />
+        <entry key="app/src/main/res/layout/fragment_open_source.xml" value="0.10555555555555556" />
+        <entry key="app/src/main/res/layout/habit_itemview.xml" value="0.2930908203124999" />
+        <entry key="app/src/main/res/layout/item_goaldate_list.xml" value="0.13722826086956522" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.178" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
