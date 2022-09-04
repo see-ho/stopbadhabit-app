@@ -1,5 +1,35 @@
 <resources>
     <string name="app_name">StopBadHabit</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- 공통 -->
+    <string name="blank">%s</string>
+    <string name="life">%d / %d</string>
+
+    <!-- Bottom Sheet-->
+    <string name="bt_sheet_title">교정하고 싶은 버릇</string>
+    <string name="bt_sheet_mobname">몬스터 이름</string>
+    <string name="bt_sheet_goaldate">목표 날짜</string>
+    <string name="bt_sheet_mode">난이도</string>
+    <string name="bt_sheet_life">라이프는 %d개 입니다.</string>
+
+    <!-- HomeHabitItem -->
+    <string name="hhi_current_day">현재 %d일째 도전중</string>
+    
+    <!-- HabitDetail -->
+    <string name="hd_current">현재 %d일째 전투중</string>
+    <string name="hd_continuity">연속 %d일째 치명타 공격</string>
+    <string name="hd_fail">지금까지 %d번 방어 실패</string>
+
+    <string name="hd_current_life">현재 라이프</string>
+    <string name="hd_diary">반성일기</string>
+
+    <!-- HabitDetailWrite -->
+    <string name="hdw_date">날짜</string>
+    <string name="hdw_time">시간</string>
+    <string name="hdw_situation">상황</string>
+    <string name="hdw_reason">이유</string>
+    <string name="hdw_emotion">감정</string>
+    <string name="hdw_promise">다짐</string>
+    <string name="hdw_commit">등록</string>
 </resources>

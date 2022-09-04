@@ -23,4 +23,14 @@ class OpenSourceFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_open_source, container, false)
     }
 
+    companion object {
+        fun newInstance(bundle: Bundle?): OpenSourceFragment {
+            val fragment = OpenSourceFragment()
+            bundle?.let {
+                fragment.arguments = it
+            }
+            return fragment
+        }
+    }
+
 }

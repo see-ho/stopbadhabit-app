@@ -8,20 +8,10 @@ import androidx.room.PrimaryKey
 import com.example.stopbadhabit.data.model.Diary.Diary
 import java.util.*
 
-@Entity(
-    tableName = "Habit", foreignKeys = [
-        ForeignKey(
-            entity = Diary::class,
-            parentColumns = ["habit_id"],
-            childColumns = ["habit_id"],
-            onDelete = CASCADE
-        )
-    ]
-)
-
+@Entity
 data class Habit(
     @PrimaryKey(autoGenerate = true)
-    val habit_id: Int,
+    val habit_id: Int? = null,
 
     @ColumnInfo(name = "name")
     val name: String,
@@ -30,10 +20,10 @@ data class Habit(
     val goal_date: Int,
 
     @ColumnInfo(name = "start_date")
-    val start_date: Date,
+    val start_date: String,
 
     @ColumnInfo(name = "end_date")
-    val end_date: Date,
+    val end_date: String? = null,
 
     @ColumnInfo(name= "current_life")
     val current_life : Int,
@@ -42,8 +32,9 @@ data class Habit(
     val setting_life : Int,
 
     @ColumnInfo(name = "state")
-    val state: Int
+    val state: Int,
 
+    //var diaryList: List<Diary>?
     )
 
 

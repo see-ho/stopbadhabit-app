@@ -4,6 +4,7 @@
     package="com.example.stopbadhabit">
 
     <application
+        android:name=".data.di.HabitApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"

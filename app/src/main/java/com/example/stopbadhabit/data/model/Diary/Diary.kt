@@ -14,7 +14,7 @@ data class Diary(
     val habit_id: Int,
 
     @ColumnInfo(name = "diary_date")
-    val diary_date: Date,
+    val diary_date: String,
 
     @ColumnInfo(name = "situation")
     val situation: String?,

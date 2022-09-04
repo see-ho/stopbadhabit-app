@@ -23,4 +23,14 @@ class HistoryFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
+    companion object {
+        fun newInstance(bundle: Bundle?): HistoryFragment {
+            val fragment = HistoryFragment()
+            bundle?.let {
+                fragment.arguments = it
+            }
+            return fragment
+        }
+    }
+
 }
