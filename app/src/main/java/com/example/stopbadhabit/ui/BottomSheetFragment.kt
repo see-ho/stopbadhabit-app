@@ -24,6 +24,7 @@ import com.example.stopbadhabit.ui.viewmodel.BottomSheetViewModel
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.fragment.LifeType
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -36,17 +37,16 @@ import java.util.*
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private val binding by lazy { FragmentBottomSheetBinding.inflate(layoutInflater) }
-    private val bottomSheetViewModel : BottomSheetViewModel by viewModels()
     private val mainViewModel : MainViewModel by activityViewModels()
     private var settingLife : LifeType = LifeType.Error
     private var mMode : Int = -1
+    private var mName : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -114,23 +114,26 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             binding.btnNormalmode.background = ContextCompat.getDrawable(requireContext(),R.drawable.ic_normalmode)
         }
 
-        //TODO 에외처리에 대한 무언가.. 토스트 메세지나 확인 버튼 눌렀을 때 타입이 에러면 토스트 메세지 뜨면서 안되게
-
         binding.btnAdd.setOnClickListener {
-
-            var mName = binding.etName.text.toString()
-            //val mDiary = Diary(11,1,"","","","","")
-            //var mList : MutableList<Diary> = mutableListOf(mDiary)
-            val mDate = LocalDate.now()
-            mainViewModel.insert(Habit(
-                name=mName,
-                goal_date = mGoalDate,
-                start_date = mDate.toString(),
-                setting_life = settingLife.life,
-                current_life = settingLife.life,
-                state = 0))
-            dismiss()
-            //TODO 여기 수정
+            mName = binding.etName.text.toString()
+            if(mMode == -1 && mName == ""){
+                Snackbar.make(binding.root,String.format(requireActivity().resources.getString(R.string.bt_sheet_setNameMode)),Snackbar.LENGTH_SHORT).show()}
+            else if(mMode == -1){
+                Snackbar.make(binding.root,String.format(requireActivity().resources.getString(R.string.bt_sheet_setMode)),Snackbar.LENGTH_SHORT).show()}
+            else if(mName == ""){
+                Snackbar.make(binding.root,String.format(requireActivity().resources.getString(R.string.bt_sheet_setName)),Snackbar.LENGTH_SHORT).show()
+            }
+            else {
+                val mDate = LocalDate.now()
+                mainViewModel.insertHabit(Habit(
+                    name=mName,
+                    goal_date = mGoalDate,
+                    start_date = mDate.toString(),
+                    setting_life = settingLife.life,
+                    current_life = settingLife.life,
+                    state = 0))
+                dismiss()
+            }
         }
         return binding.root
     }
@@ -151,8 +154,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         binding.tvLifeMessage.text = String.format(requireActivity().resources.getString(R.string.bt_sheet_life),settingLife.life)
         binding.tvLifeMessage.visibility = View.VISIBLE
-
-        Log.e(javaClass.simpleName,"${settingLife.life}로 설정")
 
         return settingLife
     }

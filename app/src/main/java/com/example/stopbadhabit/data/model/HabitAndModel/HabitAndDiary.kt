@@ -11,5 +11,5 @@ data class HabitAndDiary(
         parentColumn = "habit_id",
         entityColumn = "habit_id"
     )
-    val diarys: List<Diary>?
+    val diaries: List<Diary>?
 )

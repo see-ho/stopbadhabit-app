@@ -11,6 +11,7 @@
     <color name="beige_100">#FFF7F2</color>
     <color name="beige_150">#FFEDE1</color>
     <color name="beige_200">#FDE4D4</color>
+    <color name="beige_300">#D1A68A</color>
 
     <color name="red_100">#B3000A</color>
 </resources>

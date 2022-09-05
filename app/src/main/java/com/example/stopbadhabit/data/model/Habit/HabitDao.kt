@@ -16,4 +16,8 @@ interface HabitDao {
 
     @Query("SELECT * FROM habit WHERE habit_id = :id")
     suspend fun getHabitById(id: Int): Habit?
+
+    @Update
+    suspend fun updateHabit(habit: Habit)
+
 }

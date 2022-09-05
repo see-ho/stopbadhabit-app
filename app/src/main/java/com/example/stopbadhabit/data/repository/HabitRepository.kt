@@ -21,4 +21,8 @@ class HabitRepository(private val habitDao: HabitDao) {
     suspend fun getHabitById(habitId:Int) : Habit? {
         return habitDao.getHabitById(habitId)
     }
+
+    suspend fun updateHabit(habit: Habit){
+        habitDao.updateHabit(habit)
+    }
 }

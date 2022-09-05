@@ -20,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
-
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private val homeViewModel: HomeViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -47,6 +46,7 @@ class HomeFragment : Fragment() {
         homeHabitListAdapter = HomeHabitListAdapter({
             Log.e(javaClass.simpleName, "setView: ${it}")
             mainViewModel.detailHabitId = it
+//            mainViewModel.getDiaryList()
             findNavController().navigate(R.id.action_HomeFragment_to_habitDetailFragment)
         }, {
             findNavController().navigate(R.id.action_homeFragment_to_diaryWriteFragment)
@@ -102,4 +102,5 @@ class HomeFragment : Fragment() {
             return fragment
         }
     }
+
 }

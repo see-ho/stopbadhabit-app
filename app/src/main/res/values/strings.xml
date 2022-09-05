@@ -12,10 +12,13 @@
     <string name="bt_sheet_goaldate">목표 날짜</string>
     <string name="bt_sheet_mode">난이도</string>
     <string name="bt_sheet_life">라이프는 %d개 입니다.</string>
+    <string name="bt_sheet_setMode">난이도를 설정해주세요.</string>
+    <string name="bt_sheet_setName">버릇의 이름을 설정해주세요.</string>
+    <string name="bt_sheet_setNameMode">버릇의 이름과 난이도를 설정해주세요.</string>
 
     <!-- HomeHabitItem -->
     <string name="hhi_current_day">현재 %d일째 도전중</string>
-    
+
     <!-- HabitDetail -->
     <string name="hd_current">현재 %d일째 전투중</string>
     <string name="hd_continuity">연속 %d일째 치명타 공격</string>
@@ -32,4 +35,7 @@
     <string name="hdw_emotion">감정</string>
     <string name="hdw_promise">다짐</string>
     <string name="hdw_commit">등록</string>
+
+    <!-- DiaryWrite -->
+    <string name="dw_setPromise">다짐은 필수로 입력해주세요.</string>
 </resources>

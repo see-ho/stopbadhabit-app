@@ -1,239 +1,244 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        style="@style/tv_12"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/beige_150"
-        android:padding="20dp"
-        tools:context=".ui.DiaryWriteFragment">
+        android:layout_height="wrap_content">
 
-        <ScrollView
+        <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/tv_12"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5">
+            android:layout_height="match_parent"
+            android:background="@color/beige_150"
+            android:padding="20dp"
+            tools:context=".ui.DiaryWriteFragment">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.5">
 
-                <TextView
-                    android:id="@+id/textView18"
-                    style="@style/tv_14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_tv_white"
-                    android:paddingStart="5dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="2dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toStartOf="@+id/textView10"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/editTextTextMultiLine3"
-                    style="@style/tv_12"
-                    android:layout_width="0dp"
-                    android:layout_height="95dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_et_white"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:maxLength="50"
-                    android:maxLines="5"
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/textView15"
-                    app:layout_constraintTop_toBottomOf="@+id/textView15"
-                    tools:text="역시 한글이 ㅊ화고야 \n 어쩔 올ㅇㄴ런ㄹ\nㅇㅇㅇㅇ \n ㅇㅂㅁㅁㄴㅇㄹㄹㄹ\n ㅇㅁㅇㄴㅁㄴ" />
+                    <TextView
+                        android:id="@+id/textView18"
+                        style="@style/tv_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_tv_white"
+                        android:paddingStart="5dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="2dp"
+                        android:text="TextView"
+                        app:layout_constraintStart_toStartOf="@+id/textView10"
+                        app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
-                <EditText
-                    android:id="@+id/editTextTextMultiLine4"
-                    android:layout_width="0dp"
-                    android:layout_height="95dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_et_white"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:maxLength="50"
-                    android:maxLines="5"
+                    <EditText
+                        android:id="@+id/et_emotion"
+                        style="@style/tv_12"
+                        android:layout_width="0dp"
+                        android:layout_height="95dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_et_white"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:maxLength="50"
+                        android:maxLines="5"
+                        android:padding="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/textView15"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15"
+                        tools:text="역시 한글이 ㅊ화고야 \n 어쩔 올ㅇㄴ런ㄹ\nㅇㅇㅇㅇ \n ㅇㅂㅁㅁㄴㅇㄹㄹㄹ\n ㅇㅁㅇㄴㅁㄴ" />
 
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView16"
-                    app:layout_constraintTop_toBottomOf="@+id/textView16" />
+                    <EditText
+                        android:id="@+id/et_promise"
+                        android:layout_width="0dp"
+                        android:layout_height="95dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_et_white"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:maxLength="50"
+                        android:maxLines="5"
 
-                <TextView
-                    android:id="@+id/textView12"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/hdw_reason"
-                    app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+                        android:padding="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView16"
+                        app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-                <TextView
-                    android:id="@+id/textView5"
-                    style="@style/tv_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hd_diary"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/textView12"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/hdw_reason"
+                        app:layout_constraintStart_toStartOf="@+id/et_situation"
+                        app:layout_constraintTop_toBottomOf="@+id/et_situation" />
 
-                <TextView
-                    android:id="@+id/textView9"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/hdw_date"
-                    app:layout_constraintStart_toStartOf="@+id/textView5"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    <TextView
+                        android:id="@+id/textView5"
+                        style="@style/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hd_diary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView15"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/hdw_emotion"
-                    app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine2"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine2" />
+                    <TextView
+                        android:id="@+id/textView9"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/hdw_date"
+                        app:layout_constraintStart_toStartOf="@+id/textView5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-                <TextView
-                    android:id="@+id/textView16"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/hdw_promise"
-                    app:layout_constraintStart_toStartOf="@+id/editTextTextMultiLine3"
-                    app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine3" />
+                    <TextView
+                        android:id="@+id/textView15"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/hdw_emotion"
+                        app:layout_constraintStart_toStartOf="@+id/et_reason"
+                        app:layout_constraintTop_toBottomOf="@+id/et_reason" />
 
-                <EditText
-                    android:id="@+id/editTextTextMultiLine"
-                    style="@style/tv_12"
-                    android:layout_width="0dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_et_white"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:maxLength="30"
-                    android:maxLines="2"
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11"
-                    tools:text="그 반갑다 나는 사실 \n 눈물을 흘리는 중" />
+                    <TextView
+                        android:id="@+id/textView16"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/hdw_promise"
+                        app:layout_constraintStart_toStartOf="@+id/et_emotion"
+                        app:layout_constraintTop_toBottomOf="@+id/et_emotion" />
 
-                <EditText
-                    android:id="@+id/editTextTextMultiLine2"
-                    style="@style/tv_12"
-                    android:layout_width="0dp"
-                    android:layout_height="45dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_et_white"
-                    android:ems="10"
-                    android:gravity="start|top"
-                    android:inputType="textMultiLine"
-                    android:maxLength="30"
-                    android:maxLines="2"
-                    android:padding="5dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/textView12"
-                    app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                    <EditText
+                        android:id="@+id/et_situation"
+                        style="@style/tv_12"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_et_white"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:maxLength="30"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView11"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11"
+                        tools:text="그 반갑다 나는 사실 \n 눈물을 흘리는 중" />
 
-                <TextView
-                    android:id="@+id/textView17"
-                    style="@style/tv_14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_tv_white"
-                    android:paddingStart="5dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="2dp"
-                    android:text="TextView"
-                    app:layout_constraintStart_toStartOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    <EditText
+                        android:id="@+id/et_reason"
+                        style="@style/tv_12"
+                        android:layout_width="0dp"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_et_white"
+                        android:ems="10"
+                        android:gravity="start|top"
+                        android:inputType="textMultiLine"
+                        android:maxLength="30"
+                        android:maxLines="2"
+                        android:padding="5dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView12"
+                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/component_btn_red"
-                    android:text="@string/hdw_commit"
-                    android:textColor="#FFFFFF"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/textView17"
+                        style="@style/tv_14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/bg_tv_white"
+                        android:paddingStart="5dp"
+                        android:paddingTop="2dp"
+                        android:paddingEnd="5dp"
+                        android:paddingBottom="2dp"
+                        android:text="TextView"
+                        app:layout_constraintStart_toStartOf="@+id/textView9"
+                        app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-                <TextView
-                    android:id="@+id/textView10"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/hdw_time"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView9"
-                    app:layout_constraintStart_toStartOf="@+id/guideline2"
-                    app:layout_constraintTop_toTopOf="@+id/textView9" />
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_dwf_add"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/component_btn_red"
+                        android:text="@string/hdw_commit"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textView11"
-                    style="@style/tv_12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/hdw_situation"
-                    app:layout_constraintStart_toStartOf="@+id/textView17"
-                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
+                    <TextView
+                        android:id="@+id/textView10"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/hdw_time"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView9"
+                        app:layout_constraintStart_toStartOf="@+id/guideline2"
+                        app:layout_constraintTop_toTopOf="@+id/textView9" />
 
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.5" />
+                    <TextView
+                        android:id="@+id/textView11"
+                        style="@style/tv_12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/hdw_situation"
+                        app:layout_constraintStart_toStartOf="@+id/textView17"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_calendar"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                    app:layout_constraintStart_toEndOf="@+id/textView17"
-                    app:layout_constraintTop_toTopOf="@+id/textView17" />
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/guideline2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.5" />
 
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_baseline_access_alarm_24"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView18"
-                    app:layout_constraintStart_toEndOf="@+id/textView18"
-                    app:layout_constraintTop_toTopOf="@+id/textView18"
-                    app:layout_constraintVertical_bias="0.0" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/ic_calendar"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView17"
+                        app:layout_constraintStart_toEndOf="@+id/textView17"
+                        app:layout_constraintTop_toTopOf="@+id/textView17" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/ic_baseline_access_alarm_24"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+                        app:layout_constraintStart_toEndOf="@+id/textView18"
+                        app:layout_constraintTop_toTopOf="@+id/textView18"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </ScrollView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
