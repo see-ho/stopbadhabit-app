@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.stopbadhabit.data.model.Habit.Habit
+import com.example.stopbadhabit.data.model.PresentHabit.PresentHabit
 import com.example.stopbadhabit.data.repository.HabitRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -21,12 +22,17 @@ class HomeViewModel @Inject constructor(
     private val repository: HabitRepository,
 ): ViewModel(){
 
-    private val list = mutableListOf<Habit>()
+    private val list = mutableListOf<PresentHabit>()
 
-    private val _habitList = MutableLiveData<List<Habit>>()
-    val habitList : LiveData<List<Habit>> get() = _habitList
+    private val _habitList = MutableLiveData<List<PresentHabit>>()
+    val habitList : LiveData<List<PresentHabit>> get() = _habitList
+
+    private val _habit = MutableLiveData<Habit>()
+    val habit : LiveData<Habit> get() = _habit
 
     private var tmpList:ArrayList<Habit> = ArrayList()
+
+
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
@@ -42,14 +48,20 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun updateState(habit:Habit) {
+        _habit.value?.let {
+            _habit.value=it.copy(state = it.state + 1)
+        }
+    }
+
     fun deleteAll(){
         viewModelScope.launch {
             repository.deleteAll()
         }
     }
 
-    fun addList(habit:Habit ) {
-        list.add(habit)
+    fun addList(presentHabit: PresentHabit ) {
+        list.add(presentHabit)
         _habitList.value = list
     }
 }

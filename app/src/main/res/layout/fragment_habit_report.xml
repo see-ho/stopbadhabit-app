@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:lottie_autoPlay="true"
+                app:lottie_fileName="lottie_heart_loading.json" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3"
+            tools:context=".ui.HabitReportFragment">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_diarydetail"
+                android:paddingStart="50dp"
+                android:paddingTop="20dp"
+                android:paddingEnd="50dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:id="@+id/tv_state"
+                    style="@style/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="교정 성공" />
+
+                <TextView
+                    android:id="@+id/tv_report_name"
+                    style="@style/tv_18"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_state"
+                    tools:text="손톱뜯지않기" />
+
+                <TextView
+                    android:id="@+id/tv_report_date"
+                    style="@style/tv_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_report_name"
+                    app:layout_constraintStart_toStartOf="@+id/tv_report_name"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report_name"
+                    tools:text="2022-08-01 ~ 2022-09-01" />
+
+                <TextView
+                    android:id="@+id/tv_report_fromStart"
+                    style="@style/tv_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_report_date"
+                    app:layout_constraintStart_toStartOf="@+id/tv_report_date"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report_date"
+                    tools:text="15일 동안의 전투," />
+
+                <TextView
+                    android:id="@+id/tv_report_result"
+                    style="@style/tv_14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_report_fromStart"
+                    app:layout_constraintStart_toStartOf="@+id/tv_report_fromStart"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report_fromStart"
+                    tools:text="마침내 몬스터를 무찔렀어요!" />
+
+                <TextView
+                    android:id="@+id/tv_report_life"
+                    style="@style/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_report_result"
+                    app:layout_constraintStart_toStartOf="@+id/tv_report_result"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report_result"
+                    tools:text="3 / 5" />
+
+                <ImageView
+                    android:id="@+id/iv_report_char"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/bg_mob_hard"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_report_life"
+                    app:layout_constraintStart_toStartOf="@+id/tv_report_life"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_report_life" />
+
+                <ImageView
+                    android:id="@+id/iv_report_heart"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginEnd="4dp"
+                    android:src="@drawable/ic_heart"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_report_life"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_report_life"
+                    app:layout_constraintTop_toTopOf="@+id/tv_report_life" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_reportClose"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/ic_close"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

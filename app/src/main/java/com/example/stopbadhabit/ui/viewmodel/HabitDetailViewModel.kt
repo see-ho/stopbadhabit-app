@@ -9,9 +9,11 @@ import com.example.roomdbtest.repository.DiaryRepository
 import com.example.stopbadhabit.data.model.Diary.Diary
 import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.data.repository.HabitRepository
+import com.example.stopbadhabit.util.toDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
@@ -25,6 +27,22 @@ class HabitDetailViewModel @Inject constructor(
 
     private val _diaryList = MutableLiveData<List<Diary>>()
     val diaryList : LiveData<List<Diary>> get() = _diaryList
+
+    private val today = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+    }.time.time
+
+    fun setFromStartDate(): Long{
+        val localHabit = _habit.value
+        localHabit?.let {
+            val fromStart = (today - it.start_date.toDate()) / (24 * 60 * 60 * 1000)+1
+            return fromStart
+        }
+        return -1
+    }
 
 
     fun getHabitDetail(id: Int){

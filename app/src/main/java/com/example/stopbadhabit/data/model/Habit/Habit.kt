@@ -34,6 +34,9 @@ data class Habit(
     @ColumnInfo(name = "state")
     val state: Int,
 
+    @ColumnInfo(name ="mode")
+    val mode: Int
+
     //var diaryList: List<Diary>?
     )
 

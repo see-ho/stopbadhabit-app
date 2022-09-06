@@ -1,6 +1,5 @@
 package com.example.stopbadhabit.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,10 +11,9 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DiaryWriteViewModel @Inject constructor(
-    private val habitRepository: HabitRepository,
-) : ViewModel() {
-
+class HabitReportViewModel @Inject constructor(
+    private val habitRepository: HabitRepository
+): ViewModel(){
     private val _habit = MutableLiveData<Habit>()
     val habit : LiveData<Habit> get() = _habit
 
@@ -23,13 +21,6 @@ class DiaryWriteViewModel @Inject constructor(
     fun getHabitDetail(id: Int){
         viewModelScope.launch {
             _habit.postValue(habitRepository.getHabitById(id))
-            Log.e(javaClass.simpleName, "getHabitDetail: $habit ", )
-        }
-    }
-
-    fun updateLife(){
-        _habit.value?.let {
-            _habit.value=it.copy(current_life = it.current_life - 1)
         }
     }
 

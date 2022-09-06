@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.LifecycleOwner
 import com.example.stopbadhabit.ui.viewmodel.DiaryWriteViewModel
 import com.example.stopbadhabit.R
 import com.example.stopbadhabit.data.model.Diary.Diary
@@ -22,7 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DiaryWriteFragment : BottomSheetDialogFragment() {
     private val binding by lazy { FragmentDiaryWriteBinding.inflate(layoutInflater) }
-    private val mainViewModel : MainViewModel by activityViewModels()
+    private val mainViewModel: MainViewModel by activityViewModels()
+    private val diaryWriteViewModel: DiaryWriteViewModel by viewModels()
+    private var detailId = -1
 
     companion object {
         fun newInstance() = DiaryWriteFragment()
@@ -30,48 +34,76 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: DiaryWriteViewModel
 
-    private var diary_date : String =""
-    private var situation : String=""
-    private var reason : String=""
-    private var emotion : String=""
-    private var promise : String=""
+    private var diary_date: String = ""
+    private var situation: String = ""
+    private var reason: String = ""
+    private var emotion: String = ""
+    private var promise: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        binding.btnDwfAdd.setOnClickListener {
-            if(setDiary() == 1) {
-                Log.e(javaClass.simpleName, "onCreateView: 성공했단다", )
-                mainViewModel.insertDiary(Diary(
-                    situation=situation,
-                    reason = reason,
-                    emotion = emotion,
-                    promise = promise,
-                    habit_id = 1,
-                    diary_date = "2022-09-05"
-                ))
-                dismiss()
-            }
+        mainViewModel.detailHabitId.observe(viewLifecycleOwner){
+            if(it != -1)
+                diaryWriteViewModel.getHabitDetail(it)
             else
-                Snackbar.make(binding.root,String.format(requireActivity().resources.getString(R.string.dw_setPromise)), Snackbar.LENGTH_SHORT).show()
+                Log.e("fsda", "onCreateView: sdfsdf", )
+        }
 
-    }
+        diaryWriteViewModel.habit.observe(viewLifecycleOwner){
+            binding.tvHwName.text = it.name
+        }
 
+        binding.btnDwfAdd.setOnClickListener {
+            setDiary()
+        }
         return binding.root
     }
 
-    private fun setDiary() : Int{
-        situation= binding.etSituation.text.toString()
-        reason= binding.etReason.text.toString()
-        emotion= binding.etEmotion.text.toString()
-        if(binding.etPromise.text.toString() != "")
-            promise=binding.etPromise.text.toString()
-        else
-            return -1
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mainViewModel.detailHabitId.observe(viewLifecycleOwner) {
+            detailId = it
+            diaryWriteViewModel.getHabitDetail(it)
+        }
+        binding.tvHwName.text = diaryWriteViewModel.habit.value?.name
 
-        return 1
+    }
+
+    private fun setDiary() {
+        if (binding.etPromise.text.toString() == "") {
+            Snackbar.make(
+                binding.root,
+                String.format(requireActivity().resources.getString(R.string.dw_setPromise)),
+                Snackbar.LENGTH_SHORT
+            ).show()
+            return
+        }
+        else {
+            promise = binding.etPromise.text.toString()
+            situation = binding.etSituation.text.toString()
+            reason = binding.etReason.text.toString()
+            emotion = binding.etEmotion.text.toString()
+            diaryWriteViewModel.updateLife()
+            mainViewModel.insertDiary(
+                Diary(
+                    situation = situation,
+                    reason = reason,
+                    emotion = emotion,
+                    promise = promise,
+                    habit_id = detailId,
+                    diary_date = "2022-09-05"
+                ), detailId, diaryWriteViewModel.habit.value
+            )
+            dismiss()
+        }
+    }
+
+    override fun dismiss() {
+        super.dismiss()
+        mainViewModel.setDetailId(detailId)
     }
 
 }

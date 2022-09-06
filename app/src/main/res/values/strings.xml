@@ -11,7 +11,7 @@
     <string name="bt_sheet_mobname">몬스터 이름</string>
     <string name="bt_sheet_goaldate">목표 날짜</string>
     <string name="bt_sheet_mode">난이도</string>
-    <string name="bt_sheet_life">라이프는 %d개 입니다.</string>
+    <string name="bt_sheet_life">라이프는 %d개로 도전합니다.</string>
     <string name="bt_sheet_setMode">난이도를 설정해주세요.</string>
     <string name="bt_sheet_setName">버릇의 이름을 설정해주세요.</string>
     <string name="bt_sheet_setNameMode">버릇의 이름과 난이도를 설정해주세요.</string>
@@ -20,10 +20,13 @@
     <string name="hhi_current_day">현재 %d일째 도전중</string>
 
     <!-- HabitDetail -->
-    <string name="hd_current">현재 %d일째 전투중</string>
-    <string name="hd_continuity">연속 %d일째 치명타 공격</string>
+    <string name="hd_current">현재 %d일째 전투중!</string>
+    <string name="hd_continuity">마지막 치명타 공격으로부터 %d일 경과했어요</string>
     <string name="hd_fail">지금까지 %d번 방어 실패</string>
-
+    <string name="hd_continuity_0">오늘 치명타 공격을 받았어요.</string>
+    <string name="hd_fail_0">지금까지 모든 공격을 방어했어요!</string>
+    <string name="hd_never_failed">끈임없는 치명타 공격을 가하고 있어요.</string>
+    
     <string name="hd_current_life">현재 라이프</string>
     <string name="hd_diary">반성일기</string>
 
@@ -38,4 +41,12 @@
 
     <!-- DiaryWrite -->
     <string name="dw_setPromise">다짐은 필수로 입력해주세요.</string>
+    
+    <!-- HabitReport -->
+    <string name="hr_state_success">교정 성공</string>
+    <string name="hr_state_fail">교정 실패</string>
+    <string name="hr_date">%s ~ %s</string>
+    <string name="hr_fromStart">%d일 동안의 전투,</string>
+    <string name="hr_result_success">마침내 몬스터를 무찔렀어요!</string>
+    <string name="hr_result_fail">아쉽게 몬스터에게 패배했어요.</string>
 </resources>

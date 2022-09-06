@@ -107,7 +107,7 @@
                         android:layout_marginTop="16dp"
                         android:text="@string/hdw_date"
                         app:layout_constraintStart_toStartOf="@+id/textView5"
-                        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                        app:layout_constraintTop_toBottomOf="@+id/tv_hw_name" />
 
                     <TextView
                         android:id="@+id/textView15"
@@ -236,6 +236,16 @@
                         app:layout_constraintStart_toEndOf="@+id/textView18"
                         app:layout_constraintTop_toTopOf="@+id/textView18"
                         app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/tv_hw_name"
+                        style="@style/tv_18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintStart_toStartOf="@+id/textView5"
+                        app:layout_constraintTop_toBottomOf="@+id/textView5"
+                        tools:text="야 이거 왜 안뜨냐" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </ScrollView>
 

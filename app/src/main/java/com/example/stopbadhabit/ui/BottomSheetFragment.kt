@@ -131,7 +131,9 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                     start_date = mDate.toString(),
                     setting_life = settingLife.life,
                     current_life = settingLife.life,
-                    state = 0))
+                    state = 0,
+                    mode = mMode
+                ))
                 dismiss()
             }
         }

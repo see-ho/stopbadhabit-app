@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.example.stopbadhabit.ui.adapter.HomeHabitListAdapter
 import com.example.stopbadhabit.ui.viewmodel.BottomSheetViewModel
 import com.example.stopbadhabit.ui.viewmodel.HomeViewModel
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
+import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -43,14 +45,20 @@ class HomeFragment : Fragment() {
     }
 
     private fun setView() {
-        homeHabitListAdapter = HomeHabitListAdapter({
-            Log.e(javaClass.simpleName, "setView: ${it}")
-            mainViewModel.detailHabitId = it
-//            mainViewModel.getDiaryList()
-            findNavController().navigate(R.id.action_HomeFragment_to_habitDetailFragment)
-        }, {
-            findNavController().navigate(R.id.action_homeFragment_to_diaryWriteFragment)
-        }).apply {
+        homeHabitListAdapter = HomeHabitListAdapter(
+            {
+                mainViewModel.setDetailId(it)
+                findNavController().navigate(R.id.action_homeFragment_to_habitReportFragment)
+            },
+            {
+                mainViewModel.setDetailId(it)
+                findNavController().navigate(R.id.action_HomeFragment_to_habitDetailFragment)
+            },
+            {
+                mainViewModel.setDetailId(it)
+                findNavController().navigate(R.id.action_homeFragment_to_diaryWriteFragment)
+            },
+        ).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지
         }
         binding.rvHomeHabit.adapter = homeHabitListAdapter // 리사이클러 뷰 연결
@@ -78,7 +86,11 @@ class HomeFragment : Fragment() {
         }
 
         binding.tvTitle.setOnLongClickListener { it ->
-            findNavController().navigate(R.id.action_HomeFragment_to_openSourceFragment)
+//            findNavController().navigate(R.id.action_HomeFragment_to_openSourceFragment)
+            Intent(requireActivity().applicationContext, OssLicensesMenuActivity::class.java).also {
+                OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
+                startActivity(it)
+            }
             true
         }
 

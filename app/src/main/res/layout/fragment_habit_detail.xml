@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -82,15 +83,27 @@
             app:layout_constraintTop_toTopOf="@+id/textView14" />
 
         <View
-            android:id="@+id/view"
-            android:layout_width="match_parent"
+            android:id="@+id/view8"
+            android:layout_width="0dp"
             android:layout_height="2dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
             android:background="@color/beige_300"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
+            app:layout_constraintEnd_toStartOf="@+id/textView13"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/beige_300"
+            app:layout_constraintBottom_toBottomOf="@+id/textView13"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_hd_life" />
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="@+id/textView13" />
 
         <View
             android:id="@+id/view3"
@@ -139,23 +152,24 @@
             style="@style/tv_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:text="@string/hd_diary"
             app:layout_constraintStart_toStartOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_hd_life" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_diary"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13"
+            app:layout_constraintVertical_bias="0.2" />
 
         <TextView
             android:id="@+id/textView14"
@@ -168,5 +182,15 @@
             app:layout_constraintHorizontal_bias="0.083"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_hd_failDefend" />
+
+        <ImageView
+            android:id="@+id/iv_hd_mob"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view4"
+            app:layout_constraintVertical_bias="0.555"
+            tools:srcCompat="@tools:sample/avatars" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

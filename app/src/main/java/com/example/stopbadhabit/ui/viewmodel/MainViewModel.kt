@@ -12,6 +12,7 @@ import com.example.roomdbtest.repository.HabitAndDiaryRepository
 import com.example.stopbadhabit.data.model.Diary.Diary
 import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.data.model.HabitAndModel.HabitAndDiary
+import com.example.stopbadhabit.data.model.PresentHabit.PresentHabit
 import com.example.stopbadhabit.data.repository.HabitRepository
 import com.example.stopbadhabit.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,19 +28,27 @@ class MainViewModel @Inject constructor(
     private val diaryRepository: DiaryRepository,
     private val habitAndDiaryRepository: HabitAndDiaryRepository
 ):ViewModel(){
-    private val _habitList = ListLiveData<Habit>()
-    val habitList : LiveData<ArrayList<Habit>> get() = _habitList
+    private val _habitList = ListLiveData<PresentHabit>()
+    val habitList : LiveData<ArrayList<PresentHabit>> get() = _habitList
 
     private val _diaryList = ListLiveData<Diary>()
     val diaryList : LiveData<ArrayList<Diary>> get() = _diaryList
 
-    var detailHabitId = -1
+    private val _detailHabit =  MutableLiveData(-1)
+    val detailHabitId: LiveData<Int> get() = _detailHabit
+//    var detailHabitId = -1
 
     init {
         viewModelScope.launch {
             getHabitList()
         }
     }
+
+    fun setDetailId(id: Int) {
+        _detailHabit.value = id
+    }
+
+
 
     private suspend fun getHabitList() {
         viewModelScope.launch {
@@ -49,16 +58,15 @@ class MainViewModel @Inject constructor(
 //            Log.e("test","${repository.getHomeHabits()}")
                 habitRepository.getHomeHabits()
             }.await()
-
             _habitList.addAll(list)
         }
     }
 
-    fun getDiaryList() {
+    fun getDiaryList(id:Int) {
         viewModelScope.launch {
             _diaryList.clear()
             val list = viewModelScope.async(Dispatchers.IO) {
-                diaryRepository.getDiaryAll(1)
+                diaryRepository.getDiaryAll(id)
             }.await()
 
             _diaryList.addAll(list)
@@ -74,25 +82,21 @@ class MainViewModel @Inject constructor(
 
     fun deleteAll(){
         viewModelScope.launch {
+            diaryRepository.deleteAll()
             habitRepository.deleteAll()
             getHabitList()
         }
     }
 
-    fun insertDiary(diary: Diary) {
+    fun insertDiary(diary: Diary, id: Int, habit: Habit?) {
+        habit ?:return
         viewModelScope.launch(Dispatchers.IO) {
             diaryRepository.insertDiary(diary)
-            getDiaryList()
-            check()
+            habitRepository.updateHabit(habit)
+            getHabitList()
+//            getDiaryList(id)
+//            habitRepository.getHabitById(id)
+//            check()
         }
     }
-
-    suspend fun check() {
-        val data: List<Habit> = habitRepository.getHomeHabits()
-        Log.e(javaClass.simpleName, "홈 헤비이이이잇:$data", )
-
-        val data2: List<HabitAndDiary>? = habitAndDiaryRepository.getAllHabitAndDiary()
-        Log.e(javaClass.simpleName, "헤빗이랑 다이어리!:$data2", )
-    }
-
 }

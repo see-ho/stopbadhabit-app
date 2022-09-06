@@ -39,14 +39,12 @@ class DiaryListAdapter(
             field = value
             notifyDataSetChanged()
         }
-    //private var list: List<Diary> = arrayListOf(Diary(1,1,"2022-09-01","","","","하하"))
-
 
     inner class DiaryViewHolder(private val binding: DiaryItemviewBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(diary: Diary) {
             Log.e(javaClass.simpleName, "bind: $diary", )
-            Glide.with(binding.root).load(R.drawable.bg_mob_hard1).into(binding.ivDiary)
+            Glide.with(binding.root).load(R.drawable.bg_testing).into(binding.ivDiary)
             binding.tvDate.text = diary.diary_date
             binding.root.setOnClickListener {
                 diary.diary_id?.let{
@@ -55,11 +53,4 @@ class DiaryListAdapter(
             }
         }
     }
-
-//    @SuppressLint("NotifyDataSetChanged")
-//    fun setData(newItems: ArrayList<Diary>) {
-//        this.list = newItems
-//        Log.e(javaClass.simpleName, "setData: $newItems", )
-//        notifyDataSetChanged()
-//    }
 }
