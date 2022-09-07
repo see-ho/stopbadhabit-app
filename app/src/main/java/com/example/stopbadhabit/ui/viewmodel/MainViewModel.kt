@@ -22,7 +22,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class  MainViewModel @Inject constructor(
     private val application: Application,
     private val habitRepository: HabitRepository,
     private val diaryRepository: DiaryRepository,
@@ -48,16 +48,14 @@ class MainViewModel @Inject constructor(
         _detailHabit.value = id
     }
 
-
-
-    private suspend fun getHabitList() {
+    fun getHabitList() {
         viewModelScope.launch {
             _habitList.clear()
             val list = viewModelScope.async(Dispatchers.IO) {
 //            _habitList.addAllAsync(repository.getHomeHabits())
-//            Log.e("test","${repository.getHomeHabits()}")
                 habitRepository.getHomeHabits()
             }.await()
+            Log.e(javaClass.simpleName,"${list}")
             _habitList.addAll(list)
         }
     }
@@ -99,4 +97,5 @@ class MainViewModel @Inject constructor(
 //            check()
         }
     }
+
 }

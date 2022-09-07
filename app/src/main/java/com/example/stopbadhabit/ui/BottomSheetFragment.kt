@@ -160,12 +160,5 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         return settingLife
     }
 
-    companion object {
-        const val TAG = "HabitAddBottomSheet"
-    }
-
-    fun getInstance(): BottomSheetFragment {
-        return BottomSheetFragment()
-    }
     //  난 잘났다. 내 그림이 최고다
 }

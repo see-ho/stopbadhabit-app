@@ -17,11 +17,21 @@ class HabitReportViewModel @Inject constructor(
     private val _habit = MutableLiveData<Habit>()
     val habit : LiveData<Habit> get() = _habit
 
-
     fun getHabitDetail(id: Int){
         viewModelScope.launch {
             _habit.postValue(habitRepository.getHabitById(id))
         }
     }
+
+    fun updateState(state: Int, endDate: String){
+        _habit.value?.let {
+            _habit.value=it.copy(state = state, end_date = endDate)
+        }
+        viewModelScope.launch {
+            _habit.value?.let { habitRepository.updateHabit(it) }
+
+        }
+    }
+
 
 }

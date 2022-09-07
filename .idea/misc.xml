@@ -10,6 +10,7 @@
         <entry key="app/src/main/res/drawable/bg_home.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/bg_mob_easy.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_hard.xml" value="0.1545" />
+        <entry key="app/src/main/res/drawable/bg_mob_normal.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/bg_tv_white.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/component_btn_red.xml" value="0.191" />
