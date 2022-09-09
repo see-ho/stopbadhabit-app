@@ -75,7 +75,8 @@ class HomeHabitListAdapter(
                         dateFromStart
                     )
                     binding.habitDoing.tvHabitDate.text = presentHabit.habit.start_date
-                    binding.habitDoing.tvLife.text = "${presentHabit.habit.current_life} / ${presentHabit.habit.setting_life}"
+                    binding.habitDoing.tvLife.text = String.format(binding.root.resources.getString(R.string.life),presentHabit.habit.current_life,presentHabit.habit.setting_life)
+                    //"${presentHabit.habit.current_life} / ${presentHabit.habit.setting_life}"
                     binding.habitDoing.root.setOnClickListener {
                         presentHabit.habit.habit_id?.let {
                             onClickDoing(it)

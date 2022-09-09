@@ -26,9 +26,8 @@
             style="@style/tv_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="24dp"
-            app:layout_constraintStart_toStartOf="@+id/tv_hd_name"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view4"
             tools:text="TextView" />
 
@@ -57,7 +56,7 @@
             style="@style/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_back"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="안녕하세요반갑습니다" />
 
@@ -192,5 +191,36 @@
             app:layout_constraintTop_toBottomOf="@+id/view4"
             app:layout_constraintVertical_bias="0.555"
             tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_tooltip"
+            app:layout_constraintEnd_toEndOf="@+id/btn_tooltip"
+            app:layout_constraintStart_toStartOf="@+id/btn_tooltip"
+            app:layout_constraintTop_toTopOf="@+id/btn_tooltip"
+            app:srcCompat="@drawable/ic_tooltip" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_tooltip"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/circle_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_hd_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_hd_name"
+            app:srcCompat="@drawable/ic_backpage" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

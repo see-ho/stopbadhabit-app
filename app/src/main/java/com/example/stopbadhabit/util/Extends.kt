@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.util
 
+import android.util.Log
 import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.data.model.PresentHabit.PresentHabit
 import java.time.LocalDate
@@ -45,8 +46,6 @@ fun String.toCalender(goalDate:Int) : String {
 }
 
 fun Habit.toPresentHabit() : PresentHabit {
-    if(state==1) return PresentHabit(habit = this, 1)
-
     val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)
         set(Calendar.MINUTE, 0)

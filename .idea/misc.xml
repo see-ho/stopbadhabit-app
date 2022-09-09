@@ -5,9 +5,12 @@
       <map>
         <entry key="../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/bg_bottomsheet.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/bg_diarydetail.xml" value="0.2085" />
         <entry key="app/src/main/res/drawable/bg_et_white.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/bg_home.xml" value="0.145" />
+        <entry key="app/src/main/res/drawable/bg_item_1.xml" value="0.227" />
+        <entry key="app/src/main/res/drawable/bg_main_character.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/bg_mob_easy.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_hard.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_normal.xml" value="0.2585" />
@@ -22,6 +25,7 @@
         <entry key="app/src/main/res/drawable/ic_bg_home.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_bg_main__character_vectornator.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.3485" />
+        <entry key="app/src/main/res/drawable/ic_close.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/ic_easymode.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/ic_easymode_1.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/ic_easymode_choose.xml" value="0.1" />
@@ -38,6 +42,7 @@
         <entry key="app/src/main/res/drawable/ic_normalmode.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/ic_normalmode_choose.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/ic_shield.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic_tooltip.xml" value="0.189" />
         <entry key="app/src/main/res/drawable/modebtn.xml" value="0.229" />
         <entry key="app/src/main/res/drawable/roundbuttin.xml" value="0.2845" />
         <entry key="app/src/main/res/font/font.xml" value="0.23257802479692177" />
@@ -45,18 +50,20 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26578676635371157" />
         <entry key="app/src/main/res/layout/diary_itemview.xml" value="0.8132476806640626" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2842117309570313" />
-        <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.15818725951261223" />
-        <entry key="app/src/main/res/layout/fragment_diary_write.xml" value="0.5214180206794683" />
+        <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.466504825430581" />
+        <entry key="app/src/main/res/layout/fragment_diary_write.xml" value="0.3595667870036101" />
         <entry key="app/src/main/res/layout/fragment_habit_add.xml" value="0.2164855072463768" />
-        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.47042083740234375" />
+        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.25077399380804954" />
         <entry key="app/src/main/res/layout/fragment_habit_report.xml" value="0.6661132812500001" />
-        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.11626139817629179" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.2675233644859813" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20444444444444446" />
         <entry key="app/src/main/res/layout/fragment_open_source.xml" value="0.10555555555555556" />
         <entry key="app/src/main/res/layout/habit_done_itemview.xml" value="0.1527651858567543" />
+        <entry key="app/src/main/res/layout/habit_history_itemview.xml" value="0.3696701773928496" />
         <entry key="app/src/main/res/layout/habit_itemview.xml" value="0.27098541259765624" />
         <entry key="app/src/main/res/layout/habit_list_itemview.xml" value="0.1527651858567543" />
         <entry key="app/src/main/res/layout/item_goaldate_list.xml" value="0.13722826086956522" />
+        <entry key="app/src/main/res/layout/tooltip.xml" value="0.6657754010695187" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.178" />
       </map>
     </option>

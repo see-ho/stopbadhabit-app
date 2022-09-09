@@ -73,33 +73,39 @@ class HabitReportFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnReportClose.setOnClickListener {
-            habitReportViewModel.updateState(2,"2022-09-31")
+            //habitReportViewModel.updateState(result,"2022-09-31")
             mainViewModel.getHabitList()
             dismiss()
         }
 
         mainViewModel.detailHabitId.observe(viewLifecycleOwner) {
-            if(it != -1)
+            if(it != -1){
                 habitReportViewModel.getHabitDetail(it)
+                habitReportViewModel.getHabitAndDiary(it)}
             else
                 Log.e("fsda", "onCreateView: sdfsdf", )
         }
 
-        habitReportViewModel.habit.observe(viewLifecycleOwner){
+        habitReportViewModel.habitAndDiary.observe(viewLifecycleOwner){
             with(binding){
                 Log.e(javaClass.simpleName, "onViewCreated: $it", )
                 val mDate = LocalDate.now()
-                tvReportName.text=it.name
+                tvReportName.text=it.habit.name
 
-                tvReportLife.text = String.format(requireContext().getString(R.string.life),it.current_life,it.setting_life)
+                tvReportLife.text = String.format(requireContext().getString(R.string.life),it.habit.current_life,it.habit.setting_life)
 
-                it.habit_id?.let { it1 -> mainViewModel.getDiaryList(it1) }
+                it.habit.habit_id?.let { it1 -> mainViewModel.getDiaryList(it1) }
 
                 Log.e(javaClass.simpleName, "onViewCreated: ${endDate}" )
                 //TODO 여기 end_date
-                if(it.current_life==0){
-                    result=2
-//                    habitReportViewModel.updateState(2,"2022-09-31")
+                if(it.habit.current_life==0){
+                    result=2 //실패
+                    it.diaries?.last()
+                        ?.let { it1 -> habitReportViewModel.updateState(2, it1.diary_date) }
+                    tvReportDate.text= it.diaries?.last()?.let { it1 ->
+                        String.format(requireContext().getString(R.string.hr_date),it.habit.start_date,
+                            it1.diary_date)
+                    }
                     tvState.text= String.format(requireContext().getString(R.string.hr_state_fail))
                     tvReportResult.text= String.format(requireContext().getString(R.string.hr_result_fail))
                     tvReportFromStart.text=String.format(requireContext().getString(R.string.hr_fromStart),15)
@@ -107,9 +113,9 @@ class HabitReportFragment : DialogFragment() {
                     Glide.with(binding.root).load(R.drawable.ic_emptyheart).into(binding.ivReportHeart)
                 }
                 else{
-                    result=1
-//                    habitReportViewModel.updateState(1,it.start_date.toCalender(it.goal_date))
-                    tvReportDate.text= String.format(requireContext().getString(R.string.hr_date),it.start_date,it.start_date.toCalender(it.goal_date))
+                    result=1 //성공
+                    habitReportViewModel.updateState(1,it.habit.start_date.toCalender(it.habit.goal_date))
+                    tvReportDate.text= String.format(requireContext().getString(R.string.hr_date),it.habit.start_date,it.habit.start_date.toCalender(it.habit.goal_date))
                     tvState.text= String.format(requireContext().getString(R.string.hr_state_success))
                     tvReportResult.text= String.format(requireContext().getString(R.string.hr_result_success))
                     tvReportFromStart.text=String.format(requireContext().getString(R.string.hr_fromStart),15)

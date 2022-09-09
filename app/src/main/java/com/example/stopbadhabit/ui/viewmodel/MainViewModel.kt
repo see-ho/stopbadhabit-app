@@ -31,6 +31,8 @@ class  MainViewModel @Inject constructor(
     private val _habitList = ListLiveData<PresentHabit>()
     val habitList : LiveData<ArrayList<PresentHabit>> get() = _habitList
 
+    //private val _historyhabitList = MutableList()
+
     private val _diaryList = ListLiveData<Diary>()
     val diaryList : LiveData<ArrayList<Diary>> get() = _diaryList
 

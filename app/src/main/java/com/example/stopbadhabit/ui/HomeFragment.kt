@@ -86,7 +86,6 @@ class HomeFragment : Fragment() {
         }
 
         binding.tvTitle.setOnLongClickListener { it ->
-//            findNavController().navigate(R.id.action_HomeFragment_to_openSourceFragment)
             Intent(requireActivity().applicationContext, OssLicensesMenuActivity::class.java).also {
                 OssLicensesMenuActivity.setActivityTitle("오픈소스 라이선스")
                 startActivity(it)

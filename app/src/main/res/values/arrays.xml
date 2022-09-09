@@ -4,6 +4,7 @@
         <item>15일</item>
         <item>30일</item>
         <item>50일</item>
+        <item>0일</item>
     </string-array>
 
     <integer-array name="goaldate_int_array">

@@ -5,8 +5,11 @@ import androidx.room.*
 
 @Dao
 interface HabitDao {
-    @Query("SELECT * FROM habit WHERE state = 0 or state = 1")
+    @Query("SELECT * FROM habit WHERE state = 0")
     fun getHomeHabits(): List<Habit>
+
+    @Query("SELECT * FROM habit WHERE state = 1 or state = 2")
+    fun getHistoryHabits(): List<Habit>
 
     @Insert
     fun insertHabit(vararg habit: Habit)

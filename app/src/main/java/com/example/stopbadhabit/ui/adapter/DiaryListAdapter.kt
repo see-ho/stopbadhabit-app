@@ -44,7 +44,8 @@ class DiaryListAdapter(
         RecyclerView.ViewHolder(binding.root) {
         fun bind(diary: Diary) {
             Log.e(javaClass.simpleName, "bind: $diary", )
-            Glide.with(binding.root).load(R.drawable.bg_testing).into(binding.ivDiary)
+            Glide.with(binding.root).load(R.drawable.bg_item_1).into(binding.ivDiary)
+            binding.textView19.text = String.format(binding.root.resources.getString(R.string.hd_diary_num),adapterPosition+1)
             binding.tvDate.text = diary.diary_date
             binding.root.setOnClickListener {
                 diary.diary_id?.let{

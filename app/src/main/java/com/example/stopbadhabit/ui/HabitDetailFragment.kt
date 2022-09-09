@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import com.example.stopbadhabit.ui.adapter.HomeHabitListAdapter
 import com.example.stopbadhabit.ui.viewmodel.HabitDetailViewModel
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.toDate
+import com.skydoves.balloon.*
 import dagger.hilt.android.AndroidEntryPoint
 import org.koin.androidx.compose.viewModel
 import java.time.LocalDate
@@ -74,6 +76,33 @@ class HabitDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setObserver()
 
+        val balloon = Balloon.Builder(requireContext())
+            .setWidthRatio(0.65f)
+            .setHeight(BalloonSizeSpec.WRAP)
+
+            .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+            .setArrowSize(10)
+            .setArrowPosition(0.5f)
+            .setPadding(12)
+            .setMargin(5)
+            .setLayout(R.layout.tooltip)
+            .setCornerRadius(8f)
+            .setArrowColorMatchBalloon(true)
+            .setArrowOrientation(ArrowOrientation.BOTTOM)
+            .setBackgroundColorResource(R.color.white)
+            .setBalloonAnimation(BalloonAnimation.ELASTIC)
+            .setLifecycleOwner(viewLifecycleOwner)
+            .build()
+
+        binding.btnTooltip.setOnClickListener {
+            balloon.showAlignBottom(binding.btnTooltip )
+        }
+
+        binding.btnBack.setOnClickListener {
+            findNavController().navigate(R.id.action_habitDetailFragment_to_homeFragment)
+        }
+
+
         mainViewModel.detailHabitId.observe(viewLifecycleOwner) {
             if(it != -1)
                 habitDetailViewModel.getHabitDetail(it)
@@ -118,7 +147,7 @@ class HabitDetailFragment : Fragment() {
                     2-> Glide.with(binding.root).load(R.drawable.bg_mob_hard).into(binding.ivHdMob)
                 }
                 tvHdName.text = it.name
-                tvHdStartDate.text = it.start_date
+                tvHdStartDate.text = "~${it.start_date}"
                 when(habitDetailViewModel.setFromStartDate().toInt()){
                     -1 -> Log.e(javaClass.simpleName, "onViewCreated: 수고", )
                     else -> tvHdCurrentdaystate.text = String.format(requireContext().getString(R.string.hd_current),habitDetailViewModel.setFromStartDate())
@@ -133,6 +162,8 @@ class HabitDetailFragment : Fragment() {
 
             }
         }
+
+
     }
 
 

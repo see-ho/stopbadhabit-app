@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.ui
 
+import android.app.Dialog
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LifecycleOwner
@@ -17,9 +19,11 @@ import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.databinding.FragmentBottomSheetBinding
 import com.example.stopbadhabit.databinding.FragmentDiaryWriteBinding
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class DiaryWriteFragment : BottomSheetDialogFragment() {
@@ -69,8 +73,21 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
             diaryWriteViewModel.getHabitDetail(it)
         }
         binding.tvHwName.text = diaryWriteViewModel.habit.value?.name
+        binding.tvTodayDate.text=LocalDate.now().toString()
 
     }
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = (super.onCreateDialog(savedInstanceState).apply {
+            setOnShowListener {
+                val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+                bottomSheet.setBackgroundResource(android.R.color.transparent)
+            }
+        })as BottomSheetDialog
+        //dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) as BottomSheetDialog
+        return dialog
+    }
+
 
     private fun setDiary() {
         if (binding.etPromise.text.toString() == "") {
@@ -94,7 +111,7 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
                     emotion = emotion,
                     promise = promise,
                     habit_id = detailId,
-                    diary_date = "2022-09-05"
+                    diary_date = LocalDate.now().toString()
                 ), detailId, diaryWriteViewModel.habit.value
             )
             dismiss()

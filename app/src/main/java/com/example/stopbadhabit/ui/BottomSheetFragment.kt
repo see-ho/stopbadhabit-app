@@ -1,6 +1,7 @@
 package com.example.stopbadhabit.ui
 
 
+import android.app.Dialog
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -12,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.FrameLayout
 import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
@@ -23,6 +25,7 @@ import com.example.stopbadhabit.databinding.FragmentBottomSheetBinding
 import com.example.stopbadhabit.ui.viewmodel.BottomSheetViewModel
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.fragment.LifeType
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +48,18 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+    }
+
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val dialog = (super.onCreateDialog(savedInstanceState).apply {
+            setOnShowListener {
+                val bottomSheet = findViewById<View>(com.google.android.material.R.id.design_bottom_sheet) as FrameLayout
+                bottomSheet.setBackgroundResource(android.R.color.transparent)
+            }
+        })as BottomSheetDialog
+        //dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) as BottomSheetDialog
+        return dialog
     }
 
     override fun onCreateView(
@@ -78,6 +93,10 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                     }
                     2 ->{
                         mGoalDate=50
+                        if(mMode != -1) setLife(mMode,mGoalDate)
+                    }
+                    3->{
+                        mGoalDate=0
                         if(mMode != -1) setLife(mMode,mGoalDate)
                     }
                 }
@@ -151,6 +170,11 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             mMode==2 && mGoalDate==15 -> LifeType.Hard15
             mMode==2 && mGoalDate==30 -> LifeType.Hard30
             mMode==2 && mGoalDate==50 -> LifeType.Hard50
+
+            mMode==0 && mGoalDate==0 -> LifeType.Easy0
+            mMode==1 && mGoalDate==0 -> LifeType.Normal0
+            mMode==2 && mGoalDate==0 -> LifeType.Hard0
+
             else -> LifeType.Error
         }
 

@@ -10,6 +10,9 @@ enum class LifeType(val life:Int) {
     Hard15(2),
     Hard30(3),
     Hard50(5),
+    Easy0(300),
+    Normal0(200),
+    Hard0(100),
     Error(-1)
 
 }

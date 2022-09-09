@@ -8,7 +8,11 @@ class HabitAndDiaryRepository(private val habitAndDiaryDao: HabitAndDiaryDao) {
         return habitAndDiaryDao.getAllHabitAndDiary()
     }
 
-    suspend fun getHabit(habit_id:Int) :HabitAndDiary? {
+    suspend fun getHabitAndDiary(habit_id:Int) :HabitAndDiary? {
         return habitAndDiaryDao.getHabitAndDiary(habit_id)
     }
+//
+//    suspend fun updateHabit(habitAndDiary: HabitAndDiary) {
+//        habitAndDiaryDao.updateHabit(habitAndDiary = habitAndDiary )
+//    }
 }
