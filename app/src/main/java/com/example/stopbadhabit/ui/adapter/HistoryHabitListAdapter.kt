@@ -1,8 +1,14 @@
 package com.example.stopbadhabit.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stopbadhabit.R
@@ -10,9 +16,17 @@ import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.data.model.HabitAndModel.HabitAndDiary
 import com.example.stopbadhabit.data.model.PresentHabit.PresentHabit
 import com.example.stopbadhabit.databinding.HabitHistoryItemviewBinding
+import com.example.stopbadhabit.ui.HabitDetailFragmentDirections
+import com.example.stopbadhabit.ui.HistoryFragmentDirections
+import androidx.navigation.fragment.findNavController
 
-class HistoryHabitListAdapter :
+class HistoryHabitListAdapter(
+    val onDiaryClick:(Int) -> Unit,
+) :
     RecyclerView.Adapter<HistoryHabitListAdapter.HistoryHabitViewHolder>() {
+
+    private lateinit var diaryListAdapter: DiaryListAdapter
+
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -39,17 +53,49 @@ class HistoryHabitListAdapter :
     inner class HistoryHabitViewHolder(private val binding: HabitHistoryItemviewBinding) :
         RecyclerView.ViewHolder(binding.root){
             fun bind(habitAndDiary: HabitAndDiary ){
+                binding.root.setOnClickListener{
+                    Log.e(javaClass.simpleName, "I'm Clicked! ", )
+                    if(binding.layoutDiary.visibility== View.GONE){
+                        binding.layoutDiary.visibility = View.VISIBLE
+                        Log.e(javaClass.simpleName, "Set Visible! ", )
+
+                    }else{
+                        binding.layoutDiary.visibility = View.GONE
+                        Log.e(javaClass.simpleName, "Set Gone! ", )
+                    }
+                }
                 when(habitAndDiary.habit.state){
                     1->{
-                        Glide.with(binding.root).load(R.drawable.ic_heart).into(binding.ivHhChar)
+                        when(habitAndDiary.habit.mode){
+                            0-> Glide.with(binding.root).load(R.drawable.bg_mob_easy).into(binding.ivHhChar)
+                            1-> Glide.with(binding.root).load(R.drawable.bg_mob_normal).into(binding.ivHhChar)
+                            2-> Glide.with(binding.root).load(R.drawable.bg_mob_hard).into(binding.ivHhChar)
+                        }
+                        Glide.with(binding.root).load(R.drawable.ic_heart).into(binding.ivLifeState)
                     }
                     2->{
-                        Glide.with(binding.root).load(R.drawable.ic_emptyheart).into(binding.ivHhChar)
-
+                        Glide.with(binding.root).load(R.drawable.ic_close).into(binding.ivHhChar)
+                        Glide.with(binding.root).load(R.drawable.ic_emptyheart).into(binding.ivLifeState)
                     }
                 }
                 binding.tvHhName.text = habitAndDiary.habit.name
                 binding.tvHhDate.text = String.format(binding.root.resources.getString(R.string.hr_date),habitAndDiary.habit.start_date,habitAndDiary.habit.end_date)
+                binding.tvHhLife.text = String.format(binding.root.resources.getString(R.string.life),habitAndDiary.habit.current_life,habitAndDiary.habit.setting_life)
+
+                diaryListAdapter = DiaryListAdapter {
+                    onDiaryClick(it)
+                }.apply {
+                    setHasStableIds(true)
+                }
+                habitAndDiary.diaries?.let { diaryListAdapter.setData(it) }
+
+                if(habitAndDiary.diaries?.isEmpty() == true){
+                    binding.tvDiaryState.visibility = View.VISIBLE
+                }
+
+                binding.rvHhDiary.adapter = diaryListAdapter
+                binding.rvHhDiary.layoutManager =
+                    GridLayoutManager(binding.root.context,2, LinearLayoutManager.VERTICAL, false)
             }
         }
 

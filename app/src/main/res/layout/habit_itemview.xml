@@ -85,7 +85,7 @@
             android:id="@+id/iv_mob"
             android:layout_width="85dp"
             android:layout_height="85dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="6dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

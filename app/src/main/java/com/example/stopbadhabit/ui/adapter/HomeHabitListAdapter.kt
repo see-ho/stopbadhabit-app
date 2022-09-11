@@ -19,7 +19,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class HomeHabitListAdapter(
-    val onClickDone:(Int) -> Unit,
+    val onClickDone: (Int) ->Unit,
     val onClickDoing: (Int) -> Unit,
     val onDiaryAddClick: (Int) -> Unit,
 ) : RecyclerView.Adapter<HomeHabitListAdapter.HomeHabitViewHolder>() {
@@ -76,7 +76,6 @@ class HomeHabitListAdapter(
                     )
                     binding.habitDoing.tvHabitDate.text = presentHabit.habit.start_date
                     binding.habitDoing.tvLife.text = String.format(binding.root.resources.getString(R.string.life),presentHabit.habit.current_life,presentHabit.habit.setting_life)
-                    //"${presentHabit.habit.current_life} / ${presentHabit.habit.setting_life}"
                     binding.habitDoing.root.setOnClickListener {
                         presentHabit.habit.habit_id?.let {
                             onClickDoing(it)

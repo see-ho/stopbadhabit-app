@@ -7,6 +7,7 @@
     <string name="life">%d / %d</string>
     <string name="hr_date">%s ~ %s</string>
     <string name="hd_diary">반성일기</string>
+    <string name="life_ko">라이프</string>
 
     <!-- Bottom Sheet-->
     <string name="bt_sheet_title">교정하고 싶은 버릇</string>
@@ -56,4 +57,5 @@
 
     <!-- HabitHistory -->
     <string name="hh_empty">아직 끝난 전투가 없습니다.</string>
+    <string name="hh_diary_empty">작성한 반성일기가 없습니다.</string>
 </resources>

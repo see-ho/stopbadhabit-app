@@ -7,12 +7,17 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/beige_150">
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/beige_150"
+        android:padding="10dp"
+        android:animateLayoutChanges="true"
+        >
 
         <ImageView
             android:id="@+id/iv_hh_char"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -22,17 +27,115 @@
             style="@style/tv_18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/iv_hh_char"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_hh_date"
-            style="@style/tv_12"
+            style="@style/tv_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_hh_char"
             app:layout_constraintStart_toStartOf="@+id/tv_hh_name" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_diary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hh_date">
+
+            <TextView
+                android:id="@+id/textView17"
+                style="@style/tv_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/life_ko"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view16" />
+
+            <TextView
+                android:id="@+id/tv_hh_life"
+                style="@style/tv_detail_life"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                tools:text="3 / 5" />
+
+            <ImageView
+                android:id="@+id/iv_life_state"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="8dp"
+                android:src="@drawable/ic_heart"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_hh_life"
+                app:layout_constraintEnd_toStartOf="@+id/tv_hh_life"
+                app:layout_constraintTop_toTopOf="@+id/tv_hh_life" />
+
+            <View
+                android:id="@+id/view15"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="24dp"
+                android:background="@color/beige_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hh_life" />
+
+            <View
+                android:id="@+id/view16"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/beige_300"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_hh_diary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:visibility="visible"
+                app:layout_constraintTop_toBottomOf="@+id/textView19"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <TextView
+                android:id="@+id/textView19"
+                style="@style/tv_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/hd_diary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+            <TextView
+                android:id="@+id/tv_diary_state"
+                style="@style/tv_14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/hh_diary_empty"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
