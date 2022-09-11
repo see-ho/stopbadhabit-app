@@ -45,7 +45,7 @@
 
                     <EditText
                         android:id="@+id/et_emotion"
-                        style="@style/tv_12"
+                        style="@style/tv_14"
                         android:layout_width="0dp"
                         android:layout_height="95dp"
                         android:layout_marginTop="4dp"
@@ -64,6 +64,7 @@
 
                     <EditText
                         android:id="@+id/et_promise"
+                        style="@style/tv_14"
                         android:layout_width="0dp"
                         android:layout_height="95dp"
                         android:layout_marginTop="4dp"
@@ -72,8 +73,8 @@
                         android:gravity="start|top"
                         android:inputType="textMultiLine"
                         android:maxLength="50"
-                        android:maxLines="5"
 
+                        android:maxLines="5"
                         android:padding="5dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView16"
@@ -130,7 +131,7 @@
 
                     <EditText
                         android:id="@+id/et_situation"
-                        style="@style/tv_12"
+                        style="@style/tv_14"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="4dp"
@@ -148,7 +149,7 @@
 
                     <EditText
                         android:id="@+id/et_reason"
-                        style="@style/tv_12"
+                        style="@style/tv_14"
                         android:layout_width="0dp"
                         android:layout_height="45dp"
                         android:layout_marginTop="4dp"

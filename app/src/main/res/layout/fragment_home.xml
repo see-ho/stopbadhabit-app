@@ -98,17 +98,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
-        <ImageView
-            android:id="@+id/iv_habit_add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:src="@drawable/iv_habit_add"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_home_habit" />
-
         <Button
             android:id="@+id/btn_Boom"
             android:layout_width="wrap_content"
@@ -118,5 +107,15 @@
             android:text="폭발 = 예술"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <include
+            android:id="@+id/iv_habitAdd"
+            layout="@layout/habit_add_item"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_home_habit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout></layout>

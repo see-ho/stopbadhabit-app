@@ -4,8 +4,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:background="@drawable/iv_habit"
+        android:layout_height="180dp"
+        android:background="@drawable/ic____23"
         android:paddingLeft="30dp"
         android:paddingTop="10dp"
         android:paddingRight="40dp"
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/tv_habit_name"
-            style="@style/tv_18"
+            style="@style/tv_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -65,14 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:text="@string/blank"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_mob" />
 
         <TextView
             android:id="@+id/tv_life"
-            style="@style/tv_14"
+            style="@style/tv_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"

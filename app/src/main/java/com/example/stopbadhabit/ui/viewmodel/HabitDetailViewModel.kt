@@ -18,15 +18,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HabitDetailViewModel @Inject constructor(
-    private val habitrepository: HabitRepository,
+    private val habitRepository: HabitRepository,
     private val diaryRepository: DiaryRepository
 ) :ViewModel() {
+    init {
+        Log.e(javaClass.simpleName, "난 생겼지롱 ", )
+    }
 
     private val _habit = MutableLiveData<Habit>()
     val habit : LiveData<Habit> get() = _habit
-
-    private val _diaryList = MutableLiveData<List<Diary>>()
-    val diaryList : LiveData<List<Diary>> get() = _diaryList
 
     private val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)
@@ -44,16 +44,10 @@ class HabitDetailViewModel @Inject constructor(
         return -1
     }
 
-
     fun getHabitDetail(id: Int){
         viewModelScope.launch {
-            _habit.postValue(habitrepository.getHabitById(id))
+            _habit.postValue(habitRepository.getHabitById(id))
         }
     }
 
-    fun getDiary(id: Int) {
-        viewModelScope.launch {
-            _diaryList.postValue(diaryRepository.getDiaryAll(id))
-        }
-    }
 }

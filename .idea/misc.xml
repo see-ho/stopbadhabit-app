@@ -10,6 +10,11 @@
         <entry key="app/src/main/res/drawable/bg_et_white.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/bg_home.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/bg_item_1.xml" value="0.227" />
+        <entry key="app/src/main/res/drawable/bg_item_2.xml" value="0.219" />
+        <entry key="app/src/main/res/drawable/bg_item_3.xml" value="0.142" />
+        <entry key="app/src/main/res/drawable/bg_item_4.xml" value="0.2125" />
+        <entry key="app/src/main/res/drawable/bg_iv_habit.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/bg_iv_habit_2.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/bg_main_character.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/bg_mob_easy.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_hard.xml" value="0.1545" />
@@ -19,9 +24,12 @@
         <entry key="app/src/main/res/drawable/component_btn_red.xml" value="0.191" />
         <entry key="app/src/main/res/drawable/component_et_name.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic____1_vectornator.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic____23.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic____4_vectornator.xml" value="0.185" />
         <entry key="app/src/main/res/drawable/ic____5.xml" value="0.176" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/ic_backpage.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/ic_baseline_access_alarm_24.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_bg_home.xml" value="0.178" />
         <entry key="app/src/main/res/drawable/ic_bg_main__character_vectornator.xml" value="0.1835" />
         <entry key="app/src/main/res/drawable/ic_calendar.xml" value="0.3485" />
@@ -50,17 +58,18 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26578676635371157" />
         <entry key="app/src/main/res/layout/diary_itemview.xml" value="0.8132476806640626" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2842117309570313" />
-        <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.466504825430581" />
+        <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.38985443115234375" />
         <entry key="app/src/main/res/layout/fragment_diary_write.xml" value="0.3595667870036101" />
         <entry key="app/src/main/res/layout/fragment_habit_add.xml" value="0.2164855072463768" />
-        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.25077399380804954" />
+        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.46304968960883086" />
         <entry key="app/src/main/res/layout/fragment_habit_report.xml" value="0.6661132812500001" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.2675233644859813" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.20444444444444446" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.7373306274414063" />
         <entry key="app/src/main/res/layout/fragment_open_source.xml" value="0.10555555555555556" />
+        <entry key="app/src/main/res/layout/habit_add_item.xml" value="0.24807407105930923" />
         <entry key="app/src/main/res/layout/habit_done_itemview.xml" value="0.1527651858567543" />
         <entry key="app/src/main/res/layout/habit_history_itemview.xml" value="0.3696701773928496" />
-        <entry key="app/src/main/res/layout/habit_itemview.xml" value="0.27098541259765624" />
+        <entry key="app/src/main/res/layout/habit_itemview.xml" value="0.26934051513671875" />
         <entry key="app/src/main/res/layout/habit_list_itemview.xml" value="0.1527651858567543" />
         <entry key="app/src/main/res/layout/item_goaldate_list.xml" value="0.13722826086956522" />
         <entry key="app/src/main/res/layout/tooltip.xml" value="0.6657754010695187" />

@@ -69,9 +69,9 @@ class HomeFragment : Fragment() {
             Log.e(javaClass.simpleName, "setObserver: ${it}")
             homeHabitListAdapter.setData(it)
             if (it.size == 3)
-                binding.ivHabitAdd.visibility = View.GONE
+                binding.ivHabitAdd.root.visibility = View.GONE
             else
-                binding.ivHabitAdd.visibility = View.VISIBLE
+                binding.ivHabitAdd.root.visibility = View.VISIBLE
         }
     }
 
@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
             true
         }
 
-        binding.ivHabitAdd.setOnClickListener {
+        binding.ivHabitAdd.root.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_bottomSheetFragment)
         }
 

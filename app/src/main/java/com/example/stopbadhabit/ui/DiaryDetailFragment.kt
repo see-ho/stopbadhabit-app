@@ -2,26 +2,34 @@ package com.example.stopbadhabit.ui
 
 import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.example.stopbadhabit.R
 import com.example.stopbadhabit.databinding.FragmentBottomSheetBinding
 import com.example.stopbadhabit.databinding.FragmentDiaryDetailBinding
+import com.example.stopbadhabit.ui.viewmodel.DiaryDetailViewModel
+import com.example.stopbadhabit.ui.viewmodel.HabitDetailViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DiaryDetailFragment : BottomSheetDialogFragment() {
 
     private val binding by lazy { FragmentDiaryDetailBinding.inflate(layoutInflater) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private val habitDetailViewModel : HabitDetailViewModel by viewModels()
+    private val diaryDetailViewModel : DiaryDetailViewModel by viewModels()
 
-    }
+    private val args: DiaryDetailFragmentArgs by navArgs()
+
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = (super.onCreateDialog(savedInstanceState).apply {
@@ -30,17 +38,34 @@ class DiaryDetailFragment : BottomSheetDialogFragment() {
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
             }
         })as BottomSheetDialog
-        //dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) as BottomSheetDialog
         return dialog
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_diary_detail, container, false)
+        setObserver()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        diaryDetailViewModel.diary.observe(viewLifecycleOwner){
+            with(binding){
+                tvDdEmotion.text = it.emotion
+                tvDdSituation.text = it.situation
+                tvDdReason.text = it.reason
+                tvDdPromise.text =it.promise
+                tvDdDate.text = it.diary_date
+            }
+        }
+    }
+
+    private fun setObserver(){
+        diaryDetailViewModel.getDiaryDetail(args.diaryId)
     }
 
 }

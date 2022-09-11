@@ -94,9 +94,6 @@ class  MainViewModel @Inject constructor(
             diaryRepository.insertDiary(diary)
             habitRepository.updateHabit(habit)
             getHabitList()
-//            getDiaryList(id)
-//            habitRepository.getHabitById(id)
-//            check()
         }
     }
 

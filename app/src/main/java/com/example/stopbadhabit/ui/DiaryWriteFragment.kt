@@ -111,7 +111,8 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
                     emotion = emotion,
                     promise = promise,
                     habit_id = detailId,
-                    diary_date = LocalDate.now().toString()
+                    diary_date = LocalDate.now().toString(),
+                    img_res = (1..4).random()
                 ), detailId, diaryWriteViewModel.habit.value
             )
             dismiss()

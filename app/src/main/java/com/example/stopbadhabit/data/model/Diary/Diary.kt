@@ -36,6 +36,9 @@ data class Diary(
     val emotion: String?,
 
     @ColumnInfo(name = "promise")
-    val promise: String
+    val promise: String,
+
+    @ColumnInfo(name ="img_res")
+    val img_res: Int,
 
 )

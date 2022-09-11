@@ -24,10 +24,7 @@ import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.toDate
 import com.skydoves.balloon.*
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.androidx.compose.viewModel
-import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
 
 @AndroidEntryPoint
 class HabitDetailFragment : Fragment() {
@@ -48,7 +45,8 @@ class HabitDetailFragment : Fragment() {
 
     private fun setView() {
         diaryListAdapter = DiaryListAdapter {
-            findNavController().navigate(R.id.action_habitDetailFragment_to_diaryDetailFragment)
+            val action = HabitDetailFragmentDirections.actionHabitDetailFragmentToDiaryDetailFragment(it)
+            findNavController().navigate(action)
         }.apply {
             setHasStableIds(true)
         }
@@ -61,9 +59,7 @@ class HabitDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         setView()
-
         binding.ivDiaryAdd.setOnClickListener {
             findNavController().navigate(R.id.action_habitDetailFragment_to_diaryWriteFragment)
         }
@@ -79,7 +75,6 @@ class HabitDetailFragment : Fragment() {
         val balloon = Balloon.Builder(requireContext())
             .setWidthRatio(0.65f)
             .setHeight(BalloonSizeSpec.WRAP)
-
             .setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
             .setArrowSize(10)
             .setArrowPosition(0.5f)
@@ -102,17 +97,17 @@ class HabitDetailFragment : Fragment() {
             findNavController().navigate(R.id.action_habitDetailFragment_to_homeFragment)
         }
 
-
         mainViewModel.detailHabitId.observe(viewLifecycleOwner) {
             if(it != -1)
                 habitDetailViewModel.getHabitDetail(it)
             else
-                Log.e("fsda", "onCreateView: sdfsdf", )
+                //TODO 예외처리
+                Log.e("fsda", "onCreateView: 헤빗아이디에러", )
         }
 
         mainViewModel.diaryList.observe(viewLifecycleOwner) { it ->
             if (it.isNotEmpty())
-                when(((today - it.last().diary_date.toDate()) / (24 * 60 * 60 * 1000) -1).toInt()){
+                when(((today - it.last().diary_date.toDate()) / (24 * 60 * 60 * 1000)).toInt()){
                     0-> binding.tvHdLastDiaryDate.text = String.format(
                         requireContext().getString(
                             R.string.hd_continuity_0,
@@ -121,7 +116,6 @@ class HabitDetailFragment : Fragment() {
                         requireContext().getString(
                             R.string.hd_continuity,((today - it.last().diary_date.toDate()) / (24 * 60 * 60 * 1000) -1)
                         ))
-
                 }
             else
                 binding.tvHdLastDiaryDate.text = String.format(
@@ -153,7 +147,6 @@ class HabitDetailFragment : Fragment() {
                     else -> tvHdCurrentdaystate.text = String.format(requireContext().getString(R.string.hd_current),habitDetailViewModel.setFromStartDate())
 
                 }
-                //TODO 0번일 때 멘트 생각
                 when(it.setting_life-it.current_life){
                     0-> tvHdFailDefend.text = String.format(requireContext().getString(R.string.hd_fail_0))
                     else -> tvHdFailDefend.text = String.format(requireContext().getString(R.string.hd_fail),it.setting_life-it.current_life)
@@ -169,13 +162,8 @@ class HabitDetailFragment : Fragment() {
 
     private fun setObserver(){
         mainViewModel.diaryList.observe(viewLifecycleOwner) {
-            Log.e(javaClass.simpleName, "setObserver: $it" )
-            diaryListAdapter.list = it
+            diaryListAdapter.setData(it)
         }
-
-//        habitDetailViewModel.diaryList.observe(viewLifecycleOwner) {
-//            diaryListAdapter.list = it as ArrayList<Diary> /* = java.util.ArrayList<com.example.stopbadhabit.data.model.Diary.Diary> */
-//        }
     }
 
     companion object {
