@@ -31,8 +31,6 @@ class  MainViewModel @Inject constructor(
     private val _habitList = ListLiveData<PresentHabit>()
     val habitList : LiveData<ArrayList<PresentHabit>> get() = _habitList
 
-    //private val _historyhabitList = MutableList()
-
     private val _diaryList = ListLiveData<Diary>()
     val diaryList : LiveData<ArrayList<Diary>> get() = _diaryList
 
@@ -57,17 +55,21 @@ class  MainViewModel @Inject constructor(
 //            _habitList.addAllAsync(repository.getHomeHabits())
                 habitRepository.getHomeHabits()
             }.await()
-            Log.e(javaClass.simpleName,"${list}")
+
+            Log.e(javaClass.simpleName, "getHabitList: ${list}", )
             _habitList.addAll(list)
         }
     }
 
     fun getDiaryList(id:Int) {
+
         viewModelScope.launch {
             _diaryList.clear()
             val list = viewModelScope.async(Dispatchers.IO) {
                 diaryRepository.getDiaryAll(id)
             }.await()
+            Log.e(javaClass.simpleName, "habit main view   ${habitList}", )
+
 
             _diaryList.addAll(list)
         }

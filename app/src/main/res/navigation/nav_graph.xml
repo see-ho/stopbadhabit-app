@@ -86,5 +86,9 @@
         android:id="@+id/habitReportFragment"
         android:name="com.example.stopbadhabit.ui.HabitReportFragment"
         android:label="fragment_habit_report"
-        tools:layout="@layout/fragment_habit_report" />
+        tools:layout="@layout/fragment_habit_report" >
+        <action
+            android:id="@+id/action_habitReportFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </dialog>
 </navigation>

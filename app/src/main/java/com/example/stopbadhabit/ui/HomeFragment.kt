@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.example.stopbadhabit.R
 import com.example.stopbadhabit.databinding.FragmentHomeBinding
 import com.example.stopbadhabit.ui.adapter.HomeHabitListAdapter
@@ -45,7 +46,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun setView() {
-        homeHabitListAdapter = HomeHabitListAdapter(
+
+
+            homeHabitListAdapter = HomeHabitListAdapter(
             {
                 mainViewModel.setDetailId(it)
                 findNavController().navigate(R.id.action_homeFragment_to_habitReportFragment)
@@ -66,7 +69,8 @@ class HomeFragment : Fragment() {
 
     private fun setObserver() {
         mainViewModel.habitList.observe(viewLifecycleOwner) {
-            Log.e(javaClass.simpleName, "setObserver: ${it}")
+            Log.e(javaClass.simpleName, "home observer: $it", )
+
             homeHabitListAdapter.setData(it)
             if (it.size == 3)
                 binding.ivHabitAdd.root.visibility = View.GONE

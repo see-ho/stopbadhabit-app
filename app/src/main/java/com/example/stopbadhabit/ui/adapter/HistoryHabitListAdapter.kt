@@ -54,14 +54,11 @@ class HistoryHabitListAdapter(
         RecyclerView.ViewHolder(binding.root){
             fun bind(habitAndDiary: HabitAndDiary ){
                 binding.root.setOnClickListener{
-                    Log.e(javaClass.simpleName, "I'm Clicked! ", )
                     if(binding.layoutDiary.visibility== View.GONE){
                         binding.layoutDiary.visibility = View.VISIBLE
-                        Log.e(javaClass.simpleName, "Set Visible! ", )
 
                     }else{
                         binding.layoutDiary.visibility = View.GONE
-                        Log.e(javaClass.simpleName, "Set Gone! ", )
                     }
                 }
                 when(habitAndDiary.habit.state){

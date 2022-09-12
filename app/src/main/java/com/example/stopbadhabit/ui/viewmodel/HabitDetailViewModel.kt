@@ -21,9 +21,6 @@ class HabitDetailViewModel @Inject constructor(
     private val habitRepository: HabitRepository,
     private val diaryRepository: DiaryRepository
 ) :ViewModel() {
-    init {
-        Log.e(javaClass.simpleName, "난 생겼지롱 ", )
-    }
 
     private val _habit = MutableLiveData<Habit>()
     val habit : LiveData<Habit> get() = _habit

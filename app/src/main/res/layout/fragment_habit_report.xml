@@ -42,7 +42,7 @@
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_diarydetail"
+                android:background="@drawable/bg_report"
                 android:paddingStart="50dp"
                 android:paddingTop="20dp"
                 android:paddingEnd="50dp"

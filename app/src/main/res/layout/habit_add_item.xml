@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="@drawable/ic____23">
+    android:background="@drawable/bg_habit_item">
 
 
     <ImageView

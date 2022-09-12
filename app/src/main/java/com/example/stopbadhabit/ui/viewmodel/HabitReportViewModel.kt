@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,8 +31,6 @@ class HabitReportViewModel @Inject constructor(
         }
     }
 
-
-
 //    fun updateHabitState(state: Int,endDate: String){
 //        _habitAndDiary.value?.let {
 //            _habitAndDiary.value=it.copy(habit = Habit(state = state, end_date = endDate), )
@@ -53,7 +52,6 @@ class HabitReportViewModel @Inject constructor(
         }
         viewModelScope.launch {
             _habit.value?.let { habitRepository.updateHabit(it) }
-
         }
     }
 

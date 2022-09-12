@@ -1,6 +1,7 @@
 package com.example.stopbadhabit.ui.adapter
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -99,6 +100,8 @@ class HomeHabitListAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newItems: List<PresentHabit>) {
         this.list = newItems
+        Log.e(javaClass.simpleName, "habit adapter  ${newItems}", )
+
         notifyDataSetChanged()
     }
 

@@ -74,8 +74,9 @@ class HabitReportFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnReportClose.setOnClickListener {
-            //habitReportViewModel.updateState(result,"2022-09-31")
             mainViewModel.getHabitList()
+            habitReportViewModel.updateState(state = result,endDate)
+            Log.e(javaClass.simpleName, "habit Report  ${mainViewModel.habitList.value}", )
             dismiss()
         }
 
@@ -89,7 +90,6 @@ class HabitReportFragment : DialogFragment() {
 
         habitReportViewModel.habitAndDiary.observe(viewLifecycleOwner) {
             with(binding) {
-                Log.e(javaClass.simpleName, "onViewCreated: $it")
                 val mDate = LocalDate.now()
                 tvReportName.text = it.habit.name
 
@@ -101,46 +101,41 @@ class HabitReportFragment : DialogFragment() {
 
                 it.habit.habit_id?.let { it1 -> mainViewModel.getDiaryList(it1) }
 
-                Log.e(javaClass.simpleName, "onViewCreated: ${endDate}")
-
                 var dateFromStart:Int = -1
 
                 if (it.diaries?.isNotEmpty() == true) {
                     dateFromStart =((((it.diaries.last().diary_date.toDate()) - it.habit.start_date.toDate())) / (24 * 60 * 60 * 1000) + 1).toInt()
                 }
 
-                //TODO 여기 end_date
                 if (it.habit.current_life == 0) {
                     result = 2 //실패
                     it.diaries?.last()
-                        ?.let { it1 -> habitReportViewModel.updateState(2, it1.diary_date) }
+                        ?.let { endDate = it.diary_date }
+
+                    //mainViewModel.getHabitList()
+
                     tvReportDate.text = it.diaries?.last()?.let { it1 ->
                         String.format(
                             requireContext().getString(R.string.hr_date), it.habit.start_date,
                             it1.diary_date
                         )
                     }
+                    Glide.with(binding.root).load(R.drawable.bg_easy_fail)
+                        .into(binding.ivReportChar)
                     tvState.text = String.format(requireContext().getString(R.string.hr_state_fail))
                     tvReportResult.text =
                         String.format(requireContext().getString(R.string.hr_result_fail))
                     tvReportFromStart.text =
                         String.format(requireContext().getString(R.string.hr_fromStart), dateFromStart)
-                    when (it.habit.mode) {
-                        0 -> Glide.with(binding.root).load(R.drawable.bg_mob_easy)
-                            .into(binding.ivReportChar)
-                        1 -> Glide.with(binding.root).load(R.drawable.bg_mob_normal)
-                            .into(binding.ivReportChar)
-                        2 -> Glide.with(binding.root).load(R.drawable.bg_mob_hard)
-                            .into(binding.ivReportChar)
-                    }
+
                     Glide.with(binding.root).load(R.drawable.ic_emptyheart)
                         .into(binding.ivReportHeart)
                 } else {
                     result = 1 //성공
-                    habitReportViewModel.updateState(
-                        1,
-                        it.habit.start_date.toCalender(it.habit.goal_date)
-                    )
+                    endDate = it.habit.start_date.toCalender(it.habit.goal_date)
+
+                    //mainViewModel.getHabitList()
+
                     tvReportDate.text = String.format(
                         requireContext().getString(R.string.hr_date),
                         it.habit.start_date,
@@ -155,9 +150,9 @@ class HabitReportFragment : DialogFragment() {
                         it.habit.goal_date
                     )
                     when (it.habit.mode) {
-                        0 -> Glide.with(binding.root).load(R.drawable.bg_mob_easy)
+                        0 -> Glide.with(binding.root).load(R.drawable.bg_easy_fail)
                             .into(binding.ivReportChar)
-                        1 -> Glide.with(binding.root).load(R.drawable.bg_mob_normal)
+                        1 -> Glide.with(binding.root).load(R.drawable.bg_normal_fail)
                             .into(binding.ivReportChar)
                         2 -> Glide.with(binding.root).load(R.drawable.bg_mob_hard)
                             .into(binding.ivReportChar)

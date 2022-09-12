@@ -23,7 +23,6 @@ class DiaryWriteViewModel @Inject constructor(
     fun getHabitDetail(id: Int){
         viewModelScope.launch {
             _habit.postValue(habitRepository.getHabitById(id))
-            Log.e(javaClass.simpleName, "getHabitDetail: $habit ", )
         }
     }
 

@@ -38,7 +38,6 @@ class HabitHistoryViewModel @Inject constructor(
     fun getHabitHistoryList() {
         viewModelScope.launch {
             _habitAndDiaryList.postValue(habitAndDiaryRepository.getAllHabitAndDiary())
-            Log.e(javaClass.simpleName, "getHabitHistoryList: ${habitAndDiaryRepository.getAllHabitAndDiary()}", )
         }
     }
 

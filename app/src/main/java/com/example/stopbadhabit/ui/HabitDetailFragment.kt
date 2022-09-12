@@ -134,7 +134,6 @@ class HabitDetailFragment : Fragment() {
             }
 
             with(binding){
-                Log.e(javaClass.simpleName, "habit_id: ${it.habit_id}", )
                 when(it.mode){
                     0-> Glide.with(binding.root).load(R.drawable.bg_mob_easy).into(binding.ivHdMob)
                     1-> Glide.with(binding.root).load(R.drawable.bg_mob_normal).into(binding.ivHdMob)

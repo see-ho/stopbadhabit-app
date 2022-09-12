@@ -8,11 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.stopbadhabit.R
 import com.example.stopbadhabit.data.model.Diary.Diary
-import com.example.stopbadhabit.data.model.Habit.Habit
-import com.example.stopbadhabit.data.model.PresentHabit.PresentHabit
 import com.example.stopbadhabit.databinding.DiaryItemviewBinding
-import com.example.stopbadhabit.databinding.FragmentDiaryWriteBinding
-import com.example.stopbadhabit.databinding.HabitItemviewBinding
+
 
 class DiaryListAdapter(
     val onClick: (Int) -> Unit
@@ -29,9 +26,14 @@ class DiaryListAdapter(
             )
         )
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onBindViewHolder(holder: DiaryListAdapter.DiaryViewHolder, position: Int) {
         holder.bind(list[position])
         holder.number.text = "No. ${position+1}"
+
 //        binding.textView19.text = String.format(binding.root.resources.getString(R.string.hd_diary_num),adapterPosition+1)
 
     }
@@ -69,6 +71,7 @@ class DiaryListAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newItems: List<Diary>) {
+
         this.list = newItems
         notifyDataSetChanged()
     }
