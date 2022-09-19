@@ -39,6 +39,10 @@ class HistoryHabitListAdapter(
         )
     )
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onBindViewHolder(
         holder: HistoryHabitListAdapter.HistoryHabitViewHolder,
         position: Int
@@ -64,13 +68,17 @@ class HistoryHabitListAdapter(
                 when(habitAndDiary.habit.state){
                     1->{
                         when(habitAndDiary.habit.mode){
-                            0-> Glide.with(binding.root).load(R.drawable.bg_mob_easy).into(binding.ivHhChar)
-                            1-> Glide.with(binding.root).load(R.drawable.bg_mob_normal).into(binding.ivHhChar)
-                            2-> Glide.with(binding.root).load(R.drawable.bg_mob_hard).into(binding.ivHhChar)
+                            0 -> Glide.with(binding.root).load(R.drawable.bg_easy_fail)
+                                .into(binding.ivHhChar)
+                            1 -> Glide.with(binding.root).load(R.drawable.bg_normal_fail)
+                                .into(binding.ivHhChar)
+                            2 -> Glide.with(binding.root).load(R.drawable.bg_hard_fail)
+                                .into(binding.ivHhChar)
                         }
                         Glide.with(binding.root).load(R.drawable.ic_heart).into(binding.ivLifeState)
                     }
                     2->{
+                        //TODO 실패 이미지 적용
                         Glide.with(binding.root).load(R.drawable.ic_close).into(binding.ivHhChar)
                         Glide.with(binding.root).load(R.drawable.ic_emptyheart).into(binding.ivLifeState)
                     }

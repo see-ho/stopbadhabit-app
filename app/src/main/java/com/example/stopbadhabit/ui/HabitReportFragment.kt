@@ -67,15 +67,20 @@ class HabitReportFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dialog?.setCancelable(false)
+//        dialog?.setCancelable(false)
         return binding.root
+    }
+
+    override fun dismiss() {
+        super.dismiss()
+        habitReportViewModel.updateState(state = result,endDate)
+        mainViewModel.getHabitList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnReportClose.setOnClickListener {
-            mainViewModel.getHabitList()
-            habitReportViewModel.updateState(state = result,endDate)
+
             Log.e(javaClass.simpleName, "habit Report  ${mainViewModel.habitList.value}", )
             dismiss()
         }
@@ -132,6 +137,7 @@ class HabitReportFragment : DialogFragment() {
                         .into(binding.ivReportHeart)
                 } else {
                     result = 1 //성공
+
                     endDate = it.habit.start_date.toCalender(it.habit.goal_date)
 
                     //mainViewModel.getHabitList()
@@ -154,7 +160,7 @@ class HabitReportFragment : DialogFragment() {
                             .into(binding.ivReportChar)
                         1 -> Glide.with(binding.root).load(R.drawable.bg_normal_fail)
                             .into(binding.ivReportChar)
-                        2 -> Glide.with(binding.root).load(R.drawable.bg_mob_hard)
+                        2 -> Glide.with(binding.root).load(R.drawable.bg_hard_fail)
                             .into(binding.ivReportChar)
                     }
                     Glide.with(binding.root).load(R.drawable.ic_heart).into(binding.ivReportHeart)

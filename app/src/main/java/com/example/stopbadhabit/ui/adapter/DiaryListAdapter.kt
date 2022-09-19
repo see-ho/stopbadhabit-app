@@ -34,8 +34,6 @@ class DiaryListAdapter(
         holder.bind(list[position])
         holder.number.text = "No. ${position+1}"
 
-//        binding.textView19.text = String.format(binding.root.resources.getString(R.string.hd_diary_num),adapterPosition+1)
-
     }
 
     override fun getItemCount(): Int = list.size

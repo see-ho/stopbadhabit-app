@@ -3,11 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../.gradle/caches/transforms-3/2716d9bfd05f99718970f48033b94a7d/transformed/appcompat-1.5.0/res/layout/support_simple_spinner_dropdown_item.xml" value="0.30867892261650276" />
         <entry key="../Library/Android/sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.15489130434782608" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/bg_bottomsheet.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/bg_diarydetail.xml" value="0.2085" />
+        <entry key="app/src/main/res/drawable/bg_easy_fail.xml" value="0.1755" />
         <entry key="app/src/main/res/drawable/bg_et_white.xml" value="0.334" />
+        <entry key="app/src/main/res/drawable/bg_ground.xml" value="0.208" />
+        <entry key="app/src/main/res/drawable/bg_habit_done.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/bg_habit_item.xml" value="0.3765" />
+        <entry key="app/src/main/res/drawable/bg_hard_fail.xml" value="0.3285" />
+        <entry key="app/src/main/res/drawable/bg_history.xml" value="0.2265" />
         <entry key="app/src/main/res/drawable/bg_home.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/bg_item_1.xml" value="0.227" />
         <entry key="app/src/main/res/drawable/bg_item_2.xml" value="0.219" />
@@ -15,10 +22,14 @@
         <entry key="app/src/main/res/drawable/bg_item_4.xml" value="0.2125" />
         <entry key="app/src/main/res/drawable/bg_iv_habit.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/bg_iv_habit_2.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/bg_left_cloud.xml" value="0.221" />
         <entry key="app/src/main/res/drawable/bg_main_character.xml" value="0.3475" />
         <entry key="app/src/main/res/drawable/bg_mob_easy.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_hard.xml" value="0.1545" />
         <entry key="app/src/main/res/drawable/bg_mob_normal.xml" value="0.2585" />
+        <entry key="app/src/main/res/drawable/bg_normal_fail.xml" value="0.1755" />
+        <entry key="app/src/main/res/drawable/bg_report.xml" value="0.2265" />
+        <entry key="app/src/main/res/drawable/bg_right_cloud.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/bg_tv_white.xml" value="0.334" />
         <entry key="app/src/main/res/drawable/circle_button.xml" value="0.2585" />
         <entry key="app/src/main/res/drawable/component_btn_red.xml" value="0.191" />
@@ -56,23 +67,24 @@
         <entry key="app/src/main/res/font/font.xml" value="0.23257802479692177" />
         <entry key="app/src/main/res/font/maple_light.xml" value="0.1642043056141832" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.26578676635371157" />
-        <entry key="app/src/main/res/layout/diary_itemview.xml" value="0.8132476806640626" />
+        <entry key="app/src/main/res/layout/diary_itemview.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_bottom_sheet.xml" value="0.2842117309570313" />
         <entry key="app/src/main/res/layout/fragment_diary_detail.xml" value="0.38985443115234375" />
         <entry key="app/src/main/res/layout/fragment_diary_write.xml" value="0.3595667870036101" />
         <entry key="app/src/main/res/layout/fragment_habit_add.xml" value="0.2164855072463768" />
-        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.46304968960883086" />
-        <entry key="app/src/main/res/layout/fragment_habit_report.xml" value="0.6661132812500001" />
+        <entry key="app/src/main/res/layout/fragment_habit_detail.xml" value="0.22130279541015627" />
+        <entry key="app/src/main/res/layout/fragment_habit_report.xml" value="0.5973129272460939" />
         <entry key="app/src/main/res/layout/fragment_history.xml" value="0.2675233644859813" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.7373306274414063" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2432745912021263" />
         <entry key="app/src/main/res/layout/fragment_open_source.xml" value="0.10555555555555556" />
         <entry key="app/src/main/res/layout/habit_add_item.xml" value="0.24807407105930923" />
         <entry key="app/src/main/res/layout/habit_done_itemview.xml" value="0.1527651858567543" />
         <entry key="app/src/main/res/layout/habit_history_itemview.xml" value="0.3696701773928496" />
         <entry key="app/src/main/res/layout/habit_itemview.xml" value="0.26934051513671875" />
-        <entry key="app/src/main/res/layout/habit_list_itemview.xml" value="0.1527651858567543" />
+        <entry key="app/src/main/res/layout/habit_list_itemview.xml" value="0.24623900177472305" />
         <entry key="app/src/main/res/layout/item_goaldate_list.xml" value="0.13722826086956522" />
         <entry key="app/src/main/res/layout/tooltip.xml" value="0.6657754010695187" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_icon_round.xml" value="0.2585" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.178" />
       </map>
     </option>
