@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.ui
 
+import android.animation.Animator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,6 +25,7 @@ import com.example.stopbadhabit.databinding.ActivityMainBinding
 import com.example.stopbadhabit.databinding.FragmentHomeBinding
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 
 @AndroidEntryPoint
 class  MainActivity : AppCompatActivity() {
@@ -33,27 +35,40 @@ class  MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.e("TAG", "onCreate: testet", )
 
         installSplashScreen().apply {
             setKeepOnScreenCondition{
                 mainViewModel.isLoading.value
             }
         }
+        setContentView(binding.root)
 
-        setContentView(R.layout.activity_main)
+
         val navHomeFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
         navController = navHomeFragment.navController
 
         mainViewModel.heartlottie.observe(this){
             if (it == true){
+                binding.lottieHeart.addAnimatorListener(object : Animator.AnimatorListener {
+                    override fun onAnimationStart(animation: Animator) {
+                        binding.lottieHeart.setOnClickListener {
+
+                        }
+                    }
+                    override fun onAnimationEnd(animation: Animator) {
+                        binding.lottieHeart.visibility = View.GONE
+                        mainViewModel.doneHeartLottie()
+                    }
+                    override fun onAnimationCancel(animation: Animator) {
+                    }
+
+                    override fun onAnimationRepeat(animation: Animator) {
+                    }
+                })
                 binding.lottieHeart.visibility = View.VISIBLE
-                binding.testText.visibility = View.VISIBLE
-                //binding.lottieHeart.playAnimation()
-                //mainViewModel.doneHeartLottie()
-            }
-            else if (it == false){
-             //   binding.lottieHeart.visibility = View.INVISIBLE
+                binding.lottieHeart.playAnimation()
             }
         }
 
