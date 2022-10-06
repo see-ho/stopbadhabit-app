@@ -2,7 +2,8 @@ package com.example.stopbadhabit.ui
 
 import android.animation.ValueAnimator
 import android.app.Dialog
-import android.os.Bundle
+import android.content.Context
+import android.os.*
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -69,6 +70,16 @@ class HabitReportFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val vib = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager =
+                requireActivity().getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+
+        } else {
+            @Suppress("DEPRECATION")
+            requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
+        vib.vibrate(VibrationEffect.createOneShot(500,100))
 //        dialog?.setCancelable(false)
         return binding.root
     }

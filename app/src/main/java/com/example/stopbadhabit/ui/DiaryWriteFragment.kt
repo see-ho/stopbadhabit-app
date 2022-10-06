@@ -1,8 +1,9 @@
 package com.example.stopbadhabit.ui
 
 import android.app.Dialog
+import android.content.Context
+import android.os.*
 import androidx.lifecycle.ViewModelProvider
-import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -125,6 +126,16 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
 
     override fun dismiss() {
         super.dismiss()
+        val vib = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val vibratorManager =
+                requireActivity().getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
+            vibratorManager.defaultVibrator
+
+        } else {
+            @Suppress("DEPRECATION")
+            requireActivity().getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        }
+        vib.vibrate(VibrationEffect.createOneShot(300,50))
         mainViewModel.playHeartLottie()
         mainViewModel.setDetailId(detailId)
     }
