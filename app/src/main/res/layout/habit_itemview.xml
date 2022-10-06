@@ -26,6 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/beige_300"
+            android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/tv_habit_date"
             app:layout_constraintEnd_toEndOf="@+id/tv_habit_current_day"
             app:layout_constraintStart_toStartOf="@+id/tv_habit_current_day" />
@@ -35,13 +36,14 @@
             android:layout_width="0dp"
             android:layout_height="2dp"
             android:background="@color/beige_300"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="@+id/tv_habit_date"
             app:layout_constraintStart_toStartOf="@+id/tv_habit_date"
             app:layout_constraintTop_toBottomOf="@+id/tv_habit_date" />
 
         <TextView
             android:id="@+id/tv_habit_name"
-            style="@style/tv_16"
+            style="@style/tv_18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -53,7 +55,7 @@
 
         <TextView
             android:id="@+id/tv_habit_current_day"
-            style="@style/tv_14"
+            style="@style/tv_16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hhi_current_day"
@@ -62,7 +64,7 @@
 
         <TextView
             android:id="@+id/tv_habit_date"
-            style="@style/tv_12"
+            style="@style/tv_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

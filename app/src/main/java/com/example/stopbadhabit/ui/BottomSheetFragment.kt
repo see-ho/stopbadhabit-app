@@ -22,19 +22,13 @@ import com.example.stopbadhabit.R
 import com.example.stopbadhabit.data.model.Diary.Diary
 import com.example.stopbadhabit.data.model.Habit.Habit
 import com.example.stopbadhabit.databinding.FragmentBottomSheetBinding
-import com.example.stopbadhabit.ui.viewmodel.BottomSheetViewModel
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.fragment.LifeType
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.getViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDate
-import java.time.LocalTime
-import java.util.*
 
 @AndroidEntryPoint
 class BottomSheetFragment : BottomSheetDialogFragment() {
@@ -69,7 +63,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         val items = requireActivity().resources.getStringArray(R.array.goaldate_string_array)
 
-        val mAdapter = ArrayAdapter(binding.root.context, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items)
+        val mAdapter = ArrayAdapter(binding.root.context, R.layout.custom_spinner_date,R.id.tv_spinner_date, items)
 
         binding.spinner.adapter = mAdapter
 

@@ -78,8 +78,7 @@ class HistoryHabitListAdapter(
                         Glide.with(binding.root).load(R.drawable.ic_heart).into(binding.ivLifeState)
                     }
                     2->{
-                        //TODO 실패 이미지 적용
-                        Glide.with(binding.root).load(R.drawable.ic_close).into(binding.ivHhChar)
+                        Glide.with(binding.root).load(R.drawable.bg_main_fail).into(binding.ivHhChar)
                         Glide.with(binding.root).load(R.drawable.ic_emptyheart).into(binding.ivLifeState)
                     }
                 }

@@ -18,6 +18,9 @@ import com.example.stopbadhabit.util.ListLiveData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,6 +31,9 @@ class  MainViewModel @Inject constructor(
     private val diaryRepository: DiaryRepository,
     private val habitAndDiaryRepository: HabitAndDiaryRepository
 ):ViewModel(){
+    private val _isLoading = MutableStateFlow(true)
+    val isLoading = _isLoading.asStateFlow()
+
     private val _habitList = ListLiveData<PresentHabit>()
     val habitList : LiveData<ArrayList<PresentHabit>> get() = _habitList
 
@@ -36,12 +42,32 @@ class  MainViewModel @Inject constructor(
 
     private val _detailHabit =  MutableLiveData(-1)
     val detailHabitId: LiveData<Int> get() = _detailHabit
+
+    private val _heartlottie =  MutableLiveData(false)
+    val heartlottie: LiveData<Boolean> get() = _heartlottie
 //    var detailHabitId = -1
 
     init {
         viewModelScope.launch {
             getHabitList()
+            delay(1500)
+            _isLoading.value=false
+
         }
+    }
+
+    fun playHeartLottie(){
+        viewModelScope.launch {
+            _heartlottie.value = true
+        }
+        Log.e(javaClass.simpleName, "playHeartLottie: ${heartlottie.value}" )
+    }
+
+    fun doneHeartLottie(){
+        viewModelScope.launch {
+            _heartlottie.value = false
+        }
+        Log.e("TAG", "playHeartLottie: ${heartlottie.value}" )
     }
 
     fun setDetailId(id: Int) {
@@ -50,27 +76,20 @@ class  MainViewModel @Inject constructor(
 
     fun getHabitList() {
         viewModelScope.launch {
-            _habitList.clear()
             val list = viewModelScope.async(Dispatchers.IO) {
-//            _habitList.addAllAsync(repository.getHomeHabits())
                 habitRepository.getHomeHabits()
             }.await()
-
-            Log.e(javaClass.simpleName, "getHabitList: ${list}", )
+            _habitList.clear()
             _habitList.addAll(list)
         }
     }
 
     fun getDiaryList(id:Int) {
-
         viewModelScope.launch {
             _diaryList.clear()
             val list = viewModelScope.async(Dispatchers.IO) {
                 diaryRepository.getDiaryAll(id)
             }.await()
-            Log.e(javaClass.simpleName, "habit main view   ${habitList}", )
-
-
             _diaryList.addAll(list)
         }
     }

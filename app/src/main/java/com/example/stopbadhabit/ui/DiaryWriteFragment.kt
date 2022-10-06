@@ -16,6 +16,7 @@ import com.example.stopbadhabit.ui.viewmodel.DiaryWriteViewModel
 import com.example.stopbadhabit.R
 import com.example.stopbadhabit.data.model.Diary.Diary
 import com.example.stopbadhabit.data.model.Habit.Habit
+import com.example.stopbadhabit.databinding.ActivityMainBinding
 import com.example.stopbadhabit.databinding.FragmentBottomSheetBinding
 import com.example.stopbadhabit.databinding.FragmentDiaryWriteBinding
 import com.example.stopbadhabit.ui.viewmodel.MainViewModel
@@ -52,8 +53,10 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
         mainViewModel.detailHabitId.observe(viewLifecycleOwner){
             if(it != -1)
                 diaryWriteViewModel.getHabitDetail(it)
-            else
-                Log.e("fsda", "onCreateView: sdfsdf", )
+            else{
+                dismiss()
+                Snackbar.make(requireActivity().window.decorView,String.format(requireActivity().resources.getString(R.string.habit_id_error)),
+                    Snackbar.LENGTH_SHORT).show()}
         }
 
         diaryWriteViewModel.habit.observe(viewLifecycleOwner){
@@ -115,12 +118,14 @@ class DiaryWriteFragment : BottomSheetDialogFragment() {
                     img_res = (1..4).random()
                 ), detailId, diaryWriteViewModel.habit.value
             )
+
             dismiss()
         }
     }
 
     override fun dismiss() {
         super.dismiss()
+        mainViewModel.playHeartLottie()
         mainViewModel.setDetailId(detailId)
     }
 

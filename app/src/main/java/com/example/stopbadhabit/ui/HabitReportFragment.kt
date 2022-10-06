@@ -1,5 +1,6 @@
 package com.example.stopbadhabit.ui
 
+import android.animation.ValueAnimator
 import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
@@ -20,6 +21,7 @@ import com.example.stopbadhabit.ui.viewmodel.MainViewModel
 import com.example.stopbadhabit.util.Utils
 import com.example.stopbadhabit.util.toCalender
 import com.example.stopbadhabit.util.toDate
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.util.*
@@ -74,14 +76,13 @@ class HabitReportFragment : DialogFragment() {
     override fun dismiss() {
         super.dismiss()
         habitReportViewModel.updateState(state = result,endDate)
+        mainViewModel.habitList.value?.clear()
         mainViewModel.getHabitList()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.btnReportClose.setOnClickListener {
-
-            Log.e(javaClass.simpleName, "habit Report  ${mainViewModel.habitList.value}", )
             dismiss()
         }
 
@@ -89,8 +90,10 @@ class HabitReportFragment : DialogFragment() {
             if (it != -1) {
                 habitReportViewModel.getHabitDetail(it)
                 habitReportViewModel.getHabitAndDiary(it)
-            } else
-                Log.e("fsda", "onCreateView: sdfsdf")
+            } else{
+                dismiss()
+                Snackbar.make(requireActivity().window.decorView,String.format(requireActivity().resources.getString(R.string.habit_id_error)),
+                Snackbar.LENGTH_SHORT).show()}
         }
 
         habitReportViewModel.habitAndDiary.observe(viewLifecycleOwner) {
@@ -114,6 +117,9 @@ class HabitReportFragment : DialogFragment() {
 
                 if (it.habit.current_life == 0) {
                     result = 2 //실패
+
+                    binding.lottieFail.visibility = View.VISIBLE
+
                     it.diaries?.last()
                         ?.let { endDate = it.diary_date }
 
@@ -125,7 +131,7 @@ class HabitReportFragment : DialogFragment() {
                             it1.diary_date
                         )
                     }
-                    Glide.with(binding.root).load(R.drawable.bg_easy_fail)
+                    Glide.with(binding.root).load(R.drawable.bg_main_fail)
                         .into(binding.ivReportChar)
                     tvState.text = String.format(requireContext().getString(R.string.hr_state_fail))
                     tvReportResult.text =
@@ -137,6 +143,8 @@ class HabitReportFragment : DialogFragment() {
                         .into(binding.ivReportHeart)
                 } else {
                     result = 1 //성공
+
+                    binding.lottieSuccess.visibility = View.VISIBLE
 
                     endDate = it.habit.start_date.toCalender(it.habit.goal_date)
 

@@ -22,7 +22,7 @@ import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(){
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
     private val homeViewModel: HomeViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
@@ -46,8 +46,6 @@ class HomeFragment : Fragment() {
     }
 
     private fun setView() {
-
-
             homeHabitListAdapter = HomeHabitListAdapter(
             {
                 mainViewModel.setDetailId(it)
@@ -69,8 +67,6 @@ class HomeFragment : Fragment() {
 
     private fun setObserver() {
         mainViewModel.habitList.observe(viewLifecycleOwner) {
-            Log.e(javaClass.simpleName, "home observer: $it", )
-
             homeHabitListAdapter.setData(it)
             if (it.size == 3)
                 binding.ivHabitAdd.root.visibility = View.GONE
@@ -104,9 +100,13 @@ class HomeFragment : Fragment() {
         binding.btnBoom.setOnClickListener {
             mainViewModel.deleteAll()
         }
-
         return binding.root
     }
+
+    /*override fun onBackPressed() {
+        Log.e(javaClass.simpleName, "onBackPressed: I'm clicked!", )
+        findNavController().navigate(R.id.action_homeFragment_to_quitDialogFragment)
+    }*/
 
     companion object {
         fun newInstance(bundle: Bundle?): HomeFragment {

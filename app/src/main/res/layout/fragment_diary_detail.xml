@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_bottomsheet"
-    android:paddingStart="25dp"
+    android:paddingStart="28dp"
     android:paddingTop="20dp"
-    android:paddingEnd="25dp"
+    android:paddingEnd="28dp"
     android:paddingBottom="20dp"
     tools:context=".ui.DiaryDetailFragment">
 
@@ -83,14 +83,14 @@
         style="@style/tv_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="2022-09-01"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:text="2022-09-01" />
 
     <View
         android:id="@+id/view10"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_et_white"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -99,7 +99,7 @@
     <View
         android:id="@+id/view11"
         android:layout_width="0dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_et_white"
         app:layout_constraintStart_toStartOf="@+id/textView"
@@ -110,7 +110,7 @@
         style="@style/tv_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/view10"
         app:layout_constraintTop_toTopOf="@+id/view10" />
@@ -120,7 +120,7 @@
         style="@style/tv_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/view11"
         app:layout_constraintTop_toTopOf="@+id/view11" />
@@ -130,19 +130,19 @@
         style="@style/tv_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/view13"
         app:layout_constraintTop_toTopOf="@+id/view13" />
 
     <TextView
         android:id="@+id/tv_dd_promise"
+        style="@style/tv_14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="@+id/view12"
-        app:layout_constraintTop_toTopOf="@+id/view12"
-        style="@style/tv_14" />
+        app:layout_constraintTop_toTopOf="@+id/view12" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

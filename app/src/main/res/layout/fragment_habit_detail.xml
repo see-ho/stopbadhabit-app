@@ -136,6 +136,22 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_hd_life"
             app:layout_constraintTop_toTopOf="@+id/tv_hd_life" />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_tooltip"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:backgroundTint="@color/beige_300"
+            android:clickable="true"
+            android:tint="@color/beige_300"
+            app:borderWidth="0dp"
+            app:fabCustomSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view3"
+            app:srcCompat="@drawable/ic_tooltip"
+            app:maxImageSize="20dp"
+            app:tint="@color/beige_200"
+            tools:ignore="SpeakableTextPresentCheck" />
+
         <ImageView
             android:id="@+id/iv_diaryAdd"
             android:layout_width="wrap_content"
@@ -191,26 +207,6 @@
             app:layout_constraintTop_toBottomOf="@+id/view4"
             app:layout_constraintVertical_bias="0.555"
             tools:srcCompat="@tools:sample/avatars" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_tooltip"
-            app:layout_constraintEnd_toEndOf="@+id/btn_tooltip"
-            app:layout_constraintStart_toStartOf="@+id/btn_tooltip"
-            app:layout_constraintTop_toTopOf="@+id/btn_tooltip"
-            app:srcCompat="@drawable/ic_tooltip" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_tooltip"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/circle_button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
-
 
 
         <ImageView

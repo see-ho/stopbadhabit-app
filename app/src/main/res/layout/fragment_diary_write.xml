@@ -12,9 +12,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg_bottomsheet"
-            android:paddingStart="25dp"
+            android:paddingStart="28dp"
             android:paddingTop="20dp"
-            android:paddingEnd="25dp"
+            android:paddingEnd="28dp"
             android:paddingBottom="20dp"
             tools:context=".ui.DiaryWriteFragment">
 
@@ -55,9 +55,8 @@
                         android:inputType="textMultiLine"
                         android:maxLength="50"
                         android:maxLines="5"
-                        android:padding="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/et_reason"
                         app:layout_constraintStart_toStartOf="@+id/textView15"
                         app:layout_constraintTop_toBottomOf="@+id/textView15"
                         tools:text="역시 한글이 ㅊ화고야 \n 어쩔 올ㅇㄴ런ㄹ\nㅇㅇㅇㅇ \n ㅇㅂㅁㅁㄴㅇㄹㄹㄹ\n ㅇㅁㅇㄴㅁㄴ" />
@@ -75,8 +74,8 @@
                         android:maxLength="50"
 
                         android:maxLines="5"
-                        android:padding="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/et_emotion"
                         app:layout_constraintStart_toStartOf="@+id/textView16"
                         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
@@ -86,6 +85,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="16dp"
                         android:layout_marginTop="8dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
                         android:text="@string/hdw_reason"
                         app:layout_constraintStart_toStartOf="@+id/et_situation"
                         app:layout_constraintTop_toBottomOf="@+id/et_situation" />
@@ -115,6 +116,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
                         android:text="@string/hdw_emotion"
                         app:layout_constraintStart_toStartOf="@+id/et_reason"
                         app:layout_constraintTop_toBottomOf="@+id/et_reason" />
@@ -125,6 +128,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
                         android:text="@string/hdw_promise"
                         app:layout_constraintStart_toStartOf="@+id/et_emotion"
                         app:layout_constraintTop_toBottomOf="@+id/et_emotion" />
@@ -133,7 +138,7 @@
                         android:id="@+id/et_situation"
                         style="@style/tv_14"
                         android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/bg_et_white"
                         android:ems="10"
@@ -141,7 +146,7 @@
                         android:inputType="textMultiLine"
                         android:maxLength="30"
                         android:maxLines="2"
-                        android:padding="5dp"
+                        android:padding="8dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView11"
                         app:layout_constraintTop_toBottomOf="@+id/textView11"
@@ -151,7 +156,7 @@
                         android:id="@+id/et_reason"
                         style="@style/tv_14"
                         android:layout_width="0dp"
-                        android:layout_height="45dp"
+                        android:layout_height="48dp"
                         android:layout_marginTop="4dp"
                         android:background="@drawable/bg_et_white"
                         android:ems="10"
@@ -159,16 +164,20 @@
                         android:inputType="textMultiLine"
                         android:maxLength="30"
                         android:maxLines="2"
-                        android:padding="5dp"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="@+id/et_situation"
                         app:layout_constraintStart_toStartOf="@+id/textView12"
                         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-                    <androidx.appcompat.widget.AppCompatButton
+                    <TextView
                         android:id="@+id/btn_dwf_add"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/component_btn_red"
+                        android:background="@drawable/btn_submit"
+                        android:paddingStart="20dp"
+                        android:paddingTop="5dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="5dp"
                         android:text="@string/hdw_commit"
                         android:textColor="#FFFFFF"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -180,7 +189,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
+                        android:paddingStart="2dp"
+                        android:paddingEnd="2dp"
                         android:text="@string/hdw_situation"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/tv_todayDate" />
 
                     <androidx.constraintlayout.widget.Guideline
@@ -192,9 +204,10 @@
 
                     <TextView
                         android:id="@+id/tv_todayDate"
-                        style="@style/tv_12"
+                        style="@style/tv_14"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintStart_toStartOf="@+id/tv_hw_name"
                         app:layout_constraintTop_toBottomOf="@+id/tv_hw_name"
                         tools:text="2022-08-21" />

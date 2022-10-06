@@ -31,7 +31,11 @@
             app:destination="@id/diaryWriteFragment" />
         <action
             android:id="@+id/action_HomeFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
+            app:destination="@id/historyFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out"/>
         <action
             android:id="@+id/action_HomeFragment_to_openSourceFragment"
             app:destination="@id/openSourceFragment" />
@@ -48,6 +52,9 @@
         <action
             android:id="@+id/action_homeFragment_to_habitReportFragment"
             app:destination="@id/habitReportFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_quitDialogFragment"
+            app:destination="@id/quitDialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/openSourceFragment"
@@ -91,4 +98,9 @@
             android:id="@+id/action_habitReportFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
+    <dialog
+        android:id="@+id/quitDialogFragment"
+        android:name="com.example.stopbadhabit.ui.QuitDialogFragment"
+        android:label="quit_dialog"
+        tools:layout="@layout/quit_dialog" />
 </navigation>

@@ -100,8 +100,6 @@ class HomeHabitListAdapter(
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newItems: List<PresentHabit>) {
         this.list = newItems
-        Log.e(javaClass.simpleName, "habit adapter  ${newItems}", )
-
         notifyDataSetChanged()
     }
 

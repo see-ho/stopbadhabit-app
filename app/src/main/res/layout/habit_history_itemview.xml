@@ -27,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/iv_hh_char"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +37,7 @@
             style="@style/tv_14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="@+id/iv_hh_char"
             app:layout_constraintStart_toStartOf="@+id/tv_hh_name" />

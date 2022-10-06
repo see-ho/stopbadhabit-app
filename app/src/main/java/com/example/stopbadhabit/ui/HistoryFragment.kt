@@ -41,22 +41,27 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        binding.btnHhBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
         setObserver()
     }
 
     private fun setView() {
-        historyHabitListAdapter = HistoryHabitListAdapter(
-            {
-                val action =
-                    HistoryFragmentDirections.actionHistoryFragmentToDiaryDetailFragment(it)
-                findNavController().navigate(action)
-            }
-        ).apply {
+        historyHabitListAdapter = HistoryHabitListAdapter {
+            val action =
+                HistoryFragmentDirections.actionHistoryFragmentToDiaryDetailFragment(it)
+            findNavController().navigate(action)
+        }.apply {
             setHasStableIds(true)
         }
+        val manager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        manager.reverseLayout = true
+        manager.stackFromEnd = true
         binding.rvHistoryHabit.adapter = historyHabitListAdapter
-        binding.rvHistoryHabit.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvHistoryHabit.layoutManager = manager
+
     }
 
     private fun setObserver() {
