@@ -9,15 +9,10 @@ interface DiaryDao {
     @Insert
     suspend fun insertDiary(vararg diary: Diary)
 
-    @Query("DELETE FROM diary")
-    suspend fun deleteAll()
-
     @Query("SELECT * FROM diary WHERE habit_id = (:habit_id)")
     suspend fun getDiaryAll(habit_id : Int): List<Diary>
 
     @Query("SELECT * FROM diary WHERE diary_id = (:diary_id)")
     suspend fun getDiary(diary_id : Int) : Diary
 
-    @Query("DELETE FROM diary WHERE diary_id = (:diary_id)")
-    suspend fun deleteDiary(diary_id: Int)
 }

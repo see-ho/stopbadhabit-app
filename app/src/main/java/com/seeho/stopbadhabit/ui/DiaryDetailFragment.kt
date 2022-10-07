@@ -19,8 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class DiaryDetailFragment : BottomSheetDialogFragment() {
 
     private val binding by lazy { FragmentDiaryDetailBinding.inflate(layoutInflater) }
-
-    private val habitDetailViewModel : HabitDetailViewModel by viewModels()
     private val diaryDetailViewModel : DiaryDetailViewModel by viewModels()
 
     private val args: DiaryDetailFragmentArgs by navArgs()

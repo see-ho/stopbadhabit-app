@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.seeho.stopbadhabit.databinding.FragmentHistoryBinding
 import com.seeho.stopbadhabit.ui.adapter.HistoryHabitListAdapter
-//import com.example.stopbadhabit.ui.adapter.HistoryHabitListAdapter
 import com.seeho.stopbadhabit.ui.viewmodel.HabitHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 

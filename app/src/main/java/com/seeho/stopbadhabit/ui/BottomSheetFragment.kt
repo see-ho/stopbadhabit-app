@@ -31,11 +31,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private var mMode : Int = -1
     private var mName : String = ""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = (super.onCreateDialog(savedInstanceState).apply {
@@ -44,7 +39,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
             }
         })as BottomSheetDialog
-        //dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) as BottomSheetDialog
         return dialog
     }
 
@@ -169,6 +163,4 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
         return settingLife
     }
-
-    //  난 잘났다. 내 그림이 최고다
 }

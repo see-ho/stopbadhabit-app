@@ -3,7 +3,6 @@ package com.seeho.stopbadhabit.ui
 import android.app.Dialog
 import android.content.Context
 import android.os.*
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,18 +30,9 @@ class HabitReportFragment(val dismissListener: () -> Unit) : DialogFragment() {
     private val habitReportViewModel: HabitReportViewModel by viewModels()
     private val binding by lazy { FragmentHabitReportBinding.inflate(layoutInflater) }
 
-    private val args: HabitReportFragmentArgs by navArgs()
-
-
     private var result: Int = 0
     private var endDate: String = ""
 
-    private val today = Calendar.getInstance().apply {
-        set(Calendar.HOUR_OF_DAY, 0)
-        set(Calendar.MINUTE, 0)
-        set(Calendar.SECOND, 0)
-        set(Calendar.MILLISECOND, 0)
-    }.time.time
 
 
     override fun onStart() {
@@ -53,10 +43,6 @@ class HabitReportFragment(val dismissListener: () -> Unit) : DialogFragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
@@ -80,7 +66,6 @@ class HabitReportFragment(val dismissListener: () -> Unit) : DialogFragment() {
         }
 
         vib.vibrate(VibrationEffect.createOneShot(500,100))
-//        dialog?.setCancelable(false)
         return binding.root
     }
 
@@ -138,8 +123,6 @@ class HabitReportFragment(val dismissListener: () -> Unit) : DialogFragment() {
                     it.diaries?.last()
                         ?.let { endDate = it.diary_date }
 
-                    //mainViewModel.getHabitList()
-
                     tvReportDate.text = it.diaries?.last()?.let { it1 ->
                         String.format(
                             requireContext().getString(R.string.hr_date), it.habit.start_date,
@@ -162,8 +145,6 @@ class HabitReportFragment(val dismissListener: () -> Unit) : DialogFragment() {
                     binding.lottieSuccess.visibility = View.VISIBLE
 
                     endDate = it.habit.start_date.toCalender(it.habit.goal_date)
-
-                    //mainViewModel.getHabitList()
 
                     tvReportDate.text = String.format(
                         requireContext().getString(R.string.hr_date),

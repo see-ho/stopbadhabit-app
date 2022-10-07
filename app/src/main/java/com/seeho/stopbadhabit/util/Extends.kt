@@ -17,7 +17,6 @@ fun String.toDate(): Long {
         set(Calendar.SECOND, 0)
         set(Calendar.MILLISECOND, 0)
     }
-    //startDate.set(list[0].toInt(),list[1].toInt(),list[2].toInt())
 
     return startDate.time.time
 }

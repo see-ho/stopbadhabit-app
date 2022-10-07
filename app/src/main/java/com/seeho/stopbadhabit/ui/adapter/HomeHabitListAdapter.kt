@@ -85,9 +85,6 @@ class HomeHabitListAdapter(
 
                 }
             }
-
-
-            //binding.tvLifeMessage.text = String.format(binding.root.resources.getString(R.string.bt_sheet_life),3)
         }
     }
 

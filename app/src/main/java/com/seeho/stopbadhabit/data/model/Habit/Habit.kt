@@ -33,7 +33,6 @@ data class Habit(
     @ColumnInfo(name ="mode")
     val mode: Int
 
-    //var diaryList: List<Diary>?
     )
 
 

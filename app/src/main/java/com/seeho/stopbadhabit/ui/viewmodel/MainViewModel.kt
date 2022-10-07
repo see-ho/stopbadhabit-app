@@ -1,13 +1,10 @@
 package com.seeho.stopbadhabit.ui.viewmodel
 
-import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seeho.roomdbtest.repository.DiaryRepository
-import com.seeho.roomdbtest.repository.HabitAndDiaryRepository
 import com.seeho.stopbadhabit.data.model.Diary.Diary
 import com.seeho.stopbadhabit.data.model.Habit.Habit
 import com.seeho.stopbadhabit.data.model.PresentHabit.PresentHabit
@@ -24,10 +21,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class  MainViewModel @Inject constructor(
-    private val application: Application,
     private val habitRepository: HabitRepository,
     private val diaryRepository: DiaryRepository,
-    private val habitAndDiaryRepository: HabitAndDiaryRepository
 ):ViewModel(){
     private val _isLoading = MutableStateFlow(true)
     val isLoading = _isLoading.asStateFlow()
@@ -43,7 +38,6 @@ class  MainViewModel @Inject constructor(
 
     private val _heartlottie =  MutableLiveData(false)
     val heartlottie: LiveData<Boolean> get() = _heartlottie
-//    var detailHabitId = -1
 
     init {
         viewModelScope.launch {
@@ -94,14 +88,6 @@ class  MainViewModel @Inject constructor(
     fun insertHabit(habit: Habit) {
         viewModelScope.launch(Dispatchers.IO) {
             habitRepository.insertHabit(habit)
-            getHabitList()
-        }
-    }
-
-    fun deleteAll(){
-        viewModelScope.launch {
-            diaryRepository.deleteAll()
-            habitRepository.deleteAll()
             getHabitList()
         }
     }

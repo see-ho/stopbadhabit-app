@@ -3,7 +3,6 @@ package com.seeho.stopbadhabit.ui
 import android.animation.Animator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen

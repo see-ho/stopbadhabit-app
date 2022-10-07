@@ -1,6 +1,5 @@
 package com.seeho.stopbadhabit.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,16 +29,6 @@ class HabitReportViewModel @Inject constructor(
         }
     }
 
-
-//    fun updateHabitState(state: Int,endDate: String){
-//        _habitAndDiary.value?.let {
-//            _habitAndDiary.value=it.copy(habit = Habit(state = state, end_date = endDate), )
-//        }
-//        viewModelScope.launch {
-//            _habitAndDiary.value?.let { habitRepository.updateHabit(it) }
-//        }
-//    }
-
     fun getHabitDetail(id: Int){
         viewModelScope.launch {
             _habit.postValue(habitRepository.getHabitById(id))
@@ -51,15 +40,9 @@ class HabitReportViewModel @Inject constructor(
             _habit.value=it.copy(state = state, end_date = endDate)
         }
         viewModelScope.launch {
-            //_habit.value?.let { habitRepository.updateHabit(it)}
             if(_habit.value != null){
                 habitRepository.updateHabit(_habit.value!!)
             }
-            else{ }
         }
     }
-
-
-
-
 }

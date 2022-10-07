@@ -35,13 +35,7 @@ class DiaryWriteFragment(
     private val diaryWriteViewModel: DiaryWriteViewModel by viewModels()
     private var detailId = -1
 
-//    companion object {
-//        fun newInstance() = DiaryWriteFragment()
-//    }
 
-    private lateinit var viewModel: DiaryWriteViewModel
-
-    private var diary_date: String = ""
     private var situation: String = ""
     private var reason: String = ""
     private var emotion: String = ""
@@ -63,7 +57,6 @@ class DiaryWriteFragment(
 
         diaryWriteViewModel.habit.observe(viewLifecycleOwner){
             binding.tvHwName.text = it.name
-//            binding.tvHwName.text = diaryWriteViewModel.habit.value?.name
             binding.tvTodayDate.text=LocalDate.now().toString()
         }
 
@@ -161,7 +154,6 @@ class DiaryWriteFragment(
                 bottomSheet.setBackgroundResource(android.R.color.transparent)
             }
         })as BottomSheetDialog
-        //dialog.window?.setBackgroundDrawableResource(android.R.color.transparent) as BottomSheetDialog
         return dialog
     }
 

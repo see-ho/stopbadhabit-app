@@ -37,9 +37,6 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out"/>
         <action
-            android:id="@+id/action_HomeFragment_to_openSourceFragment"
-            app:destination="@id/openSourceFragment" />
-        <action
             android:id="@+id/action_HomeFragment_to_habitDetailFragment"
             app:destination="@id/habitDetailFragment"
             app:enterAnim="@android:anim/fade_in"
@@ -56,11 +53,6 @@
             android:id="@+id/action_homeFragment_to_quitDialogFragment"
             app:destination="@id/quitDialogFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/openSourceFragment"
-        android:name="com.seeho.stopbadhabit.ui.OpenSourceFragment"
-        android:label="fragment_open_source"
-        tools:layout="@layout/fragment_open_source" />
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.seeho.stopbadhabit.ui.HistoryFragment"

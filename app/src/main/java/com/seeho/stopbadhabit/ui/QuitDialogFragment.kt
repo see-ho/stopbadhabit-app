@@ -12,11 +12,6 @@ import com.seeho.stopbadhabit.util.Utils
 class QuitDialogFragment : DialogFragment() {
     private val binding by lazy { FragmentQuitDialogBinding.inflate(layoutInflater) }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onStart() {
         super.onStart()
         if (dialog != null && activity != null && isAdded) {
@@ -37,7 +32,6 @@ class QuitDialogFragment : DialogFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return binding.root
     }
 

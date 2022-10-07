@@ -1,6 +1,5 @@
 package com.seeho.stopbadhabit.data.repository
 
-import android.util.Log
 import com.seeho.stopbadhabit.data.model.Habit.Habit
 import com.seeho.stopbadhabit.data.model.Habit.HabitDao
 import com.seeho.stopbadhabit.data.model.PresentHabit.PresentHabit
@@ -19,9 +18,6 @@ class HabitRepository(private val habitDao: HabitDao) {
         habitDao.insertHabit(habit)
     }
 
-    suspend fun deleteAll(){
-        habitDao.deleteAll()
-    }
 
     suspend fun getHabitById(habitId:Int) : Habit? {
         return habitDao.getHabitById(habitId)

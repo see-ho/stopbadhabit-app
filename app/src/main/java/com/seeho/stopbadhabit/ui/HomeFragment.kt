@@ -7,12 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.seeho.stopbadhabit.R
 import com.seeho.stopbadhabit.databinding.FragmentHomeBinding
 import com.seeho.stopbadhabit.ui.adapter.HomeHabitListAdapter
-import com.seeho.stopbadhabit.ui.viewmodel.HomeViewModel
 import com.seeho.stopbadhabit.ui.viewmodel.MainViewModel
 import com.google.android.gms.oss.licenses.OssLicensesMenuActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,7 +18,6 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(){
     private val binding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-    private val homeViewModel: HomeViewModel by viewModels()
     private val mainViewModel: MainViewModel by activityViewModels()
 
     private lateinit var homeHabitListAdapter: HomeHabitListAdapter
@@ -29,11 +26,6 @@ class HomeFragment : Fragment(){
         super.onCreate(savedInstanceState)
         binding.lifecycleOwner = this
         setView()
-    }
-
-    override fun onResume() {
-        super.onResume()
-//        homeViewModel.getData()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,10 +43,6 @@ class HomeFragment : Fragment(){
                 }.apply {
                     show(this@HomeFragment.childFragmentManager, "habitReport")
                 }
-//                val action =
-//                    HabitDetailFragmentDirections.actionHabitDetailFragmentToDiaryDetailFragment(it)
-//                findNavController().navigate(action)
-//                findNavController().navigate(R.id.action_homeFragment_to_habitReportFragment)
             },
             {
                 mainViewModel.setDetailId(it)

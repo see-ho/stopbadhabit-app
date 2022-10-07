@@ -58,7 +58,6 @@ class HabitDetailFragment : Fragment() {
     ): View? {
         setView()
         binding.ivDiaryAdd.setOnClickListener {
-//            findNavController().navigate(R.id.action_habitDetailFragment_to_diaryWriteFragment)
             DiaryWriteFragment{
                 mainViewModel.detailHabitId.value?.let { it1 ->
                     habitDetailViewModel.getHabitDetail(

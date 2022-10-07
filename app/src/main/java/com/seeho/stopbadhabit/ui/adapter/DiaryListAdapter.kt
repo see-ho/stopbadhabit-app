@@ -48,15 +48,13 @@ class DiaryListAdapter(
 
         val number = binding.tvNum
         fun bind(diary: Diary) {
-            //val position = (1..3).random()
-            //TODO  이거 어칼거임
+
             when(diary.img_res){
                 1-> Glide.with(binding.root).load(R.drawable.bg_item_1).into(binding.ivDiary)
                 2-> Glide.with(binding.root).load(R.drawable.bg_item_2).into(binding.ivDiary)
                 3-> Glide.with(binding.root).load(R.drawable.bg_item_3).into(binding.ivDiary)
                 4-> Glide.with(binding.root).load(R.drawable.bg_item_4).into(binding.ivDiary)
             }
-            //TODO 이것도 뭔가 문제
             binding.tvDate.text = diary.diary_date
             binding.root.setOnClickListener {
                 diary.diary_id?.let{

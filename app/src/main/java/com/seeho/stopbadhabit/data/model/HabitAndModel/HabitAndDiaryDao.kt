@@ -14,7 +14,4 @@ interface HabitAndDiaryDao {
     @Query("SELECT * from habit WHERE habit_id = :habit_id")
     suspend fun getHabitAndDiary(habit_id:Int) : HabitAndDiary?
 
-//    @Transaction
-//    @Update
-//    suspend fun updateHabit(habitAndDiary: HabitAndDiary)
 }

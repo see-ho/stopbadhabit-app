@@ -14,9 +14,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HabitHistoryViewModel @Inject constructor(
-    private val habitRepository: HabitRepository,
     private val habitAndDiaryRepository: HabitAndDiaryRepository,
-    private val diaryRepository: DiaryRepository,
 ): ViewModel()
 {
     private val _habitAndDiaryList = MutableLiveData<List<HabitAndDiary>>()
