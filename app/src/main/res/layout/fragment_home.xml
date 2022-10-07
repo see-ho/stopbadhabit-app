@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.stopbadhabit.ui.viewmodel.HomeViewModel" />
+            type="com.seeho.stopbadhabit.ui.viewmodel.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -87,16 +87,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_Boom"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginBottom="120dp"
-            android:background="@drawable/component_btn_red"
-            android:text="폭발 = 예술"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
         <include
             android:id="@+id/iv_habitAdd"

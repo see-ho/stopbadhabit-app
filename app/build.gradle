@@ -11,7 +11,7 @@ android {
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.example.stopbadhabit"
+        applicationId "com.seeho.stopbadhabit"
         minSdk 26
         targetSdk 32
         versionCode 1

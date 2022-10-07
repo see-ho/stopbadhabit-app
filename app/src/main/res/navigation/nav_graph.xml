@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/habitDetailFragment"
-        android:name="com.example.stopbadhabit.ui.HabitDetailFragment"
+        android:name="com.seeho.stopbadhabit.ui.HabitDetailFragment"
         android:label="HabitDetailFragment"
         tools:layout="@layout/fragment_habit_detail">
         <action
@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.stopbadhabit.ui.HomeFragment"
+        android:name="com.seeho.stopbadhabit.ui.HomeFragment"
         android:label="Hilt_HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -58,12 +58,12 @@
     </fragment>
     <fragment
         android:id="@+id/openSourceFragment"
-        android:name="com.example.stopbadhabit.ui.OpenSourceFragment"
+        android:name="com.seeho.stopbadhabit.ui.OpenSourceFragment"
         android:label="fragment_open_source"
         tools:layout="@layout/fragment_open_source" />
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.stopbadhabit.ui.HistoryFragment"
+        android:name="com.seeho.stopbadhabit.ui.HistoryFragment"
         android:label="fragment_history"
         tools:layout="@layout/fragment_history" >
         <action
@@ -72,16 +72,16 @@
     </fragment>
     <dialog
         android:id="@+id/diaryWriteFragment"
-        android:name="com.example.stopbadhabit.ui.DiaryWriteFragment"
+        android:name="com.seeho.stopbadhabit.ui.DiaryWriteFragment"
         android:label="DiaryWriteFragment"
         tools:layout="@layout/fragment_diary_write"/>
     <dialog
         android:id="@+id/bottomSheetFragment"
-        android:name="com.example.stopbadhabit.ui.BottomSheetFragment"
+        android:name="com.seeho.stopbadhabit.ui.BottomSheetFragment"
         android:label="BottomSheetFragment" />
     <dialog
         android:id="@+id/diaryDetailFragment"
-        android:name="com.example.stopbadhabit.ui.DiaryDetailFragment"
+        android:name="com.seeho.stopbadhabit.ui.DiaryDetailFragment"
         android:label="fragment_diary_detail"
         tools:layout="@layout/fragment_diary_detail" >
         <argument
@@ -91,16 +91,20 @@
     </dialog>
     <dialog
         android:id="@+id/habitReportFragment"
-        android:name="com.example.stopbadhabit.ui.HabitReportFragment"
+        android:name="com.seeho.stopbadhabit.ui.HabitReportFragment"
         android:label="fragment_habit_report"
         tools:layout="@layout/fragment_habit_report" >
+        <argument
+            android:name="habit_id"
+            app:argType="integer"
+            android:defaultValue="-1" />
         <action
             android:id="@+id/action_habitReportFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </dialog>
     <dialog
         android:id="@+id/quitDialogFragment"
-        android:name="com.example.stopbadhabit.ui.QuitDialogFragment"
+        android:name="com.seeho.stopbadhabit.ui.QuitDialogFragment"
         android:label="quit_dialog"
         tools:layout="@layout/quit_dialog" />
 </navigation>
