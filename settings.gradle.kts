@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "StopBadHabit"
-include ':app'
+include (":app")

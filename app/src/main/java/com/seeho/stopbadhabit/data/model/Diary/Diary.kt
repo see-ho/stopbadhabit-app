@@ -3,6 +3,7 @@ package com.seeho.stopbadhabit.data.model.Diary
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
+import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.seeho.stopbadhabit.data.model.Habit.Habit
 
@@ -13,6 +14,9 @@ import com.seeho.stopbadhabit.data.model.Habit.Habit
             parentColumns = ["habit_id"],
             childColumns = ["habit_id"]
         )
+    ],
+    indices = [
+        Index("habit_id")
     ]
 )
 data class Diary(
