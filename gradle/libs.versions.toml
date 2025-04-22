@@ -1,0 +1,255 @@
+[versions]
+# Activity KTX - Activity 관련 확장 함수
+activityKtx = "1.10.1"
+
+# Android Gradle Plugin - Android 프로젝트 빌드 및 설정
+androidGradlePlugin = "8.6.1"
+
+# AppCompat - 이전 Android 버전 호환을 위한 지원 라이브러리
+appcompat = "1.7.0"
+
+# Balloon - UI 툴팁 스타일 라이브러리
+balloon = "1.4.7"
+
+# Glide Compiler - Glide 이미지 로딩 라이브러리 컴파일러
+compiler = "4.16.0"
+
+# Compose BOM (Bill of Materials) - Jetpack Compose 라이브러리 버전 관리
+composeBom = "2025.04.00"
+
+# Compose Plugin - Compose 기능을 활성화하기 위한 플러그인
+compose-plugin = "2.0.0"
+
+# ConstraintLayout - 복잡한 레이아웃을 더 쉽게 구성할 수 있는 라이브러리
+constraintlayout = "2.2.1"
+
+# Core KTX - 안드로이드 코어 기능에 대한 KTX 확장 함수
+coreKtx = "1.16.0"
+
+# Core SplashScreen - 앱 시작 화면 스플래시 관리
+coreSplashscreen = "1.0.1"
+
+# Espresso Core - UI 테스트용 라이브러리
+espressoCore = "3.6.1"
+
+# Fragment KTX - Fragment 관련 확장 함수
+fragmentKtx = "1.8.6"
+
+# Glide Version - 이미지 로딩 라이브러리 Glide의 버전
+glideVersion = "4.16.0"
+
+# Gson - JSON 데이터를 객체로 변환하는 라이브러리
+gson = "2.10.1"
+
+# Hilt - 의존성 주입 라이브러리
+hilt = "2.51.1"
+
+# Hilt Compiler - Hilt의 컴파일러 라이브러리
+hiltCompiler = "2.51.1"
+
+# Hilt Android - Hilt를 안드로이드 환경에 적용
+hiltAndroid = "2.51.1"
+
+# JUnit Version - 테스트 프레임워크 JUnit 버전
+junitVersion = "1.2.1"
+
+# KSP - Kotlin Symbol Processing, Kotlin 코드 생성 도구
+ksp = "2.0.21-1.0.27"
+
+# Kotlin Version - Kotlin 언어의 버전
+kotlin = "2.0.21"
+
+# Kotlin Android Plugin - Kotlin Android 플러그인
+kotlinAndroidPlugin = "2.0.21"
+
+# Kotlinx Coroutines Android - Android에서 코루틴을 사용하기 위한 라이브러리
+kotlinxCoroutinesAndroid = "1.7.3"
+
+# Kotlinx Coroutines Core - Kotlin의 코루틴을 지원하는 라이브러리
+kotlinxCoroutinesCore = "1.7.3"
+
+# Legacy Support V4 - 구버전 안드로이드에서 사용하는 지원 라이브러리
+legacySupportV4 = "1.0.0"
+
+# JUnit - 단위 테스트를 위한 JUnit 라이브러리
+junit = "4.13.2"
+
+# Lifecycle ViewModel Compose Version - Compose용 Lifecycle ViewModel 버전
+lifecycleViewmodelComposeVersion = "2.8.7"
+
+# Lifecycle ViewModel KTX - ViewModel 관련 KTX 확장 함수
+lifecycleViewmodelKtx = "2.8.7"
+
+# Lifecycle Runtime KTX - Lifecycle 관련 KTX 확장 함수
+lifecycleRuntimeKtx = "2.8.7"
+
+# Lottie Version - 애니메이션 및 JSON 애니메이션을 사용하는 Lottie 라이브러리 버전
+lottieVersion = "6.1.0"
+
+# Material Version - Material Design Components 라이브러리 버전
+material = "1.12.0"
+
+# Room Version - SQLite 데이터베이스를 사용하기 위한 Room 라이브러리 버전
+roomVersion = "2.7.0"
+
+# Navigation UI KTX - 안드로이드 네비게이션 UI 관련 KTX 확장 함수
+navigationUiKtx = "2.8.9"
+
+# Navigation Fragment KTX - 안드로이드 네비게이션 Fragment 관련 KTX 확장 함수
+navigationFragmentKtx = "2.8.9"
+
+# Navigation Safe Args - 네비게이션에서 안전하게 인자를 전달하는 Safe Args 플러그인
+navigationSafeArgs = "2.8.9"
+
+# Material Version - Google Material 라이브러리
+materialVersion = "1.12.0"
+
+# Work Runtime KTX - 작업 관리 라이브러리 WorkManager의 KTX 확장 함수
+workRuntimeKtx = "2.10.0"
+
+# Room KTX - Room 관련 KTX 확장 함수
+roomKtx = "2.7.0"
+
+# Play Services OSS Licenses - Google Play 서비스 라이센스 처리 라이브러리
+playServicesOssLicenses = "17.1.0"
+
+[libraries]
+# androidx-activity-ktx - Activity 관련 KTX 확장 함수
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activityKtx" }
+
+# androidx-appcompat - 앱 호환성 라이브러리
+androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+
+# androidx-compose-bom - Compose BOM (Bill of Materials) 버전 관리
+androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+
+# androidx-constraintlayout - 복잡한 레이아웃을 관리하기 위한 ConstraintLayout
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+
+# androidx-core-ktx - 안드로이드 코어 기능에 대한 KTX 확장 함수
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+
+# androidx-core-splashscreen - 앱 시작 화면을 위한 스플래시 화면 관리 라이브러리
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+
+# androidx-espresso-core - Espresso UI 테스트 라이브러리
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCore" }
+
+# androidx-fragment-ktx - Fragment 관련 KTX 확장 함수
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+
+# androidx-junit - JUnit 테스트 라이브러리
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junitVersion" }
+
+# androidx-lifecycle-livedata-ktx - LiveData 관련 KTX 확장 함수
+androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
+
+# androidx-lifecycle-runtime-ktx - Lifecycle 관련 KTX 확장 함수
+androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
+
+# androidx-lifecycle-viewmodel-ktx - ViewModel 관련 KTX 확장 함수
+androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
+
+# androidx-material3 - Compose Material 3 라이브러리
+androidx-material3 = { module = "androidx.compose.material3:material3" }
+
+# androidx-navigation-fragment-ktx - Navigation Fragment 관련 KTX 확장 함수
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+
+# androidx-navigation-ui-ktx - Navigation UI 관련 KTX 확장 함수
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationUiKtx" }
+
+# androidx-room-compiler - Room 데이터베이스 컴파일러
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+
+# androidx-room-ktx - Room 관련 KTX 확장 함수
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
+
+# androidx-room-runtime - Room 데이터베이스 런타임
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion" }
+
+# androidx-room-testing - Room 관련 테스트 라이브러리
+androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
+
+# androidx-ui - Jetpack Compose UI 라이브러리
+androidx-ui = { module = "androidx.compose.ui:ui" }
+
+# androidx-ui-graphics - Compose UI 그래픽 관련 라이브러리
+androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
+
+# androidx-ui-tooling-preview - Compose UI의 툴링 미리보기 지원
+androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
+
+# androidx-work-runtime-ktx - WorkManager 관련 KTX 확장 함수
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "workRuntimeKtx" }
+
+# balloon - 툴팁 라이브러리
+balloon = { module = "com.github.skydoves:balloon", version.ref = "balloon" }
+
+# compiler - Glide 이미지 로딩 컴파일러
+compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
+
+# github-glide - Glide 이미지 로딩 라이브러리
+github-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
+
+# gson - JSON 직렬화/역직렬화 라이브러리
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+
+# hilt-android - Hilt 의존성 주입 라이브러리
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
+
+# hilt-compiler - Hilt의 컴파일러
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
+
+# junit - 단위 테스트 라이브러리
+junit = { module = "junit:junit", version.ref = "junit" }
+
+# androidx-legacy-support-v4 - 레거시 버전의 안드로이드 호환성 라이브러리
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
+
+# kotlinx-coroutines-android - Android에서 사용할 수 있는 코루틴 라이브러리
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
+
+# kotlinx-coroutines-core - Kotlin 코루틴의 핵심 라이브러리
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
+
+# lifecycle-viewmodel-compose - Compose에서 ViewModel을 사용할 수 있게 해주는 라이브러리
+lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelComposeVersion" }
+
+# lottie - JSON 기반 애니메이션 라이브러리
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottieVersion" }
+
+# material - Google의 Material Design 라이브러리
+material = { module = "com.google.android.material:material", version.ref = "material" }
+
+# material-v1100 - Google Material 라이브러리
+material-v1100 = { module = "com.google.android.material:material", version.ref = "materialVersion" }
+
+# play-services-oss-licenses - Google Play 서비스의 라이센스를 처리하는 라이브러리
+play-services-oss-licenses = { module = "com.google.android.gms:play-services-oss-licenses", version.ref = "playServicesOssLicenses" }
+
+[plugins]
+# android-application - Android 애플리케이션을 위한 플러그인
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+
+# android-library - Android 라이브러리 플러그인
+android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+
+# hilt - Hilt 의존성 주입 플러그인
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+
+# kotlin-jvm - Kotlin JVM 플러그인
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+
+# kotlin-serialization - Kotlin Serialization 플러그인
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+
+# navigationSafeArgs - 안전한 네비게이션 인자 전달을 위한 Safe Args 플러그인
+navigationSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationSafeArgs" }
+
+# ksp - Kotlin Symbol Processing 플러그인
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+
+# compose-compiler - Compose 컴파일러 플러그인
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+

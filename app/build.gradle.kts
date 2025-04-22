@@ -1,15 +1,14 @@
+plugins {
+    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.navigationSafeArgs)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
+}
+
 kotlin {
     jvmToolchain(18)
-}
-plugins {
-    //id "3on"
-    id ("com.android.application")
-    id ("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
-    //id ("dagger.hilt.android.plugin")
-    //id "com.google.android.gms.oss-licenses-plugin"
-    id ("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -54,89 +53,78 @@ android {
 
 dependencies {
 
-    implementation ("androidx.core:core-ktx:1.12.0")
-    implementation ("androidx.appcompat:appcompat:1.6.1")
-    implementation ("com.google.android.material:material:1.9.0")
-    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation ("androidx.legacy:legacy-support-v4:1.0.0")
-    testImplementation ("junit:junit:4.13.2")
-    androidTestImplementation ("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation ("androidx.test.espresso:espresso-core:3.5.1")
+    implementation (libs.androidx.core.ktx)
+    implementation (libs.androidx.appcompat)
+    implementation (libs.material)
+    implementation (libs.androidx.constraintlayout)
+    implementation (libs.androidx.legacy.support.v4)
+    testImplementation (libs.junit)
+    androidTestImplementation (libs.androidx.junit)
+    androidTestImplementation (libs.androidx.espresso.core)
 
 
     // gson
-    implementation ("com.google.code.gson:gson:2.9.1")
+    implementation (libs.gson)
 
     // Glide
-    val glide_version="4.16.0"
-    implementation ("com.github.bumptech.glide:glide:$glide_version")
-    annotationProcessor ("com.github.bumptech.glide:compiler:$glide_version")
-    kapt ("com.github.bumptech.glide:compiler:$glide_version")
+    implementation (libs.github.glide)
+    annotationProcessor (libs.compiler)
+    ksp (libs.github.glide)
 
     //Compose
-    implementation(platform("androidx.compose:compose-bom:2023.01.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material3)
 
     // Coroutines
-    val  coroutines_version = "1.6.1"
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.coroutines.android)
 
     // Coroutine Lifecycle Scopes
-    val  lifecycle_version = "2.6.2"
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
-    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
     // LiveData
-    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha01")
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.lifecycle.viewmodel.compose)
 
     // Room
-    val roomVersion = "2.6.0"
-    implementation("androidx.room:room-runtime:$roomVersion")
-    annotationProcessor("androidx.room:room-compiler:$roomVersion")
-    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
 
     // optional - Test helpers
-    testImplementation("androidx.room:room-testing:$roomVersion")
+    testImplementation(libs.androidx.room.testing)
 
     //navigation component
-    val  nav_version = "2.7.3"
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
 
     //Lottie
-    val lottieVersion = "6.1.0"
-    implementation ("com.airbnb.android:lottie:$lottieVersion")
+    implementation (libs.lottie)
 
     //Material Design
-    val materialVersion = "1.10.0"
-    implementation ("com.google.android.material:material:$materialVersion")
+    implementation (libs.material.v1100)
 
     //Hilt
-    implementation ("com.google.dagger:hilt-android:2.46.1")
-    kapt ("com.google.dagger:hilt-compiler:2.44")
+    implementation (libs.hilt.android)
+    ksp (libs.hilt.compiler)
 
     //Work
-    implementation ("androidx.work:work-runtime-ktx:2.7.1")
+    implementation (libs.androidx.work.runtime.ktx)
 
     //Activity, Fragment
-    implementation ("androidx.fragment:fragment-ktx:1.5.2")
-    implementation ("androidx.activity:activity-ktx:1.5.1")
-    implementation ("androidx.room:room-ktx:2.4.3")
+    implementation (libs.androidx.fragment.ktx)
+    implementation (libs.androidx.activity.ktx)
+    implementation (libs.androidx.room.ktx)
 
     //OSS
-    implementation ("com.google.android.gms:play-services-oss-licenses:17.0.1")
+    implementation (libs.play.services.oss.licenses)
 
     //Balloon
-    implementation ("com.github.skydoves:balloon:1.4.7")
+    implementation (libs.balloon)
 
     //Splash
-    implementation ("androidx.core:core-splashscreen:1.0.0")
-}
-
-kapt {
-    correctErrorTypes = true
+    implementation (libs.androidx.core.splashscreen)
 }
