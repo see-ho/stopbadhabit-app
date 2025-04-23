@@ -31,7 +31,10 @@ data class Habit(
     val state: Int,
 
     @ColumnInfo(name ="mode")
-    val mode: Int
+    val mode: Int,
+
+    @ColumnInfo(name="notification_time")
+    val notification_time : String? = null
 
     )
 

@@ -8,7 +8,6 @@ class DiaryRepository(private val diaryDao: DiaryDao) {
         return diaryDao.getDiaryAll(habit_id)
     }
 
-
     suspend fun insertDiary(diary: Diary){
         diaryDao.insertDiary(diary)
     }

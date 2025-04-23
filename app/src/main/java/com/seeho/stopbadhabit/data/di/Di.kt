@@ -4,10 +4,14 @@ import android.content.Context
 import androidx.room.Room
 import com.seeho.roomdbtest.repository.DiaryRepository
 import com.seeho.roomdbtest.repository.HabitAndDiaryRepository
+import com.seeho.stopbadhabit.data.model.Battle.BattleDao
 import com.seeho.stopbadhabit.data.model.Diary.DiaryDao
 import com.seeho.stopbadhabit.data.model.Habit.HabitDao
 import com.seeho.stopbadhabit.data.model.Habit.HabitDatabase
-import com.seeho.stopbadhabit.data.model.HabitAndModel.HabitAndDiaryDao
+import com.seeho.stopbadhabit.data.model.HabitAndBattle.HabitAndBattleDao
+import com.seeho.stopbadhabit.data.model.HabitAndDiary.HabitAndDiaryDao
+import com.seeho.stopbadhabit.data.repository.BattleRepository
+import com.seeho.stopbadhabit.data.repository.HabitAndBattleRepository
 import com.seeho.stopbadhabit.data.repository.HabitRepository
 import dagger.Module
 import dagger.Provides
@@ -23,11 +27,11 @@ class Di {
     @Provides
     fun provideHabitDatabase(@ApplicationContext context: Context) : HabitDatabase {
         return Room
-            .databaseBuilder(
-                context,
-                HabitDatabase::class.java,
-                "HabitDatabase"
-            ).fallbackToDestructiveMigration().build()
+                .databaseBuilder(
+                    context,
+                    HabitDatabase::class.java,
+                    "HabitDatabase"
+                ).fallbackToDestructiveMigration(false).build()
 
     }
 
@@ -73,4 +77,25 @@ class Di {
         return DiaryRepository(diaryDao)
     }
 
+    @Singleton
+    @Provides
+    fun provideHabitAndBattleRepository(
+        habitAndBattleDao: HabitAndBattleDao
+    ): HabitAndBattleRepository {
+        return HabitAndBattleRepository(habitAndBattleDao)
+    }
+
+    @Singleton
+    @Provides
+    fun provideBattleDao(habitDB: HabitDatabase): BattleDao {
+        return habitDB.battleDao()
+    }
+
+    @Singleton
+    @Provides
+    fun providedBattleRepository(
+        battleDao: BattleDao
+    ): BattleRepository {
+        return BattleRepository(battleDao)
+    }
 }

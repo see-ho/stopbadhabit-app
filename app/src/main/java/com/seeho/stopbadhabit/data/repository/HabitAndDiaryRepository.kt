@@ -1,7 +1,7 @@
 package com.seeho.roomdbtest.repository
 
-import com.seeho.stopbadhabit.data.model.HabitAndModel.HabitAndDiary
-import com.seeho.stopbadhabit.data.model.HabitAndModel.HabitAndDiaryDao
+import com.seeho.stopbadhabit.data.model.HabitAndDiary.HabitAndDiary
+import com.seeho.stopbadhabit.data.model.HabitAndDiary.HabitAndDiaryDao
 
 class HabitAndDiaryRepository(private val habitAndDiaryDao: HabitAndDiaryDao) {
     suspend fun getAllHabitAndDiary() : List<HabitAndDiary>? {

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.seeho.stopbadhabit.R
-import com.seeho.stopbadhabit.data.model.HabitAndModel.HabitAndDiary
+import com.seeho.stopbadhabit.data.model.HabitAndDiary.HabitAndDiary
 import com.seeho.stopbadhabit.databinding.HabitHistoryItemviewBinding
 
 class HistoryHabitListAdapter(

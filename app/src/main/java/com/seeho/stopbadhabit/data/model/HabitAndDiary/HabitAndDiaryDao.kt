@@ -1,4 +1,4 @@
-package com.seeho.stopbadhabit.data.model.HabitAndModel
+package com.seeho.stopbadhabit.data.model.HabitAndDiary
 
 import androidx.room.Dao
 import androidx.room.Query

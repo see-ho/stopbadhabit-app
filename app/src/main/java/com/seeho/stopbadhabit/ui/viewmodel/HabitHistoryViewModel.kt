@@ -4,10 +4,8 @@ package com.seeho.stopbadhabit.ui.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.seeho.roomdbtest.repository.DiaryRepository
 import com.seeho.roomdbtest.repository.HabitAndDiaryRepository
-import com.seeho.stopbadhabit.data.model.HabitAndModel.HabitAndDiary
-import com.seeho.stopbadhabit.data.repository.HabitRepository
+import com.seeho.stopbadhabit.data.model.HabitAndDiary.HabitAndDiary
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
