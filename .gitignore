@@ -3,6 +3,8 @@
 .gradle/
 build/
 
+app/schemas/
+
 # Local configuration file (sdk path, etc)
 local.properties
 
