@@ -9,6 +9,10 @@ import com.seeho.stopbadhabit.data.model.Habit.Habit
 import com.seeho.stopbadhabit.data.repository.HabitRepository
 import com.seeho.stopbadhabit.util.toDate
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
@@ -18,8 +22,17 @@ class HabitDetailViewModel @Inject constructor(
     private val habitRepository: HabitRepository,
 ) :ViewModel() {
 
+    private val _habitFlow = MutableStateFlow<Habit?>(null)
+    val habitFlow: StateFlow<Habit?> get() = _habitFlow
+
     private val _habit = MutableLiveData<Habit>()
     val habit : LiveData<Habit> get() = _habit
+
+    fun habitById(habitId: Int): StateFlow<Habit?> {
+        return habitRepository.getHabitByIdFlow(habitId)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    }
+
 
     private val today = Calendar.getInstance().apply {
         set(Calendar.HOUR_OF_DAY, 0)

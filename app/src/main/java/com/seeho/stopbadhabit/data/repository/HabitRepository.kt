@@ -4,6 +4,7 @@ import com.seeho.stopbadhabit.data.model.Habit.Habit
 import com.seeho.stopbadhabit.data.model.Habit.HabitDao
 import com.seeho.stopbadhabit.data.model.PresentHabit.PresentHabit
 import com.seeho.stopbadhabit.util.toPresentHabit
+import kotlinx.coroutines.flow.Flow
 
 class HabitRepository(private val habitDao: HabitDao) {
 
@@ -25,5 +26,9 @@ class HabitRepository(private val habitDao: HabitDao) {
 
     suspend fun updateHabit(habit: Habit){
         habitDao.updateHabit(habit)
+    }
+
+    fun getHabitByIdFlow(habitId: Int): Flow<Habit?>{
+        return habitDao.getHabitByIdFlow(habitId)
     }
 }

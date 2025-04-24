@@ -33,8 +33,8 @@ class  MainViewModel @Inject constructor(
     private val _diaryList = ListLiveData<Diary>()
     val diaryList : LiveData<ArrayList<Diary>> get() = _diaryList
 
-    private val _detailHabit =  MutableLiveData(-1)
-    val detailHabitId: LiveData<Int> get() = _detailHabit
+    private val _detailHabitId =  MutableLiveData(-1)
+    val detailHabitId: LiveData<Int> get() = _detailHabitId
 
     private val _heartlottie =  MutableLiveData(false)
     val heartlottie: LiveData<Boolean> get() = _heartlottie
@@ -61,7 +61,7 @@ class  MainViewModel @Inject constructor(
     }
 
     fun setDetailId(id: Int) {
-        _detailHabit.value = id
+        _detailHabitId.value = id
     }
 
     fun getHabitList() {

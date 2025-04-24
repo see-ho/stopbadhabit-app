@@ -1,6 +1,7 @@
 package com.seeho.stopbadhabit.data.model.Habit
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HabitDao {
@@ -18,5 +19,8 @@ interface HabitDao {
 
     @Update
     suspend fun updateHabit(habit: Habit)
+
+    @Query("SELECT * FROM Habit WHERE habit_id = :habitId ")
+    fun getHabitByIdFlow(habitId: Int): Flow<Habit?>
 
 }
