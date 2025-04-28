@@ -20,4 +20,7 @@
     <color name="red_100">#B3000A</color>
 
     <color name="highlight_100">#FFDA7A</color>
+
+    <color name="new_beige_100">#FFF4EC</color>
+    <color name="new_beige_200">#D7A58E</color>
 </resources>

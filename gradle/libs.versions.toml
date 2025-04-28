@@ -105,6 +105,7 @@ navigationSafeArgs = "2.8.9"
 materialVersion = "1.12.0"
 
 # Work Runtime KTX - 작업 관리 라이브러리 WorkManager의 KTX 확장 함수
+uiTooling = "1.8.0"
 workRuntimeKtx = "2.10.0"
 
 # Room KTX - Room 관련 KTX 확장 함수
@@ -178,6 +179,7 @@ androidx-ui = { module = "androidx.compose.ui:ui" }
 androidx-ui-graphics = { module = "androidx.compose.ui:ui-graphics" }
 
 # androidx-ui-tooling-preview - Compose UI의 툴링 미리보기 지원
+androidx-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "uiTooling" }
 androidx-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 
 # androidx-work-runtime-ktx - WorkManager 관련 KTX 확장 함수
