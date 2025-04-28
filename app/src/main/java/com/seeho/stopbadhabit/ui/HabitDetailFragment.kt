@@ -63,7 +63,7 @@ class HabitDetailFragment : Fragment() {
     ): View? {
         return ComposeView(requireContext()).apply {
             setContent {
-                DetailScreen(habitDetailViewModel)
+                DetailScreen(habitDetailViewModel,mainViewModel)
             }
         }
         /**
