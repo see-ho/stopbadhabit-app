@@ -18,6 +18,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -42,11 +45,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.seeho.stopbadhabit.R
+import com.seeho.stopbadhabit.data.model.Diary.Diary
 import com.seeho.stopbadhabit.data.model.Habit.Habit
 import com.seeho.stopbadhabit.data.model.PresentHabit.DayStatus
 import com.seeho.stopbadhabit.data.model.PresentHabit.PresentBattle
 import com.seeho.stopbadhabit.ui.viewmodel.HabitDetailViewModel
 import com.seeho.stopbadhabit.ui.viewmodel.MainViewModel
+import com.skydoves.balloon.BalloonAnimation
+import com.skydoves.balloon.compose.rememberBalloonBuilder
 
 @Composable
 fun DetailScreen(
@@ -112,14 +118,64 @@ fun MonsterInfo(habit: Habit) {
 }
 
 @Composable
+fun DiaryList(diaryList: List<Diary>) {
+    Column {
+        Title("반성일기")
+        Spacer(modifier = Modifier.height(16.dp))
+        LazyVerticalGrid(
+            columns = GridCells.Adaptive(minSize = 100.dp)
+        ) {
+            items(diaryList) { diary ->
+                DiaryItem(diary)
+            }
+        }
+    }
+
+}
+
+@Composable
+fun DiaryItem(diary: Diary) {
+    Column {
+        Text(
+            text = "No. 1",
+            fontSize = 12.sp,
+            textAlign = TextAlign.Center,
+            fontFamily = FontFamily(Font(R.font.font)),
+        )
+        Box(
+            modifier = Modifier
+                .width(72.dp)
+                .height(72.dp)
+        ) {
+            Image(
+                painter =
+                    when (diary.img_res) {
+                        1 -> painterResource(id = R.drawable.bg_item_1)
+                        2 -> painterResource(id = R.drawable.bg_item_2)
+                        3 -> painterResource(id = R.drawable.bg_item_3)
+                        4 -> painterResource(id = R.drawable.bg_item_4)
+                        else -> painterResource(id = R.drawable.bg_item_1)
+                    },
+                contentDescription = "Hard",
+            )
+        }
+    }
+}
+
+
+
+
+@Composable
 @Preview
 fun MyInfoAndTodayBattle() {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        //verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Title("나의 상태 & 오늘 전투")
-        Row {
+        Row(
+            modifier = Modifier.padding(vertical = 12.dp)
+        ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
@@ -127,7 +183,7 @@ fun MyInfoAndTodayBattle() {
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.spacedBy(4.dp) 
+                    horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_heart),
@@ -143,14 +199,14 @@ fun MyInfoAndTodayBattle() {
                     )
                 }
             }
-            Column (
-               horizontalAlignment =  Alignment.CenterHorizontally,
-                verticalArrangement =  Arrangement.spacedBy(8.dp)
-            ){
-                Row (
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ){
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_clock),
                         contentDescription = "Icon",
@@ -164,10 +220,10 @@ fun MyInfoAndTodayBattle() {
                         fontFamily = FontFamily(Font(R.font.font)),
                     )
                 }
-                Row (
+                Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(20.dp) // 텍스트와 아이콘 간격
-                ){
+                ) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_sword),
                         contentDescription = "Icon",
@@ -191,7 +247,7 @@ fun BattleChip(
     text: String,
     modifier: Modifier = Modifier,
     borderColor: Color = Color.Gray,
-    textColor: Color = Color.Black
+    textColor: Color = Color.Black,
 ) {
     Box(
         modifier = modifier
@@ -200,7 +256,7 @@ fun BattleChip(
                 color = borderColor,
                 shape = RoundedCornerShape(16.dp)
             )
-            .padding(horizontal = 12.dp, vertical = 6.dp)
+            .padding(horizontal = 12.dp, vertical = 3.dp)
     ) {
         Text(
             text = text,
@@ -209,6 +265,25 @@ fun BattleChip(
         )
     }
 }
+
+//@Composable
+//fun BattleBalloon() {
+//    val balloon = rememberBalloonBuilder{
+//        setWidthRatio(0.65f)
+//        setHeight(BalloonSizeSpec.WRAP)
+//        setArrowPositionRules(ArrowPositionRules.ALIGN_ANCHOR)
+//        setArrowSize(10)
+//        setArrowPosition(0.5f)
+//        setPadding(12)
+//        setMargin(5)
+//        setLayout(R.layout.tooltip)
+//        setCornerRadius(8f)
+//        setArrowColorMatchBalloon(true)
+//        setArrowOrientation(ArrowOrientation.BOTTOM)
+//        setBackgroundColorResource(R.color.white)
+//        setBalloonAnimation(BalloonAnimation.ELASTIC)
+//    }
+//}
 
 
 @Composable
@@ -309,12 +384,24 @@ fun PreviewDetailScreen() {
             PresentBattle(
                 index,
                 1,
-                "2025.04.${index+2}",
+                "2025.04.${index + 2}",
                 when (index) {
                     0, 1, 2, 4, 5, 6, 7 -> DayStatus.SUCCESS
                     3 -> DayStatus.FAIL
                     else -> DayStatus.NONE
                 }
+            )
+        }
+        val diarys = List(4) { index ->
+            Diary(
+                index,
+                1,
+                "2025.04.${index + 2}",
+                "",
+                "",
+                "",
+                "",
+                (index % 4 + 1)
             )
         }
         Column(
@@ -329,6 +416,7 @@ fun PreviewDetailScreen() {
                 Summary(samples)
                 Spacer(modifier = Modifier.height(12.dp))
                 MyInfoAndTodayBattle()
+                DiaryList(diarys)
             } ?: Text("습관 정보를 불러오는 중...")
         }
     }

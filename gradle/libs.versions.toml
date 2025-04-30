@@ -10,6 +10,7 @@ appcompat = "1.7.0"
 
 # Balloon - UI 툴팁 스타일 라이브러리
 balloon = "1.4.7"
+balloonCompose = "1.6.12"
 
 # Glide Compiler - Glide 이미지 로딩 라이브러리 컴파일러
 compiler = "4.16.0"
@@ -189,6 +190,7 @@ androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version
 balloon = { module = "com.github.skydoves:balloon", version.ref = "balloon" }
 
 # compiler - Glide 이미지 로딩 컴파일러
+balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "balloonCompose" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 
 # github-glide - Glide 이미지 로딩 라이브러리
