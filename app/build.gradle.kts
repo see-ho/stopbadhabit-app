@@ -126,6 +126,7 @@ dependencies {
 
     //Balloon
     implementation (libs.balloon)
+    implementation(libs.balloon.compose)
 
     //Splash
     implementation (libs.androidx.core.splashscreen)

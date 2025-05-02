@@ -188,9 +188,9 @@ androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version
 
 # balloon - 툴팁 라이브러리
 balloon = { module = "com.github.skydoves:balloon", version.ref = "balloon" }
+balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "balloonCompose" }
 
 # compiler - Glide 이미지 로딩 컴파일러
-balloon-compose = { module = "com.github.skydoves:balloon-compose", version.ref = "balloonCompose" }
 compiler = { module = "com.github.bumptech.glide:compiler", version.ref = "compiler" }
 
 # github-glide - Glide 이미지 로딩 라이브러리
