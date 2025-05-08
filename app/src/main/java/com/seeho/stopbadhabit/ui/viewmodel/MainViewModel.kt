@@ -15,7 +15,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -38,6 +41,15 @@ class  MainViewModel @Inject constructor(
 
     private val _heartlottie =  MutableLiveData(false)
     val heartlottie: LiveData<Boolean> get() = _heartlottie
+
+//
+//    private val _flowDiaryList = MutableStateFlow<List<Diary>>(emptyList())
+//    val flowDiaryList : StateFlow<List<Diary>> get() = _flowDiaryList
+
+    fun flowDiaryList(habitId: Int) : StateFlow<List<Diary>?> {
+        return diaryRepository.getFlowDiaryAll(habitId)
+            .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    }
 
     init {
         viewModelScope.launch {

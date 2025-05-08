@@ -1,5 +1,7 @@
 package com.seeho.stopbadhabit.ui.screen
 
+import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,16 +29,18 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
@@ -61,11 +65,10 @@ import com.seeho.stopbadhabit.ui.viewmodel.MainViewModel
 import com.skydoves.balloon.ArrowPositionRules
 import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.BalloonAnimation
-import com.skydoves.balloon.BalloonSizeSpec
 import com.skydoves.balloon.compose.Balloon
 import com.skydoves.balloon.compose.rememberBalloonBuilder
-import com.skydoves.balloon.textForm
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DetailScreen(
     habitDetailViewModel: HabitDetailViewModel = viewModel(),
@@ -73,13 +76,16 @@ fun DetailScreen(
 ) {
     val habitId = mainViewModel.detailHabitId.value
     val habit by habitDetailViewModel.habitById(habitId!!).collectAsState()
+    val diaryList by mainViewModel.flowDiaryList(habitId!!).collectAsState()
+    val presentBattleList by habitDetailViewModel.presentBattlesFlow(habitId!!).collectAsState()
+
 
     Scaffold(
         containerColor = colorResource(R.color.new_beige_100),
         modifier = Modifier
             .fillMaxSize()
     ) { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
+        /**Column(modifier = Modifier.padding(innerPadding)) {
             habit?.let {
                 Text(
                     text = "습관 이름: ${it.name}",
@@ -87,9 +93,9 @@ fun DetailScreen(
                 )
                 Text(text = "시작 날짜: ${it.start_date}")
             } ?: Text("습관 정보를 불러오는 중...")
-        }
+        }*/
 
-        val habit = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
+        val habit1 = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
         val samples = List(30) { index ->
             PresentBattle(
                 index,
@@ -117,31 +123,35 @@ fun DetailScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(horizontal =  16.dp)
+                .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            habit?.let {
-                item { MonsterInfo(habit) }
+            if(habit != null) {
+                item { MonsterInfo(habit!!) }
                 item { Spacer(modifier = Modifier.height(8.dp)) }
-                item { Summary(samples) }
+                item { Summary(presentBattleList, habit!!.goal_date) }
                 item { Spacer(modifier = Modifier.height(12.dp)) }
                 item { MyInfoAndTodayBattle() }
-                item { DiaryList(diarys) }
+                item { DiaryList(diaryList) }
+            } else {
+
             } ?: item { Text("습관 정보를 불러오는 중...") }
         }
     }
 }
 
-@Preview
 @Composable
-fun CharacterImage() {
+fun CharacterImage(
+    painterResourceId : Int
+) {
     Box(
         modifier = Modifier
             .width(100.dp)
             .height(100.dp)
     ) {
         Image(
-            painter = painterResource(id = R.drawable.bg_mob_easy),
+            painter = painterResource(painterResourceId),
             contentDescription = "Hard",
         )
     }
@@ -153,7 +163,15 @@ fun MonsterInfo(habit: Habit) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
-        CharacterImage()
+        CharacterImage(
+            when(habit.mode){
+                0 -> R.drawable.bg_mob_easy
+                1 -> R.drawable.bg_mob_normal
+                2 -> R.drawable.bg_mob_hard
+                else -> R.drawable.bg_mob_easy
+            }
+
+        )
         Text(
             text = habit.name,
             fontSize = 18.sp,
@@ -171,7 +189,7 @@ fun MonsterInfo(habit: Habit) {
 }
 
 @Composable
-fun DiaryList(diaryList: List<Diary>) {
+fun DiaryList(diaryList: List<Diary>?) {
     Column {
         Title("반성일기")
         Spacer(modifier = Modifier.height(8.dp))
@@ -181,8 +199,10 @@ fun DiaryList(diaryList: List<Diary>) {
             horizontalArrangement = Arrangement.spacedBy(4.dp), // 열 간격 명시
             verticalArrangement = Arrangement.spacedBy(4.dp) // 행 간격도 필요시
         ) {
-            items(diaryList) { diary ->
-                DiaryItem(diary)
+            if(diaryList != null) {
+                items(diaryList) { diary ->
+                    DiaryItem(diary)
+                }
             }
         }
     }
@@ -243,7 +263,7 @@ fun MyInfoAndTodayBattle() {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
             ) {
-                CharacterImage()
+                CharacterImage(R.drawable.bg_main_character)
                 Spacer(modifier = Modifier.height(8.dp))
                 Row(
                     verticalAlignment = Alignment.Top,
@@ -401,23 +421,32 @@ fun BattleBalloon() {
 
 
 @Composable
-fun Summary(battleList: List<PresentBattle>) {
+fun Summary(battleList: List<PresentBattle>, goalDate: Int) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Title("전투 요약")
         Spacer(modifier = Modifier.height(8.dp))
-        BattleBoxes(battleList)
+        BattleBoxes(battleList,goalDate)
     }
 }
 
 @Composable
-fun BattleBoxes(battleList: List<PresentBattle>) {
+fun BattleBoxes(
+    battleList: List<PresentBattle>,
+    goalDate: Int // 15, 30, 50 중 하나
+) {
+    val rows = when (goalDate) {
+        50 -> 5
+        else -> 3
+    }
+
+    val colsPerRow = (battleList.size + rows - 1) / rows
+
     Row(
         modifier = Modifier
             .height(IntrinsicSize.Max)
-            .padding(vertical = 8.dp), // 위아래 여백
-
+            .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Box(
@@ -426,12 +455,10 @@ fun BattleBoxes(battleList: List<PresentBattle>) {
                 .fillMaxHeight()
                 .background(Color(0xFF87CEFA)) // 연파랑
         )
+
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            val rows = 3
-            val colsPerRow = (battleList.size + 2) / 3 // 3줄로 분배
-
             for (rowIndex in 0 until rows) {
                 Row {
                     for (colIndex in 0 until colsPerRow) {
@@ -457,6 +484,7 @@ fun BattleBoxes(battleList: List<PresentBattle>) {
         }
     }
 }
+
 
 
 @Composable
@@ -529,7 +557,7 @@ fun PreviewDetailScreen() {
             habit?.let {
                 MonsterInfo(habit)
                 Spacer(modifier = Modifier.height(8.dp))
-                Summary(samples)
+                Summary(samples,15)
                 Spacer(modifier = Modifier.height(12.dp))
                 MyInfoAndTodayBattle()
                 DiaryList(diarys)

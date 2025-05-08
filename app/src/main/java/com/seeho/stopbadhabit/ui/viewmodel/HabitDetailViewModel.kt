@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seeho.roomdbtest.repository.DiaryRepository
 import com.seeho.stopbadhabit.data.model.Habit.Habit
+import com.seeho.stopbadhabit.data.model.HabitAndBattle.HabitAndBattle
+import com.seeho.stopbadhabit.data.model.PresentHabit.PresentBattle
+import com.seeho.stopbadhabit.data.repository.HabitAndBattleRepository
 import com.seeho.stopbadhabit.data.repository.HabitRepository
 import com.seeho.stopbadhabit.util.toDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import java.util.*
@@ -20,6 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 class HabitDetailViewModel @Inject constructor(
     private val habitRepository: HabitRepository,
+    private val habitAndBattleRepository: HabitAndBattleRepository
 ) :ViewModel() {
 
     private val _habitFlow = MutableStateFlow<Habit?>(null)
@@ -31,6 +36,16 @@ class HabitDetailViewModel @Inject constructor(
     fun habitById(habitId: Int): StateFlow<Habit?> {
         return habitRepository.getHabitByIdFlow(habitId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+    }
+
+
+    fun presentBattlesFlow(habitId: Int): StateFlow<List<PresentBattle>> {
+        return habitAndBattleRepository.getPresentBattles(habitId)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(5000),
+                initialValue = emptyList()
+            )
     }
 
 
