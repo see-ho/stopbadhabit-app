@@ -105,6 +105,7 @@ dependencies {
 
     //Lottie
     implementation (libs.lottie)
+    implementation(libs.lottie.compose)
 
     //Material Design
     implementation (libs.material.v1100)

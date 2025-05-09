@@ -1,12 +1,13 @@
 package com.seeho.stopbadhabit.ui.screen
 
-import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,7 +23,6 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -34,11 +34,10 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -51,7 +50,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -67,8 +65,12 @@ import com.skydoves.balloon.ArrowOrientation
 import com.skydoves.balloon.BalloonAnimation
 import com.skydoves.balloon.compose.Balloon
 import com.skydoves.balloon.compose.rememberBalloonBuilder
+import java.time.LocalDate
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.rememberLottieComposition
+import com.airbnb.lottie.compose.LottieCompositionSpec
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun DetailScreen(
     habitDetailViewModel: HabitDetailViewModel = viewModel(),
@@ -79,6 +81,7 @@ fun DetailScreen(
     val diaryList by mainViewModel.flowDiaryList(habitId!!).collectAsState()
     val presentBattleList by habitDetailViewModel.presentBattlesFlow(habitId!!).collectAsState()
 
+    val isLottieVisible by habitDetailViewModel.isLottieVisible.collectAsState()
 
     Scaffold(
         containerColor = colorResource(R.color.new_beige_100),
@@ -86,15 +89,16 @@ fun DetailScreen(
             .fillMaxSize()
     ) { innerPadding ->
         /**Column(modifier = Modifier.padding(innerPadding)) {
-            habit?.let {
-                Text(
-                    text = "습관 이름: ${it.name}",
-                    style = MaterialTheme.typography.headlineMedium
-                )
-                Text(text = "시작 날짜: ${it.start_date}")
-            } ?: Text("습관 정보를 불러오는 중...")
+        habit?.let {
+        Text(
+        text = "습관 이름: ${it.name}",
+        style = MaterialTheme.typography.headlineMedium
+        )
+        Text(text = "시작 날짜: ${it.start_date}")
+        } ?: Text("습관 정보를 불러오는 중...")
         }*/
 
+        /**
         val habit1 = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
         val samples = List(30) { index ->
             PresentBattle(
@@ -119,20 +123,28 @@ fun DetailScreen(
                 "",
                 (index % 4 + 1)
             )
-        }
+        } **/
+
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal =  16.dp)
+                .padding(horizontal = 16.dp)
                 .padding(innerPadding),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            if(habit != null) {
+            if (habit != null) {
                 item { MonsterInfo(habit!!) }
                 item { Spacer(modifier = Modifier.height(8.dp)) }
-                item { Summary(presentBattleList, habit!!.goal_date) }
+                item { Summary(presentBattleList, habit!!.goal_date, habit!!.mode) }
                 item { Spacer(modifier = Modifier.height(12.dp)) }
-                item { MyInfoAndTodayBattle() }
+                item { MyInfoAndTodayBattle(
+                    habit =  habit!!,
+                    onSwordClick = { newBattle ->
+                        habitDetailViewModel.insertBattle(habitId!!,newBattle)
+                        habitDetailViewModel.triggerLottie() },
+                    onShieldClick = { Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")
+                    }
+                ) }
                 item { DiaryList(diaryList) }
             } else {
 
@@ -143,7 +155,7 @@ fun DetailScreen(
 
 @Composable
 fun CharacterImage(
-    painterResourceId : Int
+    painterResourceId: Int,
 ) {
     Box(
         modifier = Modifier
@@ -164,7 +176,7 @@ fun MonsterInfo(habit: Habit) {
         verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
         CharacterImage(
-            when(habit.mode){
+            when (habit.mode) {
                 0 -> R.drawable.bg_mob_easy
                 1 -> R.drawable.bg_mob_normal
                 2 -> R.drawable.bg_mob_hard
@@ -199,7 +211,7 @@ fun DiaryList(diaryList: List<Diary>?) {
             horizontalArrangement = Arrangement.spacedBy(4.dp), // 열 간격 명시
             verticalArrangement = Arrangement.spacedBy(4.dp) // 행 간격도 필요시
         ) {
-            if(diaryList != null) {
+            if (diaryList != null) {
                 items(diaryList) { diary ->
                     DiaryItem(diary)
                 }
@@ -250,12 +262,21 @@ fun DiaryItem(diary: Diary) {
 
 
 @Composable
-@Preview
-fun MyInfoAndTodayBattle() {
+fun MyInfoAndTodayBattle(
+    habit: Habit,
+    onSwordClick: (PresentBattle) -> Unit,
+    onShieldClick: () -> Unit
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         //verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
+        val interactionSourceSword = remember { MutableInteractionSource() }
+        val isPressedSword by interactionSourceSword.collectIsPressedAsState()
+
+        val interactionSourceShield = remember { MutableInteractionSource() }
+        val isPressedShield by interactionSourceShield.collectIsPressedAsState()
+
         Title("나의 상태 & 오늘 전투")
         Row(
             modifier = Modifier.padding(vertical = 12.dp)
@@ -275,7 +296,7 @@ fun MyInfoAndTodayBattle() {
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = "4 / 5",
+                        text = "${habit.setting_life} / ${habit.setting_life}",
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
                         fontFamily = FontFamily(Font(R.font.font)),
@@ -311,15 +332,38 @@ fun MyInfoAndTodayBattle() {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(20.dp) // 텍스트와 아이콘 간격
                 ) {
+
                     Image(
                         painter = painterResource(id = R.drawable.ic_sword),
                         contentDescription = "Icon",
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier
+                            .size(32.dp)
+                            //     .graphicsLayer { alpha = if (isPressedSword) 0.4f else 1f }
+                            .clickable(
+                                interactionSource = interactionSourceSword,
+                                indication = null,
+                            ) {
+                                onSwordClick(
+                                    PresentBattle(
+                                        habit_id = habit.habit_id!!,
+                                        battle_date = LocalDate.now().toString(),
+                                        status = DayStatus.SUCCESS
+                                    )
+                                )
+                            }
                     )
                     Image(
                         painter = painterResource(id = R.drawable.ic_shield),
                         contentDescription = "Icon",
-                        modifier = Modifier.size(32.dp)
+                        modifier = Modifier
+                            .size(32.dp)
+                            //     .graphicsLayer { alpha = if (isPressedShield) 0.4f else 1f }
+                            .clickable(
+                                interactionSource = interactionSourceShield,
+                                indication = null,
+                            ) {
+                                onShieldClick()
+                            }
                     )
                 }
                 BattleChip("👊 8일째 전투중", borderColor = Color.Black)
@@ -380,13 +424,13 @@ fun BattleBalloon() {
         balloonContent = {
             Column {
                 Text(
-                    text = stringResource(id=R.string.hd_tooltip1),
+                    text = stringResource(id = R.string.hd_tooltip1),
                     modifier = Modifier.padding(horizontal = 8.dp),
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.font)),
                 )
                 Text(
-                    text = stringResource(id=R.string.hd_tooltip2),
+                    text = stringResource(id = R.string.hd_tooltip2),
                     modifier = Modifier.padding(horizontal = 8.dp),
                     fontSize = 14.sp,
                     fontFamily = FontFamily(Font(R.font.font)),
@@ -421,20 +465,21 @@ fun BattleBalloon() {
 
 
 @Composable
-fun Summary(battleList: List<PresentBattle>, goalDate: Int) {
+fun Summary(battleList: List<PresentBattle>, goalDate: Int, mode: Int) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Title("전투 요약")
         Spacer(modifier = Modifier.height(8.dp))
-        BattleBoxes(battleList,goalDate)
+        BattleBoxes(battleList, goalDate, mode)
     }
 }
 
 @Composable
 fun BattleBoxes(
     battleList: List<PresentBattle>,
-    goalDate: Int // 15, 30, 50 중 하나
+    goalDate: Int,
+    mode: Int,// 15, 30, 50 중 하나
 ) {
     val rows = when (goalDate) {
         50 -> 5
@@ -453,7 +498,16 @@ fun BattleBoxes(
             modifier = Modifier
                 .width(5.dp)
                 .fillMaxHeight()
-                .background(Color(0xFF87CEFA)) // 연파랑
+                .background(
+                    color = colorResource(
+                        when (mode) {
+                            0 -> R.color.easy_mode
+                            1 -> R.color.normal_mode
+                            2 -> R.color.hard_mode
+                            else -> R.color.new_beige_200
+                        }
+                    )
+                )
         )
 
         Column(
@@ -486,7 +540,6 @@ fun BattleBoxes(
 }
 
 
-
 @Composable
 fun Title(text: String) {
     Row(
@@ -512,7 +565,7 @@ fun Title(text: String) {
     }
 }
 
-
+/**
 @Composable
 @Preview
 fun PreviewDetailScreen() {
@@ -557,11 +610,15 @@ fun PreviewDetailScreen() {
             habit?.let {
                 MonsterInfo(habit)
                 Spacer(modifier = Modifier.height(8.dp))
-                Summary(samples,15)
+                Summary(samples, 15,1)
                 Spacer(modifier = Modifier.height(12.dp))
-                MyInfoAndTodayBattle()
+                MyInfoAndTodayBattle(
+                    {Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")},
+                    {Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")}
+                )
                 DiaryList(diarys)
             } ?: Text("습관 정보를 불러오는 중...")
         }
     }
 }
+**/

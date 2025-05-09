@@ -85,6 +85,7 @@ lifecycleViewmodelKtx = "2.8.7"
 lifecycleRuntimeKtx = "2.8.7"
 
 # Lottie Version - 애니메이션 및 JSON 애니메이션을 사용하는 Lottie 라이브러리 버전
+lottieCompose = "6.1.0"
 lottieVersion = "6.1.0"
 
 # Material Version - Material Design Components 라이브러리 버전
@@ -224,6 +225,7 @@ lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottieVersion" }
 
 # material - Google의 Material Design 라이브러리
+lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
 material = { module = "com.google.android.material:material", version.ref = "material" }
 
 # material-v1100 - Google Material 라이브러리

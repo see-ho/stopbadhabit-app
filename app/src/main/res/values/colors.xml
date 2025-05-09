@@ -23,4 +23,9 @@
 
     <color name="new_beige_100">#FFF4EC</color>
     <color name="new_beige_200">#D7A58E</color>
+
+    <color name="easy_mode">#5EC7FE</color>
+    <color name="normal_mode">#94E462</color>
+    <color name="hard_mode">#B20000</color>
+
 </resources>
