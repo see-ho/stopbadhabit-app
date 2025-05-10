@@ -28,4 +28,8 @@
     <color name="normal_mode">#94E462</color>
     <color name="hard_mode">#B20000</color>
 
+    <color name="battle_success">#A1DF7C</color>
+    <color name="battle_fail">#C03830</color>
+    <color name="battle_none">#D3D3D3</color>
+
 </resources>

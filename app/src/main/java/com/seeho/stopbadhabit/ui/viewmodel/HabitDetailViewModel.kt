@@ -41,6 +41,17 @@ class HabitDetailViewModel @Inject constructor(
     private val _habit = MutableLiveData<Habit>()
     val habit: LiveData<Habit> get() = _habit
 
+    val isFailDialogVisible = MutableStateFlow(false)
+
+
+    fun onShieldClick() {
+        isFailDialogVisible.value = true
+    }
+
+    fun confirmFail() {
+        isFailDialogVisible.value = false
+    }
+
     fun habitById(habitId: Int): StateFlow<Habit?> {
         return habitRepository.getHabitByIdFlow(habitId)
             .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
@@ -66,7 +77,6 @@ class HabitDetailViewModel @Inject constructor(
             _isLottieVisible.value = false
         }
     }
-
 
     fun insertBattle(habitId: Int, battle: PresentBattle) {
         viewModelScope.launch {

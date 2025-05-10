@@ -36,6 +36,8 @@
 
     <string name="hd_current_life">현재 라이프</string>
 
+    <string name="hd_dialog_ask">오늘 전투에서 부상을 당했습니까?</string>
+
     <string name="hd_tooltip">매일 버릇과의 전투에서 공격에 성공했다면 칼 버튼을, 실패했다면 방패버튼을 통해 전투를 기록해주세요! \n기록을 하지 않은 날은 실패로 간주됩니다. \n dfssdfsdfdfsdfdfdsf</string>
     <string name="hd_tooltip1">매일 버릇과의 전투에서 공격에 성공했다면 칼 버튼을, 실패했다면 방패버튼을 통해 전투를 기록해주세요!</string>
     <string name="hd_tooltip2">기록을 하지 않은 날은 실패로 간주됩니다. </string>

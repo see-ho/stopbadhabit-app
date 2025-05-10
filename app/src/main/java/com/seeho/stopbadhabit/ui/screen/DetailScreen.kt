@@ -2,6 +2,7 @@ package com.seeho.stopbadhabit.ui.screen
 
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.annotation.ColorRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,17 +24,23 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -52,6 +59,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.seeho.stopbadhabit.R
 import com.seeho.stopbadhabit.data.model.Diary.Diary
@@ -83,6 +91,16 @@ fun DetailScreen(
 
     val isLottieVisible by habitDetailViewModel.isLottieVisible.collectAsState()
 
+    val isDialogVisible by habitDetailViewModel.isFailDialogVisible.collectAsState()
+
+    if (isDialogVisible) {
+        FailConfirmDialog(
+            onDismiss = { habitDetailViewModel.confirmFail() },
+            onConfirm = { habitDetailViewModel.confirmFail() }
+        )
+    }
+
+
     Scaffold(
         containerColor = colorResource(R.color.new_beige_100),
         modifier = Modifier
@@ -101,28 +119,28 @@ fun DetailScreen(
         /**
         val habit1 = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
         val samples = List(30) { index ->
-            PresentBattle(
-                index,
-                1,
-                "2025.04.${index + 2}",
-                when (index) {
-                    0, 1, 2, 4, 5, 6, 7 -> DayStatus.SUCCESS
-                    3 -> DayStatus.FAIL
-                    else -> DayStatus.NONE
-                }
-            )
+        PresentBattle(
+        index,
+        1,
+        "2025.04.${index + 2}",
+        when (index) {
+        0, 1, 2, 4, 5, 6, 7 -> DayStatus.SUCCESS
+        3 -> DayStatus.FAIL
+        else -> DayStatus.NONE
+        }
+        )
         }
         val diarys = List(14) { index ->
-            Diary(
-                index,
-                1,
-                "2025.04.${index + 2}",
-                "",
-                "",
-                "",
-                "",
-                (index % 4 + 1)
-            )
+        Diary(
+        index,
+        1,
+        "2025.04.${index + 2}",
+        "",
+        "",
+        "",
+        "",
+        (index % 4 + 1)
+        )
         } **/
 
         LazyColumn(
@@ -137,14 +155,26 @@ fun DetailScreen(
                 item { Spacer(modifier = Modifier.height(8.dp)) }
                 item { Summary(presentBattleList, habit!!.goal_date, habit!!.mode) }
                 item { Spacer(modifier = Modifier.height(12.dp)) }
-                item { MyInfoAndTodayBattle(
-                    habit =  habit!!,
-                    onSwordClick = { newBattle ->
-                        habitDetailViewModel.insertBattle(habitId!!,newBattle)
-                        habitDetailViewModel.triggerLottie() },
-                    onShieldClick = { Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")
-                    }
-                ) }
+                item {
+                    MyInfoAndTodayBattle(
+                        habit = habit!!,
+                        onSwordClick = { newBattle ->
+                            val alreadyExists =
+                                presentBattleList.any { it.battle_date == newBattle.battle_date }
+
+                            if (!alreadyExists) {
+                                habitDetailViewModel.insertBattle(habitId!!, newBattle)
+                                habitDetailViewModel.triggerLottie()
+                            } else {
+                                Log.e("252", "DetailScreen: 이미 존재합니다")
+                            }
+                        },
+                        onShieldClick = {
+                            habitDetailViewModel.onShieldClick()
+                            Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")
+                        }
+                    )
+                }
                 item { DiaryList(diaryList) }
             } else {
 
@@ -288,7 +318,7 @@ fun DiaryItem(diary: Diary) {
 fun MyInfoAndTodayBattle(
     habit: Habit,
     onSwordClick: (PresentBattle) -> Unit,
-    onShieldClick: () -> Unit
+    onShieldClick: () -> Unit,
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -419,7 +449,6 @@ fun BattleChip(
             textAlign = TextAlign.Center,
             fontFamily = FontFamily(Font(R.font.font)),
             color = textColor,
-            style = MaterialTheme.typography.bodyMedium
         )
     }
 }
@@ -547,11 +576,13 @@ fun BattleBoxes(
                                 .size(26.dp)
                                 .padding(2.dp)
                                 .background(
-                                    when (daySummary?.status) {
-                                        DayStatus.SUCCESS -> Color(0xFFA1DF7C) // 초록
-                                        DayStatus.FAIL -> Color(0xFFC03830) // 빨강
-                                        DayStatus.NONE, null -> Color(0xFFD3D3D3) // 연회색
-                                    },
+                                    color = colorResource(
+                                        when (daySummary?.status) {
+                                            DayStatus.SUCCESS -> R.color.battle_success // 초록
+                                            DayStatus.FAIL -> R.color.battle_fail // 빨강
+                                            DayStatus.NONE, null -> R.color.battle_none // 연회색
+                                        },
+                                    ),
                                     shape = RoundedCornerShape(4.dp)
                                 )
                         )
@@ -588,60 +619,130 @@ fun Title(text: String) {
     }
 }
 
+@Composable
+fun FailConfirmDialog(
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit,
+) {
+
+    val composition by rememberLottieComposition(
+        LottieCompositionSpec.Asset("lottie_ask.json")
+    )
+
+    Dialog(onDismissRequest = onDismiss)
+    {
+        Card(
+            shape = RoundedCornerShape(16.dp),
+            colors = CardDefaults.cardColors(containerColor = colorResource(R.color.new_beige_100)),
+            modifier = Modifier
+                .fillMaxWidth()
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                LottieAnimation(
+                    composition = composition,
+                    speed = 0.5f,
+                    iterations = 1,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                )
+                Text(
+                    text = stringResource(id = R.string.hd_dialog_ask),
+                    modifier = Modifier.padding(top = 12.dp, start = 12.dp),
+                    fontSize = 16.sp,
+                    fontFamily = FontFamily(Font(R.font.font)),
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth().padding(vertical = 8.dp).padding(top= 12.dp,end = 16.dp),
+                    horizontalArrangement = Arrangement.End
+                ) {
+                    Text(
+                        modifier = Modifier.clickable {
+                            onDismiss()
+                        },
+                        text = "아니오",
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(R.font.font)),
+                        color = Color.Black
+                    )
+                    Spacer(modifier = Modifier.width(24.dp))
+
+                    Text(
+                        modifier = Modifier
+                            .clickable {
+                            onDismiss()
+                        },
+                        text = "네",
+                        fontSize = 14.sp,
+                        fontFamily = FontFamily(Font(R.font.font)),
+                        color = colorResource(R.color.red_100)
+                    )
+
+                }
+            }
+        }
+
+    }
+}
+
+
 /**
 @Composable
 @Preview
 fun PreviewDetailScreen() {
-    Scaffold(
-        containerColor = colorResource(R.color.new_beige_100),
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-            .wrapContentSize(Alignment.Center),
-    ) { innerPadding ->
-        val habit = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
-        val samples = List(30) { index ->
-            PresentBattle(
-                index,
-                1,
-                "2025.04.${index + 2}",
-                when (index) {
-                    0, 1, 2, 4, 5, 6, 7 -> DayStatus.SUCCESS
-                    3 -> DayStatus.FAIL
-                    else -> DayStatus.NONE
-                }
-            )
-        }
-        val diarys = List(4) { index ->
-            Diary(
-                index,
-                1,
-                "2025.04.${index + 2}",
-                "",
-                "",
-                "",
-                "",
-                (index % 4 + 1)
-            )
-        }
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            habit?.let {
-                MonsterInfo(habit)
-                Spacer(modifier = Modifier.height(8.dp))
-                Summary(samples, 15,1)
-                Spacer(modifier = Modifier.height(12.dp))
-                MyInfoAndTodayBattle(
-                    {Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")},
-                    {Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")}
-                )
-                DiaryList(diarys)
-            } ?: Text("습관 정보를 불러오는 중...")
-        }
-    }
+Scaffold(
+containerColor = colorResource(R.color.new_beige_100),
+modifier = Modifier
+.fillMaxSize()
+.padding(16.dp)
+.wrapContentSize(Alignment.Center),
+) { innerPadding ->
+val habit = Habit(1, "예쁜 손 만들기", 30, "2025.04.03", null, 4, 5, 1, 1, null)
+val samples = List(30) { index ->
+PresentBattle(
+index,
+1,
+"2025.04.${index + 2}",
+when (index) {
+0, 1, 2, 4, 5, 6, 7 -> DayStatus.SUCCESS
+3 -> DayStatus.FAIL
+else -> DayStatus.NONE
 }
-**/
+)
+}
+val diarys = List(4) { index ->
+Diary(
+index,
+1,
+"2025.04.${index + 2}",
+"",
+"",
+"",
+"",
+(index % 4 + 1)
+)
+}
+Column(
+modifier = Modifier
+.fillMaxSize()
+.padding(innerPadding),
+horizontalAlignment = Alignment.CenterHorizontally,
+) {
+habit?.let {
+MonsterInfo(habit)
+Spacer(modifier = Modifier.height(8.dp))
+Summary(samples, 15,1)
+Spacer(modifier = Modifier.height(12.dp))
+MyInfoAndTodayBattle(
+{Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")},
+{Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")}
+)
+DiaryList(diarys)
+} ?: Text("습관 정보를 불러오는 중...")
+}
+}
+}
+ **/
