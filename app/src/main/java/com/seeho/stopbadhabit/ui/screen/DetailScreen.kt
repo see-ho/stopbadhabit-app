@@ -149,6 +149,29 @@ fun DetailScreen(
             } else {
 
             } ?: item { Text("습관 정보를 불러오는 중...") }
+
+
+        }
+
+        val composition by rememberLottieComposition(
+            LottieCompositionSpec.Asset("lottie_success.json")
+        )
+
+        if (isLottieVisible) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color.Black.copy(alpha = 0.3f)) // 뒷배경 살짝 어둡게
+                    .clickable(enabled = false) {} // 터치 막기
+            ) {
+                LottieAnimation(
+                    composition = composition,
+                    iterations = 1,
+                    modifier = Modifier
+                        .align(Alignment.Center)
+                        .size(200.dp)
+                )
+            }
         }
     }
 }
@@ -296,7 +319,7 @@ fun MyInfoAndTodayBattle(
                         modifier = Modifier.size(18.dp)
                     )
                     Text(
-                        text = "${habit.setting_life} / ${habit.setting_life}",
+                        text = "${habit.current_life} / ${habit.setting_life}",
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center,
                         fontFamily = FontFamily(Font(R.font.font)),
