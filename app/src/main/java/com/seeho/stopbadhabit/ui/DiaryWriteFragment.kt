@@ -5,35 +5,44 @@ import android.content.Context
 import android.os.*
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.seeho.stopbadhabit.R
 import com.seeho.stopbadhabit.data.model.Diary.Diary
+import com.seeho.stopbadhabit.data.model.PresentHabit.DayStatus
+import com.seeho.stopbadhabit.data.model.PresentHabit.PresentBattle
 import com.seeho.stopbadhabit.databinding.FragmentDiaryWriteBinding
 import com.seeho.stopbadhabit.ui.viewmodel.DiaryWriteViewModel
 import com.seeho.stopbadhabit.ui.viewmodel.HabitDetailViewModel
 import com.seeho.stopbadhabit.ui.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import java.time.LocalDate
 
 
 @AndroidEntryPoint
 class DiaryWriteFragment(
-    val dismissListener: () -> Unit
+    val dismissListener: () -> Unit,
+    private val datailId: Int,
 ) : BottomSheetDialogFragment() {
     private val binding by lazy { FragmentDiaryWriteBinding.inflate(layoutInflater) }
     private val mainViewModel: MainViewModel by activityViewModels()
-    private val habitDetailViewModel: HabitDetailViewModel by activityViewModels()
+    private val habitDetailViewModel: HabitDetailViewModel by viewModels()
     private val diaryWriteViewModel: DiaryWriteViewModel by viewModels()
-    private var detailId = -1
+    private var detailId = datailId
 
 
     private var situation: String = ""
@@ -75,7 +84,7 @@ class DiaryWriteFragment(
                     if (etReason.lineCount > 2) {
                         etReason.setText(maxReasonText)
                         etReason.setSelection(etReason.length())
-                    } else if (etReason.length()>30){
+                    } else if (etReason.length()>70){
                         etReason.setText(maxReasonText)
                         etReason.setSelection(etReason.length())
                     }
@@ -92,7 +101,7 @@ class DiaryWriteFragment(
                     if (etSituation.lineCount > 2) {
                         etSituation.setText(maxSituationText)
                         etSituation.setSelection(etSituation.length())
-                    } else if (etSituation.length()>30){
+                    } else if (etSituation.length()>70){
                         etSituation.setText(maxSituationText)
                         etSituation.setSelection(etSituation.length())
                     }
@@ -109,7 +118,7 @@ class DiaryWriteFragment(
                     if (etEmotion.lineCount > 5) {
                         etEmotion.setText(maxEmotionText)
                         etEmotion.setSelection(etEmotion.length())
-                    } else if (etEmotion.length()>50){
+                    } else if (etEmotion.length()>150){
                         etEmotion.setText(maxEmotionText)
                         etEmotion.setSelection(etEmotion.length())
                     }
@@ -126,7 +135,7 @@ class DiaryWriteFragment(
                     if (etPromise.lineCount > 5) {
                         etPromise.setText(maxPromiseText)
                         etPromise.setSelection(etPromise.length())
-                    } else if (etPromise.length()>50){
+                    } else if (etPromise.length()>150){
                         etPromise.setText(maxPromiseText)
                         etPromise.setSelection(etPromise.length())
                     }
@@ -143,8 +152,6 @@ class DiaryWriteFragment(
             detailId = it
             diaryWriteViewModel.getHabitDetail(it)
         }
-
-
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -184,6 +191,24 @@ class DiaryWriteFragment(
                     img_res = (1..4).random()
                 ), detailId, diaryWriteViewModel.habit.value
             )
+
+            viewLifecycleOwner.lifecycleScope.launch {
+                val battleList = habitDetailViewModel.presentBattlesFlow(detailId).first()
+                val existingBattle = battleList.find { it.battle_date == LocalDate.now().toString()}
+                val battleId = existingBattle?.battle_id
+
+                habitDetailViewModel.insertBattle(
+                    detailId,
+                    PresentBattle(
+                        battle_id = battleId,
+                        habit_id = detailId,
+                        battle_date = LocalDate.now().toString(),
+                        status = DayStatus.FAIL
+                    )
+                )
+                // 이후 로직 실행
+            }
+
             val vib = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val vibratorManager =
                     requireActivity().getSystemService(Context.VIBRATOR_MANAGER_SERVICE) as VibratorManager
@@ -203,8 +228,9 @@ class DiaryWriteFragment(
     }
 
     override fun dismiss() {
-        super.dismiss()
+        Log.e("TAG", "dismiss: didmiss", )
         dismissListener()
+        super.dismiss()
     }
 
 }

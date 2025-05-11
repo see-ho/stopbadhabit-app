@@ -50,9 +50,9 @@ class HomeFragment : Fragment(){
             },
             {
                 mainViewModel.setDetailId(it)
-                DiaryWriteFragment{}.apply {
-                    show(this@HomeFragment.childFragmentManager, "diaryWrite")
-                }
+//                DiaryWriteFragment{}.apply {
+//                    show(this@HomeFragment.childFragmentManager, "diaryWrite")
+//                }
             },
         ).apply {
             setHasStableIds(true) // 리사이클러 뷰 업데이트 시 깜빡임 방지

@@ -42,14 +42,30 @@ class HabitDetailViewModel @Inject constructor(
     val habit: LiveData<Habit> get() = _habit
 
     val isFailDialogVisible = MutableStateFlow(false)
+    val openDiaryBottomSheet = MutableStateFlow(false)
 
+    init {
+        Log.e("TAG", "init: I', new! ", )
+    }
 
     fun onShieldClick() {
         isFailDialogVisible.value = true
+        openDiaryBottomSheet.value = false
+    }
+
+    fun onDialogDismiss(){
+        isFailDialogVisible.value = false
     }
 
     fun confirmFail() {
         isFailDialogVisible.value = false
+        openDiaryBottomSheet.value = true
+        Log.e("TAG", "confirmFail: ${openDiaryBottomSheet.value}", )
+    }
+
+    fun bottomSheetClose(){
+        openDiaryBottomSheet.value = false
+        Log.e("TAG", "confirmFail: ${openDiaryBottomSheet.value}", )
     }
 
     fun habitById(habitId: Int): StateFlow<Habit?> {

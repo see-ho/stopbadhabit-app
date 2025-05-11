@@ -93,13 +93,14 @@ fun DetailScreen(
 
     val isDialogVisible by habitDetailViewModel.isFailDialogVisible.collectAsState()
 
+    habitDetailViewModel.bottomSheetClose()
+
     if (isDialogVisible) {
         FailConfirmDialog(
-            onDismiss = { habitDetailViewModel.confirmFail() },
+            onDismiss = { habitDetailViewModel.onDialogDismiss() },
             onConfirm = { habitDetailViewModel.confirmFail() }
         )
     }
-
 
     Scaffold(
         containerColor = colorResource(R.color.new_beige_100),
@@ -160,7 +161,7 @@ fun DetailScreen(
                         habit = habit!!,
                         onSwordClick = { newBattle ->
                             val alreadyExists =
-                                presentBattleList.any { it.battle_date == newBattle.battle_date }
+                                presentBattleList.any { it.battle_date == newBattle.battle_date && it.battle_id != null}
 
                             if (!alreadyExists) {
                                 habitDetailViewModel.insertBattle(habitId!!, newBattle)
@@ -170,8 +171,16 @@ fun DetailScreen(
                             }
                         },
                         onShieldClick = {
-                            habitDetailViewModel.onShieldClick()
                             Log.e("TAG", "MyInfoAndTodayBattle: Shield Clicked")
+
+                            val alreadyExists =
+                                presentBattleList.any { it.battle_date == LocalDate.now().toString() && it.status == DayStatus.FAIL}
+
+                            if (!alreadyExists) {
+                                habitDetailViewModel.onShieldClick()
+                            } else {
+                                Log.e("252", "DetailScreen: 이미 존재합니다")
+                            }
                         }
                     )
                 }
@@ -656,7 +665,9 @@ fun FailConfirmDialog(
 
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth().padding(vertical = 8.dp).padding(top= 12.dp,end = 16.dp),
+                        .fillMaxWidth()
+                        .padding(vertical = 8.dp)
+                        .padding(top = 12.dp, end = 16.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     Text(
@@ -673,7 +684,7 @@ fun FailConfirmDialog(
                     Text(
                         modifier = Modifier
                             .clickable {
-                            onDismiss()
+                            onConfirm()
                         },
                         text = "네",
                         fontSize = 14.sp,
